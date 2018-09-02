@@ -3,10 +3,39 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            {% include('inc/css.html.twig') %}
+        {% endblock %}
     </head>
     <body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Le bon point</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="#">Déposer une annonce <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link active" href="#">Annonces</a>
+                        <a class="nav-item nav-link active" href="#">Mon compte</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Place sticky footer content here.</span>
+        </div>
+    </footer>
+        {% block javascripts %}
+            {% include('inc/js.html.twig') %}
+        {% endblock %}
     </body>
 </html>
