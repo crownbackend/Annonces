@@ -49,6 +49,11 @@ class Advertisement
      */
     private $subCategory;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="advertisement")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
@@ -156,6 +161,18 @@ class Advertisement
         if ($this->subCategory->contains($subCategory)) {
             $this->subCategory->removeElement($subCategory);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
