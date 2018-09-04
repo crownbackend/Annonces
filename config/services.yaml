@@ -27,5 +27,7 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    app.form.registration:
+        class: App\Form\UserType
+        tags:
+        - { name: form.type, alias: app_user_registration }

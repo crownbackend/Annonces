@@ -23,17 +23,17 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lastName;
+    protected $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $numberTelephone;
+    protected $numberTelephone;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Advertisement", mappedBy="user")
