@@ -35,9 +35,15 @@ class User extends BaseUser
      */
     protected $numberTelephone;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Advertisement", mappedBy="user", orphanRemoval=true)
+     */
+    private $advertisement;
+
     public function __construct()
     {
         parent::__construct();
+        $this->advertisement = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,6 +83,37 @@ class User extends BaseUser
     public function setNumberTelephone(string $numberTelephone): self
     {
         $this->numberTelephone = $numberTelephone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Advertisement[]
+     */
+    public function getAdvertisement(): Collection
+    {
+        return $this->advertisement;
+    }
+
+    public function addAdvertisement(Advertisement $advertisement): self
+    {
+        if (!$this->advertisement->contains($advertisement)) {
+            $this->advertisement[] = $advertisement;
+            $advertisement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdvertisement(Advertisement $advertisement): self
+    {
+        if ($this->advertisement->contains($advertisement)) {
+            $this->advertisement->removeElement($advertisement);
+            // set the owning side to null (unless already changed)
+            if ($advertisement->getUser() === $this) {
+                $advertisement->setUser(null);
+            }
+        }
 
         return $this;
     }

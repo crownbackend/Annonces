@@ -4,6 +4,7 @@
 
 {% block body %}
 <div class="container">
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 <div class="espace20"></div>
 
     <h1 class="h1-add">Déposer une annonce</h1>
@@ -15,5 +16,8 @@
     <input type="submit" value="envoyer">
     {{ form_end(form) }}
 
+    {% else %}
+        <h1>Il faut être connecté pour déposer une annonce</h1>
+    {% endif %}
 </div>
 {% endblock %}

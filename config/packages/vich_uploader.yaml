@@ -1,0 +1,20 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        advertisement:
+            uri_prefix: /images/advertisement
+            upload_destination: '%kernel.project_dir%/public/images/products'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+        advertisement2:
+            uri_prefix: /images/advertisement2
+            upload_destination: '%kernel.project_dir%/public/images/products'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+        advertisement3:
+            uri_prefix: /images/advertisement3
+            upload_destination: '%kernel.project_dir%/public/images/products'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+        advertisement4:
+            uri_prefix: /images/advertisement4
+            upload_destination: '%kernel.project_dir%/public/images/products'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer

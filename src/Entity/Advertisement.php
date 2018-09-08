@@ -5,9 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdvertisementRepository")
+ * @Vich\Uploadable
  */
 class Advertisement
 {
@@ -42,6 +45,34 @@ class Advertisement
      * @ORM\Column(type="string", length=255)
      */
     private $zipCode;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="advertisement")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $region;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="advertisement")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="advertisement")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $CreatedAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+    }
 
     public function getId(): ?int
     {
@@ -106,6 +137,339 @@ class Advertisement
         $this->zipCode = $zipCode;
 
         return $this;
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->CreatedAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
+    {
+        $this->CreatedAt = $CreatedAt;
+
+        return $this;
+    }
+
+    // The file images of annoncement
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="advertisement", fileNameProperty="imageName", size="imageSize")
+     *
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $imageName;
+
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
+    private $imageSize;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     * @throws \Exception
+     */
+    public function setImageFile(?File $image = null): void
+    {
+        $this->imageFile = $image;
+
+        if (null !== $image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageSize(?int $imageSize): void
+    {
+        $this->imageSize = $imageSize;
+    }
+
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
+    }
+
+    // second image
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="advertisement2", fileNameProperty="imageName2", size="imageSize2")
+     *
+     * @var File
+     */
+    private $imageFile2;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $imageName2;
+
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
+    private $imageSize2;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt2;
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image2
+     * @throws \Exception
+     */
+    public function setImageFile2(?File $image2 = null): void
+    {
+        $this->imageFile2 = $image2;
+
+        if (null !== $image2) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt2 = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile2(): ?File
+    {
+        return $this->imageFile2;
+    }
+
+    public function setImageName2(?string $imageName2): void
+    {
+        $this->imageName = $imageName2;
+    }
+
+    public function getImageName2(): ?string
+    {
+        return $this->imageName2;
+    }
+
+    public function setImageSize2(?int $imageSize2): void
+    {
+        $this->imageSize2 = $imageSize2;
+    }
+
+    public function getImageSize2(): ?int
+    {
+        return $this->imageSize2;
+    }
+
+    // 3rd
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="advertisement3", fileNameProperty="imageName3", size="imageSize3")
+     *
+     * @var File
+     */
+    private $imageFile3;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $imageName3;
+
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
+    private $imageSize3;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt3;
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image3
+     * @throws \Exception
+     */
+    public function setImageFile3(?File $image3 = null): void
+    {
+        $this->imageFile3 = $image3;
+
+        if (null !== $image3) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt3 = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile3(): ?File
+    {
+        return $this->imageFile3;
+    }
+
+    public function setImageName3(?string $imageName3): void
+    {
+        $this->imageName3 = $imageName3;
+    }
+
+    public function getImageName3(): ?string
+    {
+        return $this->imageName3;
+    }
+
+    public function setImageSize3(?int $imageSize3): void
+    {
+        $this->imageSize3 = $imageSize3;
+    }
+
+    public function getImageSize3(): ?int
+    {
+        return $this->imageSize3;
+    }
+
+    // 4
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="advertisement4", fileNameProperty="imageName4", size="imageSize4")
+     *
+     * @var File
+     */
+    private $imageFile4;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $imageName4;
+
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
+    private $imageSize4;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt4;
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image4
+     * @throws \Exception
+     */
+    public function setImageFile4(?File $image4 = null): void
+    {
+        $this->imageFile4 = $image4;
+
+        if (null !== $image4) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt4 = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile4(): ?File
+    {
+        return $this->imageFile4;
+    }
+
+    public function setImageName4(?string $imageName4): void
+    {
+        $this->imageName4 = $imageName4;
+    }
+
+    public function getImageName4(): ?string
+    {
+        return $this->imageName4;
+    }
+
+    public function setImageSize4(?int $imageSize4): void
+    {
+        $this->imageSize4 = $imageSize4;
+    }
+
+    public function getImageSize4(): ?int
+    {
+        return $this->imageSize4;
     }
 
 }

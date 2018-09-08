@@ -21,7 +21,7 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route("/ajouter-une-annonce", name="add-advertisement")
+     * @Route("/annonces/ajouter-une-annonce", name="add-advertisement")
      * @return Response
      */
     public function addAdvertisement(Request $request): Response
@@ -34,6 +34,8 @@ class FrontController extends AbstractController
 
             $addvertisement = $form->getData();
             $manager = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
+            $addvertisement->setUser($user);
             $manager->persist($addvertisement);
             $manager->flush();
 
