@@ -45,11 +45,6 @@ class Advertisement
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\SubCategory", inversedBy="advertisements")
-     */
-    private $subCategory;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="advertisement")
      */
     private $user;
@@ -57,7 +52,7 @@ class Advertisement
     public function __construct()
     {
         $this->category = new ArrayCollection();
-        $this->subCategory = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -134,32 +129,6 @@ class Advertisement
     {
         if ($this->category->contains($category)) {
             $this->category->removeElement($category);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|SubCategory[]
-     */
-    public function getSubCategory(): Collection
-    {
-        return $this->subCategory;
-    }
-
-    public function addSubCategory(SubCategory $subCategory): self
-    {
-        if (!$this->subCategory->contains($subCategory)) {
-            $this->subCategory[] = $subCategory;
-        }
-
-        return $this;
-    }
-
-    public function removeSubCategory(SubCategory $subCategory): self
-    {
-        if ($this->subCategory->contains($subCategory)) {
-            $this->subCategory->removeElement($subCategory);
         }
 
         return $this;

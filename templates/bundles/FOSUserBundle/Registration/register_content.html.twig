@@ -6,37 +6,36 @@
 
 <div class="container">
 
-<h1>Inscriviez vous sur le bon point pour mettre autant d'annonces que vous le voulez !</h1>
-
+<h1>Inscriviez vous sur le bon point pour mettre autant d'annonces que vous le voulez ! (promis c'est gratuit)</h1>
+<div class="espace30"></div>
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
     <div class="form-group">
-        {% set emailPlaceholder = 'email' %}
-        {{ form_widget(form.email, {'attr': {'placeholder': emailPlaceholder|trans}}) }}
+        {{ form_widget(form.email, {'attr': {'placeholder': 'Votre email'}}) }}
     </div>
 
     <div class="form-group">
-        {{ form_widget(form.username) }}
+        {{ form_widget(form.username, {'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}
     </div>
 
     <div class="form-group">
-        {{ form_widget(form.plainPassword.first) }}
+        {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Mot de passe'}}) }}
     </div>
 
     <div class="form-group">
-        {{ form_widget(form.plainPassword.second) }}
+        {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Répéter votre mot de passe'}}) }}
     </div>
 
     <div class="form-group">
-        {{ form_widget(form.lastName) }}
+        {{ form_widget(form.lastName, {'attr': {'placeholder': 'Nom'}}) }}
     </div>
 
     <div class="form-group">
-        {{ form_widget(form.firstName) }}
+        {{ form_widget(form.firstName, {'attr': {'placeholder': 'Prénom'}}) }}
     </div>
 
     <div class="form-group">
-        {{ form_widget(form.numberTelephone) }}
+        {{ form_widget(form.numberTelephone, {'attr': {'placeholder': 'Numéro de téléphone'}}) }}
     </div>
 
     <div>

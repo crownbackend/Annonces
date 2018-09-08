@@ -22,6 +22,11 @@ html {
 }
 .navbar-light .navbar-brand {
     color: #ffffff;
+    font-size: 30px;
+}
+.navbar-light .navbar-brand:hover {
+    color: #FFFFFF;
+
 }
 
 .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
@@ -64,6 +69,15 @@ p {
 .espace50{
     padding: 50px;
 }
+
+.espace30{
+    padding: 30px;
+}
+
 h1 {
     font-family: 'Oswald', sans-serif;
+}
+
+.form-group {
+    width: 50%;
 }
