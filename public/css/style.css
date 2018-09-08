@@ -89,3 +89,16 @@ h1 {
     font-size: 22px;
     color: #989898;
 }
+
+.form-group .price {
+    width: 35%;
+}
+
+.annonce-h2 {
+    background-color: #666;
+    font-size: 15px;
+    color: #FFFFFF;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+}

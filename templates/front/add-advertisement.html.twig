@@ -2,6 +2,8 @@
 
 {% block title %}Ajouter une annonce pour vendre au plus vite - Le bon point{% endblock %}
 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
 {% block body %}
 <div class="container">
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -9,15 +11,74 @@
 
     <h1 class="h1-add">Déposer une annonce</h1>
     <hr>
-
+        <h2 class="annonce-h2">Votre annonce</h2>
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div class="form-group">
+        {{ form_label(form.category, 'Catégorie') }}
+        {{ form_widget(form.category, {'attr': {"class": "form-control"}}) }}
+    </div>
 
-    <input type="submit" value="envoyer">
+    <div class="form-group">
+        {{ form_label(form.title, 'Titre de l\'annonce') }}
+        {{ form_widget(form.title, {'attr': {"class": "form-control"}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.description, 'Texte de l\'annonce') }}
+        {{ form_widget(form.description, {'attr': {"class": "form-control", "rows": "10"}}) }}
+    </div>
+
+    <div class="form-group price">
+        {{ form_label(form.price, 'Prix') }}
+        {{ form_widget(form.price, {'attr': {"class": "form-control price"}}) }}&euro;
+    </div>
+
+        <h3>Sélectionnez des Photo à télécharger :</h3>
+        <p><strong>Taille maximale :</strong> 2 Mo.</p>
+        <p><strong>Formats supportés :</strong> png, jpeg.</p>
+        <div class="form-group">
+        {{ form_label(form.imageFile, 'Photo principale') }}
+        {{ form_widget(form.imageFile) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.imageFile2, 'Photo 2') }}
+        {{ form_widget(form.imageFile2) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.imageFile3, 'Photo 3') }}
+        {{ form_widget(form.imageFile3) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.imageFile4, 'Photo 4') }}
+        {{ form_widget(form.imageFile4) }}
+    </div>
+
+        <h2 class="annonce-h2">Localisation</h2>
+
+    <div class="form-group">
+        {{ form_label(form.address, 'Votre adresse') }}
+        {{ form_widget(form.address) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.zipCode, 'Code postal') }}
+        {{ form_widget(form.zipCode) }}
+    </div>
+
+    <div class="form-group">
+         {{ form_label(form.region, 'Votre région') }}
+         {{ form_widget(form.region) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Valider</button>
     {{ form_end(form) }}
 
     {% else %}
         <h1>Il faut être connecté pour déposer une annonce</h1>
     {% endif %}
 </div>
+
 {% endblock %}
