@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une annonce pour vendre au plus vite - Le bon point{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="espace20"></div>
+
+    <h1 class="h1-add">Déposer une annonce</h1>
+    <hr>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <input type="submit" value="envoyer">
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}

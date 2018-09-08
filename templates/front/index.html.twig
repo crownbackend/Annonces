@@ -10,7 +10,7 @@
             Trouvez une bonne aiffaires parmis <span class="annonce">15 000 petites<br> annonces</span> sur le bon point
         </p>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <a href="" class="btn btn-primary">Déposer une annonce</a>
+        <a href="{{ path('add-advertisement') }}" class="btn btn-primary">Déposer une annonce</a>
         {% else %}
         <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">Déposer une annonce</a>
         {% endif %}

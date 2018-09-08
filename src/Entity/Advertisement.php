@@ -34,26 +34,14 @@ class Advertisement
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="advertisement")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
-    private $region;
+    private $address;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="advertisements")
+     * @ORM\Column(type="string", length=255)
      */
-    private $category;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="advertisement")
-     */
-    private $user;
-
-    public function __construct()
-    {
-        $this->category = new ArrayCollection();
-
-    }
+    private $zipCode;
 
     public function getId(): ?int
     {
@@ -96,53 +84,28 @@ class Advertisement
         return $this;
     }
 
-    public function getRegion(): ?Region
+    public function getAddress(): ?string
     {
-        return $this->region;
+        return $this->address;
     }
 
-    public function setRegion(?Region $region): self
+    public function setAddress(string $address): self
     {
-        $this->region = $region;
+        $this->address = $address;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Category[]
-     */
-    public function getCategory(): Collection
+    public function getZipCode(): ?string
     {
-        return $this->category;
+        return $this->zipCode;
     }
 
-    public function addCategory(Category $category): self
+    public function setZipCode(string $zipCode): self
     {
-        if (!$this->category->contains($category)) {
-            $this->category[] = $category;
-        }
+        $this->zipCode = $zipCode;
 
         return $this;
     }
 
-    public function removeCategory(Category $category): self
-    {
-        if ($this->category->contains($category)) {
-            $this->category->removeElement($category);
-        }
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 }

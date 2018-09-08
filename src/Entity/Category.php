@@ -23,17 +23,6 @@ class Category
      */
     private $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Advertisement", mappedBy="category")
-     */
-    private $advertisements;
-
-    public function __construct()
-    {
-        $this->advertisements = new ArrayCollection();
-    }
-
-
     public function getId(): ?int
     {
         return $this->id;
@@ -47,34 +36,6 @@ class Category
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Advertisement[]
-     */
-    public function getAdvertisements(): Collection
-    {
-        return $this->advertisements;
-    }
-
-    public function addAdvertisement(Advertisement $advertisement): self
-    {
-        if (!$this->advertisements->contains($advertisement)) {
-            $this->advertisements[] = $advertisement;
-            $advertisement->addCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAdvertisement(Advertisement $advertisement): self
-    {
-        if ($this->advertisements->contains($advertisement)) {
-            $this->advertisements->removeElement($advertisement);
-            $advertisement->removeCategory($this);
-        }
 
         return $this;
     }
