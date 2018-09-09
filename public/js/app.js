@@ -56,6 +56,18 @@ $(document).ready(function() {
             "advertisement[price]": {
                 required: "Veuillez mettre un prix minimum de 1€.",
                 regex: "Il faut un nombre"
+            },
+            "advertisement[imageFile]": {
+                required: "Il faut une photo"
+            },
+            "advertisement[imageFile2]": {
+                required: "Il faut une photo"
+            },
+            "advertisement[imageFile3]": {
+                required: "Il faut une photo"
+            },
+            "advertisement[imageFile4]": {
+                required: "Il faut une photo"
             }
         }
     });
