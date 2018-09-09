@@ -12,7 +12,7 @@
     <h1 class="h1-add">Déposer une annonce</h1>
     <hr>
         <h2 class="annonce-h2">Votre annonce</h2>
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'id': 'form'}}) }}
     <div class="form-group">
         {{ form_label(form.category, 'Catégorie') }}
         {{ form_widget(form.category, {'attr': {"class": "form-control"}}) }}
@@ -21,16 +21,19 @@
     <div class="form-group">
         {{ form_label(form.title, 'Titre de l\'annonce') }}
         {{ form_widget(form.title, {'attr': {"class": "form-control"}}) }}
+        <div id="res-title"></div>
     </div>
 
     <div class="form-group">
         {{ form_label(form.description, 'Texte de l\'annonce') }}
         {{ form_widget(form.description, {'attr': {"class": "form-control", "rows": "10"}}) }}
+        <div id="res-description"></div>
     </div>
 
     <div class="form-group price">
-        {{ form_label(form.price, 'Prix') }}
-        {{ form_widget(form.price, {'attr': {"class": "form-control price"}}) }}&euro;
+         {{ form_label(form.price, 'Prix') }}
+         {{ form_widget(form.price, {'attr': {"class": "form-control price"}}) }} &euro;
+        <div id="res-price"></div>
     </div>
 
         <h3>Sélectionnez des Photo à télécharger :</h3>
@@ -72,12 +75,19 @@
          {{ form_label(form.region, 'Votre région') }}
          {{ form_widget(form.region) }}
     </div>
-
+    <div class="form-group">
     <button type="submit" class="btn btn-primary">Valider</button>
+    </div>
+
     {{ form_end(form) }}
 
     {% else %}
-        <h1>Il faut être connecté pour déposer une annonce</h1>
+        <div class="espace50"></div>
+        <div class="container">
+            <h1 class="else-h1">Il faut être connecté pour déposer une annonce</h1>
+            <h2 class="else-h2">Vous n'avez pas de compte ? <a class="btn btn-primary" href="{{ path('fos_user_registration_register') }}"> Inscriviez vous</a> et commencer à ajouter vos annonces !</h2>
+            <h3 class="else-h3">Vous êtes déjà membre ? <a class="btn btn-primary" href="{{ path('fos_user_security_login') }}">Connecter vous</a> </h3>
+        </div>
     {% endif %}
 </div>
 

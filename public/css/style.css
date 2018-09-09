@@ -102,3 +102,21 @@ h1 {
     height: 40px;
     padding: 10px;
 }
+
+.test {
+    background-color: #FFFFFF;
+
+}
+
+.else-h1, .else-h2, .else-h3 {
+    font-size: 50px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.alert-primary {
+    font-size: 15px;
+}
+
+.error {
+    color: red;
+}
