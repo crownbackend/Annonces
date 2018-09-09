@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdvertisementRepository")
@@ -23,28 +24,65 @@ class Advertisement
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 100,
+     *      minMessage = "Il faut au minimum {{ limit }} charactère",
+     *      maxMessage = "Il faut au maximum {{ limit }} charactère"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *     min = 50,
+     *     max = 3500,
+     *     minMessage = "Il faut au minimum {{ limit }} charactère",
+     *     maxMessage = "Il faut au maximum {{ limit }} charactère"
+     * )
      */
     private $description;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=0)
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+(\.[0-9]{2,10})?$/",
+     *     message="Le prix n'est pas conforme !"
+     * )
      */
     private $price;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     min = 7,
+     *     max = 70,
+     *     minMessage = "Votre addresse n'est pas valide",
+     *     maxMessage = "Votre addresse est trop longue",
+     * )
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *     pattern="/^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$/",
+     *     message="Le code postale n'est pas valide !"
+     * )
      */
     private $zipCode;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 50,
+     *     minMessage = "Votre ville n'est pas valide",
+     *     maxMessage = "Votre ville est trop longue",
+     * )
+     */
+    private $city;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="advertisement")
@@ -189,8 +227,10 @@ class Advertisement
 
     // The file images of annoncement
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
+     * @Assert\File(
+     *     mimeTypes={"image/jpeg", "image/png"},
+     *     mimeTypesMessage = "Vous pouvez ajouter les extension suivante : JPEG, PNG"
+     * )
      * @Vich\UploadableField(mapping="advertisement", fileNameProperty="imageName", size="imageSize")
      *
      * @var File
@@ -260,8 +300,10 @@ class Advertisement
 
     // second image
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
+     * @Assert\File(
+     *     mimeTypes={"image/jpeg", "image/png"},
+     *     mimeTypesMessage = "Vous pouvez ajouter les extension suivante : JPEG, PNG"
+     * )
      * @Vich\UploadableField(mapping="advertisement2", fileNameProperty="imageName2", size="imageSize2")
      *
      * @var File
@@ -332,8 +374,10 @@ class Advertisement
     // 3rd
 
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
+     * @Assert\File(
+     *     mimeTypes={"image/jpeg", "image/png"},
+     *     mimeTypesMessage = "Vous pouvez ajouter les extension suivante : JPEG, PNG"
+     * )
      * @Vich\UploadableField(mapping="advertisement3", fileNameProperty="imageName3", size="imageSize3")
      *
      * @var File
@@ -403,8 +447,10 @@ class Advertisement
 
     // 4
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
+     * @Assert\File(
+     *     mimeTypes={"image/jpeg", "image/png"},
+     *     mimeTypesMessage = "Vous pouvez ajouter les extension suivante : JPEG, PNG"
+     * )
      * @Vich\UploadableField(mapping="advertisement4", fileNameProperty="imageName4", size="imageSize4")
      *
      * @var File
@@ -470,6 +516,18 @@ class Advertisement
     public function getImageSize4(): ?int
     {
         return $this->imageSize4;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
     }
 
 }

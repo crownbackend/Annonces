@@ -28,8 +28,7 @@ $(document).ready(function() {
                 minlength: 50,
             },
             "advertisement[price]": {
-                required: true,
-                regex: "/^(\\d*([.,](?=\\d{3}))?\\d+)+((?!\\2)[.,]\\d\\d)?$/"
+                required: true
             },
             "advertisement[imageFile]": {
                 required: true
@@ -41,6 +40,9 @@ $(document).ready(function() {
                 required: true
             },
             "advertisement[imageFile4]": {
+                required: true
+            },
+            "advertisement[address]": {
                 required: true
             }
         },
@@ -54,8 +56,7 @@ $(document).ready(function() {
                 minlength: "Il faut au minimum 50 caractère"
             },
             "advertisement[price]": {
-                required: "Veuillez mettre un prix minimum de 1€.",
-                regex: "Il faut un nombre"
+                required: "Veuillez mettre un prix minimum de 1€."
             },
             "advertisement[imageFile]": {
                 required: "Il faut une photo"
@@ -68,7 +69,38 @@ $(document).ready(function() {
             },
             "advertisement[imageFile4]": {
                 required: "Il faut une photo"
+            },
+            "advertisement[address]": {
+                required: "Il faut une adresse valide"
+            },
+            "advertisement[zipCode]": {
+                required: "Il faut un code postale valide"
+            },
+            "advertisement[city]": {
+                required: "Il faut une ville valide"
+            }
+        }
+    });
+
+    $.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $( "#form" ).validate({
+        rules: {
+            field: {
+                required: true,
+                number: true
             }
         }
     });
 });
+
+function countChar(val) {
+    var len = val.value.length;
+    if (len >= 3500) {
+        val.value = val.value.substring(0, 3500);
+    } else {
+        $('#res-limit').text(3500 - len);
+    }
+};

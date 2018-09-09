@@ -26,8 +26,9 @@
 
     <div class="form-group">
         {{ form_label(form.description, 'Texte de l\'annonce') }}
-        {{ form_widget(form.description, {'attr': {"class": "form-control", "rows": "10"}}) }}
+        {{ form_widget(form.description, {'attr': {"class": "form-control", "rows": "10", "onkeyup": "countChar(this)"}}) }}
         <div id="res-description"></div>
+        <div id="res-limit"></div>
     </div>
 
     <div class="form-group price">
@@ -64,6 +65,11 @@
     <div class="form-group">
         {{ form_label(form.address, 'Votre adresse') }}
         {{ form_widget(form.address) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.city, 'Ville') }}
+        {{ form_widget(form.city) }}
     </div>
 
     <div class="form-group">
