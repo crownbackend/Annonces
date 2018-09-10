@@ -94,6 +94,28 @@ $(document).ready(function() {
             }
         }
     });
+//advertisement_city
+    $( function() {
+        $( "#advertisement_city" ).autocomplete({
+            source: function( request, response ) {
+                $.ajax( {
+                    url: "http://127.0.0.1:8000/js/city.json",
+                    dataType: "jsonp",
+                    data: {
+                        term: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                } );
+            },
+            minLength: 1,
+            select: function( event, ui ) {
+                log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+            }
+        } );
+    } );
+
 });
 
 function countChar(val) {
