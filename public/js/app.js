@@ -72,12 +72,6 @@ $(document).ready(function() {
             },
             "advertisement[address]": {
                 required: "Il faut une adresse valide"
-            },
-            "advertisement[zipCode]": {
-                required: "Il faut un code postale valide"
-            },
-            "advertisement[city]": {
-                required: "Il faut une ville valide"
             }
         }
     });
@@ -95,26 +89,11 @@ $(document).ready(function() {
         }
     });
 //advertisement_city
-    $( function() {
-        $( "#advertisement_city" ).autocomplete({
-            source: function( request, response ) {
-                $.ajax( {
-                    url: "http://127.0.0.1:8000/js/city.json",
-                    dataType: "jsonp",
-                    data: {
-                        term: request.term
-                    },
-                    success: function( data ) {
-                        response( data );
-                    }
-                } );
-            },
-            minLength: 1,
-            select: function( event, ui ) {
-                log( "Selected: " + ui.item.value + " aka " + ui.item.id );
-            }
-        } );
-    } );
+
+
+    $('#advertisement_address').geocomplete();
+    $.fn.geocomplete('#advertisement_address');
+
 
 });
 
@@ -126,3 +105,5 @@ function countChar(val) {
         $('#res-limit').text(3500 - len);
     }
 };
+
+

@@ -20,8 +20,6 @@ class AdvertisementType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('price', NumberType::class)
             ->add('address',TextType::class)
-            ->add('zipCode', NumberType::class)
-            ->add('city', TextType::class)
             ->add('imageFile', FileType::class)
             ->add('imageFile2', FileType::class)
             ->add('imageFile3', FileType::class)

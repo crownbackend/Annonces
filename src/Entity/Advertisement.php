@@ -65,26 +65,6 @@ class Advertisement
     private $address;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Regex(
-     *     pattern="/^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$/",
-     *     message="Le code postale n'est pas valide !"
-     * )
-     */
-    private $zipCode;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     *     min = 3,
-     *     max = 50,
-     *     minMessage = "Votre ville n'est pas valide",
-     *     maxMessage = "Votre ville est trop longue",
-     * )
-     */
-    private $city;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="advertisement")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -161,18 +141,6 @@ class Advertisement
     public function setAddress(string $address): self
     {
         $this->address = $address;
-
-        return $this;
-    }
-
-    public function getZipCode(): ?string
-    {
-        return $this->zipCode;
-    }
-
-    public function setZipCode(string $zipCode): self
-    {
-        $this->zipCode = $zipCode;
 
         return $this;
     }
@@ -516,18 +484,6 @@ class Advertisement
     public function getImageSize4(): ?int
     {
         return $this->imageSize4;
-    }
-
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function setCity(string $city): self
-    {
-        $this->city = $city;
-
-        return $this;
     }
 
 }
