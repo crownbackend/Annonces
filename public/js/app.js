@@ -16,6 +16,12 @@ $(document).ready(function() {
             '</div>');
     });
 
+    $('#advertisement_address').on('click',function() {
+        $('#res-address').html('<div class="alert alert-primary" role="alert">\n' +
+            ' Indiquer une adresse valide en France \n' +
+            '</div>');
+    });
+
     $("#form").validate({
         rules: {
             "advertisement[title]":{
