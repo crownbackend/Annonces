@@ -5,12 +5,14 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdvertisementRepository")
+ * @ORM\Table(name="advertisement")
  * @Vich\Uploadable
  */
 class Advertisement
@@ -68,6 +70,12 @@ class Advertisement
      * @ORM\Column(type="boolean")
      */
     private $isValid;
+
+    /**
+     * @Gedmo\Slug(fields={"title"}, separator="-", updatable=true, unique=true)
+     * @ORM\Column(length=255, type="string")
+     */
+    private $slug;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="advertisement")
@@ -209,6 +217,11 @@ class Advertisement
         $this->isValid = $isValid;
 
         return $this;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     // The file images of annoncement

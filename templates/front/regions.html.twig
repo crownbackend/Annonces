@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ regions.name }} nos annonces le bon point{% endblock %}
+{% block title %}{% for region in regions %}{{ region.name }}{% endfor %} - nos annonces le bon point{% endblock %}
 
 {% block body %}
+<div class="espace50"></div>
 
     <div class="container">
-
+            {% for advertisement in addvertisements %}
+               <p> {{ advertisement.title }}</p>
+               <p> {{ advertisement.price }}</p>
+            {% endfor %}
     </div>
 
 {% endblock %}

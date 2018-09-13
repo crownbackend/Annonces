@@ -19,32 +19,30 @@ class AdvertisementRepository extends ServiceEntityRepository
         parent::__construct($registry, Advertisement::class);
     }
 
-//    /**
-//     * @return Advertisement[] Returns an array of Advertisement objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Advertisement
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+
+    /**
+     * @param int $id
+     * @return Advertisement|null
+     * @throws \Exception
+     */
+    public function findByRegions(string $id) {
+//SELECT * FROM `advertisement` WHERE region_id = 1
+        $query = $this->createQueryBuilder('a')
+            ->select('a')
+            ->from('App\Entity\Advertisement', 'r')
+            ->where('a.region = :id')
+            ->setParameter(':id', $id)
             ->getQuery()
-            ->getOneOrNullResult()
         ;
+
+        try {
+            return $query->getResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème' . $e->getMessage() . $e->getLine());
+        }
+
     }
-    */
+
 }

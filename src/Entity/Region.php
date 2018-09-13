@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RegionRepository")
+ * @ORM\Table(name="Region")
  */
 class Region
 {
@@ -22,6 +24,12 @@ class Region
      * @ORM\Column(type="string", length=100)
      */
     private $name;
+
+    /**
+     * @Gedmo\Slug(fields={"name"}, separator="-", updatable=true, unique=true)
+     * @ORM\Column(length=255, type="string")
+     */
+    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Advertisement", mappedBy="region", orphanRemoval=true)
@@ -56,6 +64,11 @@ class Region
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

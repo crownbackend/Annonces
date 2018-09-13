@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Advertisement;
 use App\Entity\Region;
-use App\Entity\User;
 use App\Form\AdvertisementType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,16 +64,24 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route("/annonces/{id}")
+     * @Route("/annonces/{slug}/{id}", name="region")
+     * @param string $slug
      * @param int $id
      * @return Response
      */
-    public function region(int $id): Response {
+    public function region(string $slug, int $id): Response {
 
-        $regions = $this->getDoctrine()->getRepository(Region::class)->find($id);
+        $regions = $this->getDoctrine()->
+        getRepository(Region::class)->
+        findBySlugRegion($slug);
+
+        $addvertisements = $this->getDoctrine()->
+        getRepository(Advertisement::class)->
+        findByRegions($id);
 
         return $this->render('front/regions.html.twig', [
-            'regions' => $regions
+            'regions' => $regions,
+            'addvertisements' => $addvertisements
         ]);
 
     }

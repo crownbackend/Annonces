@@ -19,32 +19,28 @@ class RegionRepository extends ServiceEntityRepository
         parent::__construct($registry, Region::class);
     }
 
-//    /**
-//     * @return Region[] Returns an array of Region objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
+    /**
+     * @param string $slug
+     * @return Region|null
+     * @throws \Exception
+     */
+    public function findBySlugRegion(string $slug) {
+//SELECT * FROM `region` WHERE slug
+        $query = $this->createQueryBuilder('r')
+            ->select('r')
+            ->from('App\Entity\Region', 'i')
+            ->where('r.slug = :slug')
+            ->setParameter(':slug', $slug)
             ->getQuery()
-            ->getResult()
         ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Region
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        try {
+            return $query->getResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème' . $e->getMessage() . var_dump($e));
+        }
+
     }
-    */
+
 }
