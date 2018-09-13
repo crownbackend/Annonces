@@ -65,6 +65,11 @@ class Advertisement
     private $address;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isValid;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="advertisement")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -89,7 +94,8 @@ class Advertisement
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $this->CreatedAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $this->isValid = 0;
     }
 
     public function getId(): ?int
@@ -189,6 +195,18 @@ class Advertisement
     public function setCreatedAt(\DateTimeInterface $CreatedAt): self
     {
         $this->CreatedAt = $CreatedAt;
+
+        return $this;
+    }
+
+    public function getIsValid(): ?bool
+    {
+        return $this->isValid;
+    }
+
+    public function setIsValid(bool $isValid): self
+    {
+        $this->isValid = $isValid;
 
         return $this;
     }
@@ -321,7 +339,7 @@ class Advertisement
 
     public function setImageName2(?string $imageName2): void
     {
-        $this->imageName = $imageName2;
+        $this->imageName2 = $imageName2;
     }
 
     public function getImageName2(): ?string

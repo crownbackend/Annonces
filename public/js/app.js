@@ -1,6 +1,5 @@
 $(document).ready(function() {
     $('#advertisement_title').on('click',function() {
-
        $('#res-title').html('<div class="alert alert-primary" role="alert">\n' +
              '  Si le titre de votre annonce n\'est pas claire votre annonce sera réfuser ! \n' +
                 '</div>');
@@ -15,7 +14,6 @@ $(document).ready(function() {
             ' Le prix doit contenir que des chiffres ni virgule, ni point ! \n' +
             '</div>');
     });
-
     $('#advertisement_address').on('click',function() {
         $('#res-address').html('<div class="alert alert-primary" role="alert">\n' +
             ' Indiquer une adresse valide en France \n' +
@@ -96,10 +94,8 @@ $(document).ready(function() {
     });
 //advertisement_city
 
-
     $('#advertisement_address').geocomplete();
     $.fn.geocomplete('#advertisement_address');
-
 
 });
 

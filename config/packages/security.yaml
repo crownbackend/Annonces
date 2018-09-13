@@ -16,8 +16,12 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                login_path: /mon-compte/connexion
+                check_path: /login_check
 
-            logout:       true
+            logout:
+                path: /mon-compte/deconnexion
+                target: /
             anonymous:    true
 
     access_control:
