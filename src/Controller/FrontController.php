@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Advertisement;
+use App\Entity\Region;
 use App\Entity\User;
 use App\Form\AdvertisementType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,20 +33,18 @@ class FrontController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-
             $addvertisement = $form->getData();
             $manager = $this->getDoctrine()->getManager();
             $user = $this->getUser();
             $addvertisement->setUser($user);
             $manager->persist($addvertisement);
             $manager->flush();
+            $email = $this->getUser()->getEmail();
+            $username = $this->getUser()->getUsername();
 
-            $user = $this->getEmail();
-            $username = $this->getUsername();
-
-            $message = (new \Swift_Message('Mail de confirmation'))
+            $message = (new \Swift_Message('Mail de confirmation le bon point'))
                 ->setFrom('annonces@lebonpoint.com')
-                ->setTo($user)
+                ->setTo($email)
                 ->setBody(
                     $this->renderView(
                         'emails/confirmation.html.twig',
@@ -57,7 +56,6 @@ class FrontController extends AbstractController
                 )
             ;
             $mailer->send($message);
-
             return $this->redirectToRoute('index');
         }
 
@@ -65,4 +63,47 @@ class FrontController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/annonces/{id}")
+     * @param int $id
+     * @return Response
+     */
+    public function region(int $id): Response {
+
+        $regions = $this->getDoctrine()->getRepository(Region::class)->find($id);
+
+        return $this->render('front/regions.html.twig', [
+            'regions' => $regions
+        ]);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
