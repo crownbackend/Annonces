@@ -20,6 +20,9 @@ class AppFixtures extends Fixture
         $generator = \Faker\Factory::create('fr_FR');
 
         $populator = new Populator($generator, $manager);
+        $populator->addEntity(User::class, 10);
+        $populator->addEntity(Category::class, 5);
+        $populator->addEntity(Region::class, 22);
         $populator->addEntity(Advertisement::class, 200, [
             'address' => function() use ($generator) { return $generator->address; },
             'description' => $generator->text(2000),
@@ -29,8 +32,6 @@ class AppFixtures extends Fixture
             'imageName3' => function() use ($generator) { return 'https://picsum.photos/1000/700'; },
             'imageName4' => function() use ($generator) { return 'https://picsum.photos/1000/700'; },
         ]);
-        $populator->addEntity(User::class, 10);
-        $populator->addEntity(Category::class, 5);
         $populator->execute();
         $manager->flush();
     }

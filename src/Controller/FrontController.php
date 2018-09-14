@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FrontController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", methods="GET")
      * @return Response
      */
     public function index(): Response
@@ -85,6 +85,7 @@ class FrontController extends AbstractController
         ]);
 
     }
+
 
 
 
