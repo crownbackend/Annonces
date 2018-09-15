@@ -3,13 +3,31 @@
 {% block title %}{% for region in regions %}{{ region.name }}{% endfor %} - nos annonces le bon point{% endblock %}
 
 {% block body %}
-<div class="espace50"></div>
-
+    <div class="card text-center">
+        <div class="card-header">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+<div class="espace30"></div>
     <div class="container">
+        <h1 class="a-r">Annonces : {% for region in regions %}{{ region.name }}{% endfor %}</h1>
             {% for advertisement in addvertisements %}
-               <p> {{ advertisement.title }}</p>
-               <p> {{ advertisement.price }}</p>
+        <div class="card" style="width: 45rem;">
+            <div class="card-body">
+                <img class="img-a" src="https://picsum.photos/1000/700" width="192" href="108" alt="test"><br>
+                <a href="#" class="card-link">{{ advertisement.title }}</a>
+                <p class="card-title text-muted">{{ advertisement.category.name }}</p>
+                <p class="card-title text-muted">{{ advertisement.address }}</p>
+                <span class="price">{{ advertisement.price }} €</span>
+                <span class="date-a">{{ advertisement.createdAt|date('d/m/y à H:i') }}</span>
+            </div>
+        </div>
             {% endfor %}
+
     </div>
 
 {% endblock %}

@@ -19,14 +19,29 @@ class AdvertisementRepository extends ServiceEntityRepository
         parent::__construct($registry, Advertisement::class);
     }
 
-
+    /**
+     * @return integer|null
+     * @throws \Exception
+     */
+    public function findByCount()
+    {
+        $query = $this->createQueryBuilder('n')
+            ->select('count(n)')
+            ->getQuery();
+        try {
+            return $query->getSingleScalarResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème' . $e->getMessage() . $e->getLine());
+        }
+    }
 
     /**
      * @param int $id
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findByRegions(string $id) {
+    public function findByRegions(int $id) {
 //SELECT * FROM `advertisement` WHERE region_id = 1
         $query = $this->createQueryBuilder('a')
             ->select('a')

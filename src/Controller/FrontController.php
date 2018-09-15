@@ -18,7 +18,13 @@ class FrontController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('front/index.html.twig');
+        $count = $this->getDoctrine()->getRepository(Advertisement::class)->findByCount();
+        $regions = $this->getDoctrine()->getRepository(Region::class)->findAll();
+
+        return $this->render('front/index.html.twig', [
+            'count' => $count,
+            'regions' => $regions
+        ]);
     }
 
     /**
@@ -57,7 +63,6 @@ class FrontController extends AbstractController
             $mailer->send($message);
             return $this->redirectToRoute('index');
         }
-
         return $this->render('front/add-advertisement.html.twig', [
             'form' => $form->createView()
         ]);
@@ -71,13 +76,8 @@ class FrontController extends AbstractController
      */
     public function region(string $slug, int $id): Response {
 
-        $regions = $this->getDoctrine()->
-        getRepository(Region::class)->
-        findBySlugRegion($slug);
-
-        $addvertisements = $this->getDoctrine()->
-        getRepository(Advertisement::class)->
-        findByRegions($id);
+        $regions = $this->getDoctrine()->getRepository(Region::class)->findBySlugRegion($slug);
+        $addvertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByRegions($id);
 
         return $this->render('front/regions.html.twig', [
             'regions' => $regions,

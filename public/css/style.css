@@ -66,6 +66,7 @@ p {
     width: 70%;
 }
 
+
 .espace50{
     padding: 50px;
 }
@@ -126,4 +127,27 @@ h1 {
     color: #721c24;
     background-color: #f8d7da;
     border-color: #f5c6cb;
+}
+
+a {
+    color: #369;
+}
+.a-r {
+    display: inline-block;
+    margin: 2rem 0;
+    padding: 0;
+    width: 55%;
+    color: gray;
+    font-size: 20px;
+    font-family: OpenSansBold,sans-serif;
+}
+
+.price {
+    font-size: 1.2rem;
+    color: #f56b2a;
+    font-weight: bold;
+}
+.date-a {
+    padding-left: 485px;
+    color: #6c757d;
 }
