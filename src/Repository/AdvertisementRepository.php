@@ -50,14 +50,34 @@ class AdvertisementRepository extends ServiceEntityRepository
             ->setParameter(':id', $id)
             ->getQuery()
         ;
-
         try {
             return $query->getResult();
         }
         catch (\Exception $e) {
             throw new \Exception('Problème' . $e->getMessage() . $e->getLine());
         }
+    }
 
+    /**
+     * @param string $slug
+     * @return Advertisement|null
+     * @throws \Exception
+     */
+    public function findBySlug($slug){
+//SELECT * FROM `advertisement` WHERE slug = 'machine-a-laver'
+        $query = $this->createQueryBuilder('a')
+            ->select('a')
+            ->from('App\Entity\Advertisement', 'r')
+            ->where('a.slug = :slug')
+            ->setParameter(':slug', $slug)
+            ->getQuery();
+
+        try {
+            return $query->getOneOrNullResult();
+        }
+        catch(\Exception $e) {
+            throw new \Exception('problème '. $e->getMessage(). $e->getFile(). $e->getFile());
+        }
     }
 
 }

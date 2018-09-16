@@ -108,5 +108,14 @@ function countChar(val) {
     }
 };
 
+$(document).ready(function () {
+
+    $('#message').on('click', function(){
+        $(this).replaceWith($('#number'));
+    });
+
+    $('#replaceMe').replaceWith($('#iamReplacement'));
+
+});
 
 

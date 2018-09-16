@@ -86,6 +86,20 @@ class FrontController extends AbstractController
 
     }
 
+    /**
+     * @Route("/annonces/{slug}", name="advertisement")
+     * @param string $slug
+     * @return Response
+     */
+    public function advertisementShow(string $slug): response{
+
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->findBySlug($slug);
+
+        return $this->render('front/advertisement.html.twig', [
+            'advertisement' => $advertisement
+        ]);
+    }
+
 
 
 

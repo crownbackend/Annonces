@@ -33,7 +33,6 @@ class RegionRepository extends ServiceEntityRepository
             ->setParameter(':slug', $slug)
             ->getQuery()
         ;
-
         try {
             return $query->getResult();
         }
