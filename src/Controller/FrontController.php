@@ -69,17 +69,16 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/annonces/{regionSlug}/{id}", name="region")
+     * @Route("/annonces/{regionSlug}", name="region")
      * @param string $regionSlug
-     * @param int $id
      * @param Request $request
      * @return Response
      */
-    public function regionShow(string $regionSlug, int $id, Request $request): Response {
+    public function regionShow(string $regionSlug, Request $request): Response {
 
         $regions = $this->getDoctrine()->getRepository(Region::class)->findBySlugRegion($regionSlug);
-        //$advertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByRegions($id);
-
+        $advertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByRegions($regionSlug);
+/*
         $em    = $this->getDoctrine()->getManager();
         $dql   = "SELECT a FROM App:Advertisement a WHERE a.isValid = :bool AND :region = a.region ORDER BY a.createdAt DESC";
         $query = $em->createQuery($dql);
@@ -88,14 +87,14 @@ class FrontController extends Controller
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
 
+            $request->query->getInt('page', 1),
+            10
+        );
+*/
         return $this->render('front/regions.html.twig', [
-            'regions' => $regions,
-            'pagination' => $pagination
+            'advertisements' => $advertisements,
+            'regions' => $regions
         ]);
 
     }

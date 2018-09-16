@@ -32,10 +32,24 @@ class Region
     private $regionSlug;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $class;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $d;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Advertisement", mappedBy="region", orphanRemoval=true)
      */
     private $advertisement;
-
     public function __construct()
     {
         $this->advertisement = new ArrayCollection();
@@ -98,6 +112,42 @@ class Region
                 $advertisement->setRegion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getClass(): ?string
+    {
+        return $this->class;
+    }
+
+    public function setClass(string $class): self
+    {
+        $this->class = $class;
+
+        return $this;
+    }
+
+    public function getD(): ?string
+    {
+        return $this->d;
+    }
+
+    public function setD(string $d): self
+    {
+        $this->d = $d;
 
         return $this;
     }

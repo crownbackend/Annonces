@@ -37,17 +37,18 @@ class AdvertisementRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param int $id
+     * @param string $regionSlug
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findByRegions(int $id) {
+    public function findByRegions(string $regionSlug) {
 //SELECT * FROM `advertisement` WHERE region_id = 1
         $query = $this->createQueryBuilder('a')
             ->select('a')
             ->from('App\Entity\Advertisement', 'r')
-            ->where('a.region = :id')
-            ->setParameter(':id', $id)
+            ->join('a.region', 'i')
+            ->where('i.regionSlug = :regionSlug')
+            ->setParameter(':regionSlug', $regionSlug)
             ->getQuery()
         ;
         try {
