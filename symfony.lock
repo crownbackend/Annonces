@@ -113,6 +113,12 @@
     "jms/metadata": {
         "version": "1.6.0"
     },
+    "knplabs/knp-components": {
+        "version": "v1.3.10"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v2.8.0"
+    },
     "monolog/monolog": {
         "version": "1.23.0"
     },

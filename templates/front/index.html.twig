@@ -46,14 +46,18 @@
         </div>
             <div class="col-md-4">
             {% for region in regions %}
-                <div class=""> <a href="{{ path('region', {regionSlug: region.regionSlug, id: region.id}) }}" class=""> {{ region.name }}</a></div>
+                <div class=""><a href="{{ path('region', {regionSlug: region.regionSlug, id: region.id}) }}" class=""> {{ region.name }}</a></div>
             {% endfor %}
             </div>
         </div>
+
 <div class="espace30"></div>
-        <p>Lebonpoint est le site référent de petites annonces de particulier à particulier en France. Découvrez nos annonces voitures d'occasion, motos, immobilier, emploi, location de vacances, vêtements, électroménager, jouets, déco, meubles, etc... Déposez une annonce gratuite en toute simplicité pour vendre, donner vos biens ou promouvoir vos services. Avec des milliers de nouvelles annonces mises en ligne chaque jour vous trouverez l'objet d'occasion ou neuf que vous désirez.</p>
+        
+        <p>Lebonpoint est le site référent de petites annonces de particulier à particulier en France. Découvrez nos annonces voitures d'occasion,
+            motos, immobilier, emploi, location de vacances, vêtements, électroménager, jouets, déco, meubles, etc...
+            Déposez une annonce gratuite en toute simplicité pour vendre, donner vos biens ou promouvoir vos services. Avec
+            des milliers de nouvelles annonces mises en ligne chaque jour vous trouverez l'objet d'occasion ou neuf que vous désirez.</p>
 
     </div>
-
 
 {% endblock %}

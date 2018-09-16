@@ -15,13 +15,14 @@
 <div class="espace30"></div>
     <div class="container">
         <h1 class="a-region">Annonces : {% for region in regions %}{{ region.name }}{% endfor %}</h1>
-            {% for advertisement in advertisements %}
+            {% for advertisement in pagination %}
         <div class="card">
             <h5 class="card-header">{{ advertisement.title }}</h5>
             <div class="card-body">
                 <h5 class="card-title">{{ advertisement.category.name }}</h5>
                 <img class="img-fluid" src="https://picsum.photos/1000/700" width="192" href="108" alt="test">
                 <p class="card-text">{{ advertisement.address }}</p>
+                <p class="card-text">{{ advertisement.region.name }}</p>
                 <span class="price-r">{{ advertisement.price }} €</span>
                 <span class="date-a">{{ advertisement.createdAt|date('d/m/y à H:i') }}</span>
                 <br>
@@ -29,6 +30,9 @@
             </div>
         </div>
             {% endfor %}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
 
 {% endblock %}

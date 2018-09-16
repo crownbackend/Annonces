@@ -3,15 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Advertisement;
-use App\Entity\Category;
 use App\Entity\Region;
 use App\Form\AdvertisementType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class FrontController extends AbstractController
+class FrontController extends Controller
 {
     /**
      * @Route("/", name="index", methods="GET")
@@ -73,16 +72,30 @@ class FrontController extends AbstractController
      * @Route("/annonces/{regionSlug}/{id}", name="region")
      * @param string $regionSlug
      * @param int $id
+     * @param Request $request
      * @return Response
      */
-    public function regionShow(string $regionSlug, int $id): Response {
+    public function regionShow(string $regionSlug, int $id, Request $request): Response {
 
         $regions = $this->getDoctrine()->getRepository(Region::class)->findBySlugRegion($regionSlug);
-        $advertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByRegions($id);
+        //$advertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByRegions($id);
+
+        $em    = $this->getDoctrine()->getManager();
+        $dql   = "SELECT a FROM App:Advertisement a WHERE a.isValid = :bool AND :region = a.region ORDER BY a.createdAt DESC";
+        $query = $em->createQuery($dql);
+        $query->setParameter('bool', 1);
+        $query->setParameter('region', $id);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
 
         return $this->render('front/regions.html.twig', [
             'regions' => $regions,
-            'advertisements' => $advertisements
+            'pagination' => $pagination
         ]);
 
     }
