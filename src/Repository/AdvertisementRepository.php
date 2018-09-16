@@ -59,17 +59,21 @@ class AdvertisementRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param string $slug
+     * @param string $advertisementSlug
+     * @param string $categorySlug
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findBySlug($slug){
+    public function findBySlugAdvertisement($advertisementSlug, $categorySlug){
 //SELECT * FROM `advertisement` WHERE slug = 'machine-a-laver'
         $query = $this->createQueryBuilder('a')
             ->select('a')
             ->from('App\Entity\Advertisement', 'r')
-            ->where('a.slug = :slug')
-            ->setParameter(':slug', $slug)
+            ->join('a.category', 'c')
+            ->where('a.advertisementSlug = :advertisementSlug')
+            ->andWhere('c.categorySlug = :categorySlug')
+            ->setParameter(':advertisementSlug', $advertisementSlug)
+            ->setParameter(':categorySlug', $categorySlug)
             ->getQuery();
 
         try {

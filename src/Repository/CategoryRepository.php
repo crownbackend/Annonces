@@ -19,32 +19,27 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
-//    /**
-//     * @return Category[] Returns an array of Category objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Category
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    /**
+     * @param string $categorySlug
+     * @return Category|null
+     * @throws \Exception
+     */
+    public function findBySlugCategory($categorySlug){
+
+        $query = $this->createQueryBuilder('a')
+            ->select('a')
+            ->from('App\Entity\Category', 'r')
+            ->where('a.categorySlug = :categorySlug')
+            ->setParameter(':categorySlug', $categorySlug)
+            ->getQuery();
+
+        try {
+            return $query->getOneOrNullResult();
+        }
+        catch(\Exception $e) {
+            throw new \Exception('problème '. $e->getMessage(). $e->getFile(). $e->getFile());
+        }
     }
-    */
+
 }

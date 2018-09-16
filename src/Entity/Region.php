@@ -29,7 +29,7 @@ class Region
      * @Gedmo\Slug(fields={"name"}, separator="-", updatable=true, unique=true)
      * @ORM\Column(length=255, type="string")
      */
-    private $slug;
+    private $regionSlug;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Advertisement", mappedBy="region", orphanRemoval=true)
@@ -66,9 +66,9 @@ class Region
         return $this;
     }
 
-    public function getSlug()
+    public function getRegionSlug()
     {
-        return $this->slug;
+        return $this->regionSlug;
     }
 
     /**

@@ -20,17 +20,17 @@ class RegionRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param string $slug
+     * @param string $regionSlug
      * @return Region|null
      * @throws \Exception
      */
-    public function findBySlugRegion(string $slug) {
+    public function findBySlugRegion(string $regionSlug) {
 //SELECT * FROM `region` WHERE slug
         $query = $this->createQueryBuilder('r')
             ->select('r')
             ->from('App\Entity\Region', 'i')
-            ->where('r.slug = :slug')
-            ->setParameter(':slug', $slug)
+            ->where('r.regionSlug = :regionSlug')
+            ->setParameter(':regionSlug', $regionSlug)
             ->getQuery()
         ;
         try {

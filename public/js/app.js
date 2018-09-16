@@ -109,13 +109,12 @@ function countChar(val) {
 };
 
 $(document).ready(function () {
+        $("#number").hide();
 
-    $('#message').on('click', function(){
-        $(this).replaceWith($('#number'));
+        $('#message').on('click', function(){
+            $(this).replaceWith($('#number'));
+            $("#number").show();
     });
-
-    $('#replaceMe').replaceWith($('#iamReplacement'));
-
 });
 
 

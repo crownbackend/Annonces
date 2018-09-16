@@ -75,7 +75,7 @@ class Advertisement
      * @Gedmo\Slug(fields={"title"}, separator="-", updatable=true, unique=true)
      * @ORM\Column(length=255, type="string")
      */
-    private $slug;
+    private $advertisementSlug;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="advertisement")
@@ -219,9 +219,9 @@ class Advertisement
         return $this;
     }
 
-    public function getSlug()
+    public function getAdvertisementSlug()
     {
-        return $this->slug;
+        return $this->advertisementSlug;
     }
 
     // The file images of annoncement

@@ -42,7 +42,7 @@
             </svg>
         </div>
         {% for region in regions %}
-            <a href="{{ path('region', {slug: region.slug, id: region.id}) }}" class=""> {{ region.name }}</a>
+            <a href="{{ path('region', {regionSlug: region.regionSlug, id: region.id}) }}" class=""> {{ region.name }}</a>
         {% endfor %}
 <div class="espace30"></div>
         <p>Lebonpoint est le site référent de petites annonces de particulier à particulier en France. Découvrez nos annonces voitures d'occasion, motos, immobilier, emploi, location de vacances, vêtements, électroménager, jouets, déco, meubles, etc... Déposez une annonce gratuite en toute simplicité pour vendre, donner vos biens ou promouvoir vos services. Avec des milliers de nouvelles annonces mises en ligne chaque jour vous trouverez l'objet d'occasion ou neuf que vous désirez.</p>

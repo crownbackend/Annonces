@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Advertisement;
+use App\Entity\Category;
 use App\Entity\Region;
 use App\Form\AdvertisementType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,16 +34,16 @@ class FrontController extends AbstractController
      */
     public function addAdvertisement(Request $request, \Swift_Mailer $mailer): Response
     {
-        $addvertisement = new Advertisement();
-        $form = $this->createForm(AdvertisementType::class, $addvertisement);
+        $advertisement = new Advertisement();
+        $form = $this->createForm(AdvertisementType::class, $advertisement);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $addvertisement = $form->getData();
+            $advertisement = $form->getData();
             $manager = $this->getDoctrine()->getManager();
             $user = $this->getUser();
-            $addvertisement->setUser($user);
-            $manager->persist($addvertisement);
+            $advertisement->setUser($user);
+            $manager->persist($advertisement);
             $manager->flush();
             $email = $this->getUser()->getEmail();
             $username = $this->getUser()->getUsername();
@@ -69,31 +70,32 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route("/annonces/{slug}/{id}", name="region")
-     * @param string $slug
+     * @Route("/annonces/{regionSlug}/{id}", name="region")
+     * @param string $regionSlug
      * @param int $id
      * @return Response
      */
-    public function region(string $slug, int $id): Response {
+    public function region(string $regionSlug, int $id): Response {
 
-        $regions = $this->getDoctrine()->getRepository(Region::class)->findBySlugRegion($slug);
-        $addvertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByRegions($id);
+        $regions = $this->getDoctrine()->getRepository(Region::class)->findBySlugRegion($regionSlug);
+        $advertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByRegions($id);
 
         return $this->render('front/regions.html.twig', [
             'regions' => $regions,
-            'addvertisements' => $addvertisements
+            'advertisements' => $advertisements
         ]);
 
     }
 
     /**
-     * @Route("/annonces/{slug}", name="advertisement")
-     * @param string $slug
+     * @Route("/{categorySlug}/{advertisementSlug}", name="advertisement")
+     * @param string $advertisementSlug
+     * @param string $categorySlug
      * @return Response
      */
-    public function advertisementShow(string $slug): response{
+    public function advertisementShow(string $advertisementSlug, string $categorySlug): response{
 
-        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->findBySlug($slug);
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->findBySlugAdvertisement($advertisementSlug, $categorySlug);
 
         return $this->render('front/advertisement.html.twig', [
             'advertisement' => $advertisement

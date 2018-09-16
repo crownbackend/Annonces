@@ -29,7 +29,7 @@ class Category
      * @Gedmo\Slug(fields={"name"}, separator="-", updatable=true, unique=true)
      * @ORM\Column(length=255, type="string")
      */
-    private $slug;
+    private $categorySlug;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Advertisement", mappedBy="category", orphanRemoval=true)
@@ -66,9 +66,9 @@ class Category
         return $this;
     }
 
-    public function getSlug()
+    public function getCategorySlug()
     {
-        return $this->slug;
+        return $this->categorySlug;
     }
 
     /**
