@@ -75,7 +75,7 @@ class FrontController extends AbstractController
      * @param int $id
      * @return Response
      */
-    public function region(string $regionSlug, int $id): Response {
+    public function regionShow(string $regionSlug, int $id): Response {
 
         $regions = $this->getDoctrine()->getRepository(Region::class)->findBySlugRegion($regionSlug);
         $advertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByRegions($id);
@@ -88,7 +88,7 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route("/{categorySlug}/{advertisementSlug}", name="advertisement")
+     * @Route("/offres/{categorySlug}/{advertisementSlug}", name="advertisement")
      * @param string $advertisementSlug
      * @param string $categorySlug
      * @return Response
