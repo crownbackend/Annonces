@@ -2,9 +2,9 @@
 <html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title> {% block title %}Welcome!{% endblock %} </title>
         {% block stylesheets %}
-            {% include('inc/css.html.twig') %}
+        {% include('inc/css.html.twig') %}
         {% endblock %}
         <link rel="icon" type="image/png" href="{{ asset('images/icon.png') }}" sizes="32x32">
     </head>
@@ -55,15 +55,14 @@
                                                     <a class="nav-item nav-link active" href="{{ path('fos_user_registration_register') }}">Déposer une annonce <span class="sr-only">(current)</span></a>
                                                     <a class="nav-item nav-link active" href="#">Annonces</a>
                                                     <a class="nav-item nav-link active" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </nav>
                                 </header>
                             {% endif %}
-        {% block body %}{% endblock %}
 
+        {% block body %}{% endblock %}
 
     <footer class="footer">
         <div class="container">

@@ -13,12 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class FrontController extends Controller
 {
     /**
+     * Home page
      * @Route("/", name="index", methods="GET")
      * @return Response
      */
     public function index(): Response
     {
+        // Count advertisement total
         $count = $this->getDoctrine()->getRepository(Advertisement::class)->findByCount();
+        // get all regions
         $regions = $this->getDoctrine()->getRepository(Region::class)->findAll();
 
         return $this->render('front/index.html.twig', [
@@ -28,16 +31,18 @@ class FrontController extends Controller
     }
 
     /**
+     * add new advertisement
      * @Route("/annonces/ajouter-une-annonce", name="add-advertisement")
      * @return Response
      */
-    public function addAdvertisement(Request $request, \Swift_Mailer $mailer): Response
+    public function adAdvertisement(Request $request, \Swift_Mailer $mailer): Response
     {
         $advertisement = new Advertisement();
         $form = $this->createForm(AdvertisementType::class, $advertisement);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
             $advertisement = $form->getData();
             $manager = $this->getDoctrine()->getManager();
             $user = $this->getUser();
@@ -46,7 +51,7 @@ class FrontController extends Controller
             $manager->flush();
             $email = $this->getUser()->getEmail();
             $username = $this->getUser()->getUsername();
-
+            //send a confirmation email to the user
             $message = (new \Swift_Message('Mail de confirmation le bon point'))
                 ->setFrom('annonces@lebonpoint.com')
                 ->setTo($email)
@@ -77,17 +82,16 @@ class FrontController extends Controller
     public function regionShow(string $regionSlug, Request $request): Response {
 
         $regions = $this->getDoctrine()->getRepository(Region::class)->findBySlugRegion($regionSlug);
-
+        // get region and all advertisement in region
         $em    = $this->getDoctrine()->getManager();
         $query = $em->getRepository(Advertisement::class)->findByRegions($regionSlug);
-
+        // pagination 3 by page
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
             3
         );
-
         return $this->render('front/regions.html.twig', [
             'pagination' => $pagination,
             'regions' => $regions
@@ -96,6 +100,7 @@ class FrontController extends Controller
     }
 
     /**
+     * get category and advertisement
      * @Route("/offres/{categorySlug}/{advertisementSlug}", name="advertisement")
      * @param string $advertisementSlug
      * @param string $categorySlug
