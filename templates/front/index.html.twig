@@ -9,10 +9,10 @@
         <div class="row">
             <div class="col-md-4">
                 <p>
-                    Trouvez une bonne aiffaires parmis <span class="annonce">{{ count }} petites<br> annonces</span> sur le bon point
+                    Trouvez une bonne aiffaires parmis <span class="annonce">{{ count }} petites annonces</span> sur le bon point
                 </p>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <a href="{{ path('add-advertisement') }}" class="btn btn-primary">Déposer une annonce</a>
+                <a href="{{ path('add-advertisement') }}" class="btn btn-primary btn-lg btn-block">Déposer une annonce</a>
             {% else %}
                 <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">Déposer une annonce</a>
             {% endif %}
@@ -38,5 +38,7 @@
             Déposez une annonce gratuite en toute simplicité pour vendre, donner vos biens ou promouvoir vos services. Avec
             des milliers de nouvelles annonces mises en ligne chaque jour vous trouverez l'objet d'occasion ou neuf que vous désirez.</p>
     </div>
+
+
 
 {% endblock %}
