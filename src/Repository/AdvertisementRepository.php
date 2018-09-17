@@ -44,11 +44,6 @@ class AdvertisementRepository extends ServiceEntityRepository
     public function findByRegions(string $regionSlug) {
 //SELECT * FROM `advertisement` WHERE region_id = 1
 
-        $dql = "SELECT a FROM App:Advertisement a 
-        JOIN a.region r 
-        WHERE r.regionSlug = :regionSlug 
-        AND a.isValid = :bool ORDER BY a.createdAt DESC";
-
         $query = $this->createQueryBuilder('a')
             ->select('a')
             ->from('App\Entity\Advertisement', 'r')

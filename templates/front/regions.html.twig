@@ -30,9 +30,16 @@
             </div>
         </div>
             {% endfor %}
-        <div class="navigation">
-            {{ knp_pagination_render(pagination) }}
+
+        <div class="espace30"></div>
+
+        <div class="">
+            <div class="navigation">
+                {{ knp_pagination_render(pagination, 'pagination/pagination.html.twig') }}
+            </div>
         </div>
+
+
     </div>
 
 {% endblock %}

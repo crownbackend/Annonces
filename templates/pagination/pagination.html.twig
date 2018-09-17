@@ -1,0 +1,38 @@
+{# default Sliding pagination control implementation #}
+
+{% if pageCount > 1 %}
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+
+        {% if previous is defined %}
+            <li class="page-item">
+                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">Précédent</a>
+            </li>
+        {% endif %}
+
+        {% for page in pagesInRange %}
+
+            {% if page != current %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+                </li>
+            {% else %}
+                <li class="page-item active">
+                  <span class="page-link">
+                    {{ page }}
+                    <span class="sr-only">(current)</span>
+                  </span>
+                </li>
+            {% endif %}
+
+        {% endfor %}
+
+        {% if next is defined %}
+            <li class="page-item">
+                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): next})) }}">Suivant</a>
+            </li>
+        {% endif %}
+
+    </ul>
+</nav>
+{% endif %}
