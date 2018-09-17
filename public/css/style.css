@@ -244,12 +244,85 @@ a {
     color: #6c757d;
 }
 
-.a-description {
-    width: 60%;
-}
-
 .logo {
     font-weight: bold;
     color: #FFFFFF;
     font-size: 70px;
 }
+
+.page-link {
+    color: #369;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #f56b2a;
+    border-color: #369;
+}
+
+.a-reseau {
+    padding: 10px;
+}
+
+.a-reseau path:hover {
+    fill: #4183d7;
+    transition: 0.3s;
+}
+.a-imprimer {
+    text-decoration: none;
+    color: black;
+}
+.a-imprimer:hover {
+    text-decoration: none;
+    color: #4183d7;
+    transition: 0.3s;
+}
+
+.a-obligation {
+    text-decoration: none;
+    color: black;
+}
+.a-obligation:hover {
+    text-decoration: none;
+    color: #4183d7;
+    transition: 0.3s;
+}
+
+.a-facebook {
+    text-decoration: none;
+    color: black;
+}
+.a-facebook:hover {
+    text-decoration: none;
+    color: #4183d7;
+    transition: 0.3s;
+}
+
+.a-mail {
+    text-decoration: none;
+    color: black;
+}
+.a-mail:hover {
+    text-decoration: none;
+    color: #4183d7;
+    transition: 0.3s;
+}
+
+.a-description {
+    color: black;
+    font-weight: 800;
+    padding: 10px 0 20px 0;
+}
+.a-localisation {
+    color: black;
+    font-weight: 800;
+    padding: 10px 0 20px 0;
+}
+.p-description {
+    font-size: 0.9rem;
+    font-weight: normal;
+}
+
