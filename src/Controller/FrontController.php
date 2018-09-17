@@ -77,23 +77,19 @@ class FrontController extends Controller
     public function regionShow(string $regionSlug, Request $request): Response {
 
         $regions = $this->getDoctrine()->getRepository(Region::class)->findBySlugRegion($regionSlug);
-        $advertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByRegions($regionSlug);
-/*
+
         $em    = $this->getDoctrine()->getManager();
-        $dql   = "SELECT a FROM App:Advertisement a WHERE a.isValid = :bool AND :region = a.region ORDER BY a.createdAt DESC";
-        $query = $em->createQuery($dql);
-        $query->setParameter('bool', 1);
-        $query->setParameter('region', $id);
+        $query = $em->getRepository(Advertisement::class)->findByRegions($regionSlug);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-
+            $query,
             $request->query->getInt('page', 1),
             10
         );
-*/
+
         return $this->render('front/regions.html.twig', [
-            'advertisements' => $advertisements,
+            'pagination' => $pagination,
             'regions' => $regions
         ]);
 
