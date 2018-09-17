@@ -326,3 +326,18 @@ a {
     font-weight: normal;
 }
 
+.droits {
+    color: gray;
+    font-size: 20px;
+    font-family: OpenSansBold,sans-serif;
+    font-weight: bold;
+    padding-top: 30px;
+}
+
+.card-header2 {
+    background-color: #666;
+    color: #FFFFFF;
+    padding: 0.25rem 1.25rem;
+}
+
+

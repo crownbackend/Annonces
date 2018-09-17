@@ -43,13 +43,15 @@ class AdvertisementRepository extends ServiceEntityRepository
      */
     public function findByRegions(string $regionSlug) {
 //SELECT * FROM `advertisement` WHERE region_id = 1
-
+        $isValid = 1;
         $query = $this->createQueryBuilder('a')
             ->select('a')
             ->from('App\Entity\Advertisement', 'r')
             ->join('a.region', 'i')
             ->where('i.regionSlug = :regionSlug')
+            ->andWhere('a.isValid = :isValid')
             ->setParameter(':regionSlug', $regionSlug)
+            ->setParameter(':isValid', $isValid)
             ->getQuery()
         ;
         try {
@@ -68,14 +70,17 @@ class AdvertisementRepository extends ServiceEntityRepository
      */
     public function findBySlugAdvertisement($advertisementSlug, $categorySlug){
 //SELECT * FROM `advertisement` WHERE slug = 'machine-a-laver'
+        $isValid = 1;
         $query = $this->createQueryBuilder('a')
             ->select('a')
             ->from('App\Entity\Advertisement', 'r')
             ->join('a.category', 'c')
             ->where('a.advertisementSlug = :advertisementSlug')
             ->andWhere('c.categorySlug = :categorySlug')
+            ->andWhere('a.isValid = :isValid')
             ->setParameter(':advertisementSlug', $advertisementSlug)
             ->setParameter(':categorySlug', $categorySlug)
+            ->setParameter(':isValid', $isValid)
             ->getQuery();
 
         try {

@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+{% block title %}Vos droits et obligations - lebonpoin{% endblock %}
+{% block body %}
+<div class="container">
+    <h1 class="droits">Vos droits et obligations</h1>
+    <hr>
+    <p class="p-description">Lorsque vous utilisez notre site,
+        vous êtes susceptibles d'être soumis à un certain
+        nombre d'obligations et/ou de bénéficier de certains droits et
+        garanties. Cette page est destinée à vous informer de ces droits et
+        obligations afin d'éviter tout abus.
+    </p>
+    <h2 class="droits">Vos obligations</h2>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header2" id="headingOne">
+                <h5 class="mb-0">
+                    <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Etes-vous un particulier ou un professionnel ?
+                    </a>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p class="p-description">Nous vous rappelons que vous êtes susceptibles d’être considéré comme un professionnel notamment dans les cas suivants :</p>
+                    <ul>
+                        <li class="p-description">Vous vendez des objets achetés dans l’optique de les revendre et non pour un usage personnel.</li>
+                        <li class="p-description">Vous vendez des objets que vous avez-vous-mêmes créés.</li>
+                        <li class="p-description">Vous vendez régulièrement un volume important d’objets.</li>
+                        <li class="p-description">Les ventes réalisées vous permettent de générer des bénéfices et de dégager un revenu substantiel.</li>
+                    </ul>
+
+                    <p class="p-description">Si vous avez un doute sur votre qualité de professionnel ou de particulier, nous vous invitons à vous renseigner sur les dispositions légales et règlementaires qui pourront vous aider à déterminer votre statut.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header2" id="headingTwo">
+                <h5 class="mb-0">
+                    <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Annonceur particulier
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header2" id="headingThree">
+                <h5 class="mb-0">
+                    <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Annonceur professionnel
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="droits">Vos droits</h3>
+
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header2" id="headingOne">
+                <h5 class="mb-0">
+                    <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne">
+                        Êtes-vous simple utilisateur du site ou acheteur ?
+                    </a>
+                </h5>
+            </div>
+
+            <div id="collapseOne1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    En tant que simple utilisateur ou en tant qu'acheteur sur notre site, vous bénéficiez des droits et garanties suivants.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header2" id="headingTwo">
+                <h5 class="mb-0">
+                    <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo">
+                        Utilisateur
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    En tant que personne physique utilisatrice de notre site, vous êtes titulaires de droits relatifs à notre traitement de vos données personnelles. Nous vous invitons à les consulter sur notre page Vie Privée/Cookies.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header2" id="headingThree">
+                <h5 class="mb-0">
+                    <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree">
+                        Acheteur
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseThree3" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

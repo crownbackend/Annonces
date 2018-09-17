@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// Front controller this controller manages all the party front of the website
+
 class FrontController extends Controller
 {
     /**
@@ -35,7 +37,7 @@ class FrontController extends Controller
      * @Route("/annonces/ajouter-une-annonce", name="add-advertisement")
      * @return Response
      */
-    public function adAdvertisement(Request $request, \Swift_Mailer $mailer): Response
+    public function addAdvertisement(Request $request, \Swift_Mailer $mailer): Response
     {
         $advertisement = new Advertisement();
         $form = $this->createForm(AdvertisementType::class, $advertisement);
