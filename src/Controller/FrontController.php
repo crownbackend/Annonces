@@ -117,6 +117,23 @@ class FrontController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/mon-compte/mes-annonces", name="my-advertisement")
+     * @return Response
+     */
+    public function myAdvertismentShow(): Response {
+
+        $userCurrent = $this->getUser();
+        $advertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByMyAdvertisement($userCurrent);
+        $count = $this->getDoctrine()->getRepository(Advertisement::class)->findByCountMyAdvertisement($userCurrent);
+
+
+        return $this->render('front/my-advertisement.html.twig', [
+            'advertisements' => $advertisements,
+            'count' => $count
+        ]);
+    }
+
 
 
 

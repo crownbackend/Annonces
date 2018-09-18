@@ -25,8 +25,8 @@ class AdvertisementRepository extends ServiceEntityRepository
      */
     public function findByCount()
     {
-        $query = $this->createQueryBuilder('n')
-            ->select('count(n)')
+        $query = $this->createQueryBuilder('a')
+            ->select('count(a)')
             ->getQuery();
         try {
             return $query->getSingleScalarResult();
@@ -88,6 +88,49 @@ class AdvertisementRepository extends ServiceEntityRepository
         }
         catch(\Exception $e) {
             throw new \Exception('problème '. $e->getMessage(). $e->getFile(). $e->getFile());
+        }
+    }
+
+    /**
+     * @param $user
+     * @return Advertisement|null
+     * @throws \Exception
+     */
+    public function findByMyAdvertisement($user)
+    {   //SELECT * FROM `advertisement` WHERE user_id = $user
+        $query = $this->createQueryBuilder('a')
+        ->select('a')
+        ->from('App\Entity\Advertisement', 'r')
+        ->where('a.user = :user')
+        ->setParameter(':user', $user)
+        ->getQuery()
+        ;
+
+        try {
+            return $query->getResult();
+        }
+        catch(\Exception $e) {
+            throw new \Exception('problème '. $e->getMessage(). $e->getFile(). $e->getFile());
+        }
+    }
+
+    /**
+     * @param $user
+     * @return integer|null
+     * @throws \Exception
+     */
+    public function findByCountMyAdvertisement($user)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->select('count(a)')
+            ->where('a.user = :user')
+            ->setParameter(':user', $user)
+            ->getQuery();
+        try {
+            return $query->getSingleScalarResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème' . $e->getMessage() . $e->getLine());
         }
     }
 

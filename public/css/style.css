@@ -198,7 +198,6 @@ h1 {
 
 .test {
     background-color: #FFFFFF;
-
 }
 
 .else-h1, .else-h2, .else-h3 {
@@ -338,6 +337,29 @@ a {
     background-color: #666;
     color: #FFFFFF;
     padding: 0.25rem 1.25rem;
+}
+
+.my-slider {
+    padding: 50px;
+}
+
+.my-advertisement {
+    padding: 1.3rem 2rem 1rem;
+}
+
+.my-advertisement {
+    text-decoration: none;
+    color: black;
+}
+.my-advertisement:hover {
+    text-decoration: none;
+    color: #4183d7;
+    transition: 0.3s;
+}
+
+.my-advertisement path:hover {
+    fill: #4183d7;
+    transition: 0.3s;
 }
 
 
