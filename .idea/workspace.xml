@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c2f8600-caf8-4695-8318-e007cabde043" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/FrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FrontController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/AdvertisementRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AdvertisementRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/front/my-advertisement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/my-advertisement.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -161,8 +160,8 @@
         <counts>
           <entry key="css" value="907" />
           <entry key="js" value="344" />
-          <entry key="php" value="3801" />
-          <entry key="twig" value="4703" />
+          <entry key="php" value="3829" />
+          <entry key="twig" value="4822" />
           <entry key="xlf" value="6" />
           <entry key="yaml" value="129" />
         </counts>
@@ -171,15 +170,15 @@
         <counts>
           <entry key="CSS" value="907" />
           <entry key="JavaScript" value="344" />
-          <entry key="PHP" value="3801" />
+          <entry key="PHP" value="3829" />
           <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Twig" value="4703" />
+          <entry key="Twig" value="4822" />
           <entry key="YAML" value="129" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="71" />
+          <entry key="css" value="72" />
           <entry key="htaccess" value="1" />
           <entry key="js" value="4" />
           <entry key="json" value="1" />
@@ -197,7 +196,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="71" />
+          <entry key="CSS" value="72" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="4" />
           <entry key="PHP" value="158" />
@@ -217,8 +216,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/FrontController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="141" column="30" selection-start-line="141" selection-start-column="30" selection-end-line="141" selection-end-column="30" />
+            <state relative-caret-position="439">
+              <caret line="141" column="58" selection-start-line="141" selection-start-column="58" selection-end-line="141" selection-end-column="58" />
               <folding>
                 <element signature="e#34#63#0#PHP" expanded="true" />
               </folding>
@@ -229,8 +228,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/front/my-advertisement.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="686">
-              <caret line="146" column="40" selection-start-line="146" selection-start-column="40" selection-end-line="146" selection-end-column="40" />
+            <state relative-caret-position="442">
+              <caret line="122" column="120" selection-start-line="122" selection-start-column="120" selection-end-line="122" selection-end-column="120" />
             </state>
           </provider>
         </entry>
@@ -239,7 +238,7 @@
         <entry file="file://$PROJECT_DIR$/src/Repository/AdvertisementRepository.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="728">
-              <caret line="126" column="49" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="49" />
+              <caret line="135" column="48" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="48" />
               <folding>
                 <element signature="e#34#63#0#PHP" expanded="true" />
               </folding>
@@ -275,6 +274,7 @@
       <find>message</find>
       <find>user</find>
       <find>price</find>
+      <find>row</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -593,18 +593,18 @@
       <workItem from="1536933229962" duration="5631000" />
       <workItem from="1536943213656" duration="4709000" />
       <workItem from="1537019114276" duration="70417000" />
-      <workItem from="1537234059462" duration="5777000" />
+      <workItem from="1537234059462" duration="6878000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212877000" />
+    <option name="totallyTimeSpent" value="213978000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.141258" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.141258" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -866,13 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="8803" column="3" selection-start-line="8803" selection-start-column="3" selection-end-line="8803" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/front/advertisement.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
@@ -915,10 +908,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="589" column="1" selection-start-line="589" selection-start-column="1" selection-end-line="589" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/AdvertisementRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="728">
-          <caret line="126" column="49" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="49" />
+          <caret line="135" column="48" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="48" />
           <folding>
             <element signature="e#34#63#0#PHP" expanded="true" />
           </folding>
@@ -927,8 +927,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/FrontController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="141" column="30" selection-start-line="141" selection-start-column="30" selection-end-line="141" selection-end-column="30" />
+        <state relative-caret-position="439">
+          <caret line="141" column="58" selection-start-line="141" selection-start-column="58" selection-end-line="141" selection-end-column="58" />
           <folding>
             <element signature="e#34#63#0#PHP" expanded="true" />
           </folding>
@@ -937,8 +937,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/front/my-advertisement.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="146" column="40" selection-start-line="146" selection-start-column="40" selection-end-line="146" selection-end-column="40" />
+        <state relative-caret-position="442">
+          <caret line="122" column="120" selection-start-line="122" selection-start-column="120" selection-end-line="122" selection-end-column="120" />
         </state>
       </provider>
     </entry>

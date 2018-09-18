@@ -139,7 +139,7 @@ class FrontController extends Controller
 
         return $this->render('front/my-advertisement.html.twig', [
             'advertisementsValid' => $advertisementsValid,
-            'advertisementsNotValid' => $advertisementsValid,
+            'advertisementsNotValid' => $advertisementsNotValid,
             'countActive' => $countValid,
             'countNotActive' => $countNotValid
         ]);

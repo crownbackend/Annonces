@@ -120,11 +120,11 @@ class AdvertisementRepository extends ServiceEntityRepository
 
     /**
      * @param $user
-     * @param $isValid
+     * @param $notValid
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findByMyAdvertisementNotValid($user, $isValid)
+    public function findByMyAdvertisementNotValid($user, $notValid)
     {
         //SELECT * FROM `advertisement` WHERE user_id = $user is valid = 1
         $query = $this->createQueryBuilder('a')
@@ -133,7 +133,7 @@ class AdvertisementRepository extends ServiceEntityRepository
             ->where('a.user = :user')
             ->andWhere('a.isValid = :isValid')
             ->setParameter(':user', $user)
-            ->setParameter(':isValid', $isValid)
+            ->setParameter(':isValid', $notValid)
             ->getQuery()
         ;
 

@@ -113,15 +113,16 @@
         <div class="row">
             {{ countNotActive }} annonces en attente de validation
         </div>
+        <div class="espace30"></div>
         {% for advertisement in advertisementsNotValid %}
             <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3"><img class="col-md-12" width="160" height="130" src="https://picsum.photos/1000/700/" alt="image"></div>
                         <div class="col-md-4">
-                            <a href="{{ path('advertisement', {'categorySlug': advertisement.category.categorySlug, 'advertisementSlug': advertisement.advertisementSlug}) }}" class="my-advertisement-title">
-                                <div class="">{{ advertisement.title }}</div>
-                            </a>
+                            <button href="#" title="Annonces en attente de validation" class="my-advertisement-title btn" disabled>
+                                <div>{{ advertisement.title }}</div>
+                            </button>
                             <div class="price-r">{{ advertisement.price }}&euro;</div>
                             <div class="my-advertisement-c-name">{{ advertisement.category.name }}</div>
                             <button class="btn btn-primary">Vendez plus vite</button>
