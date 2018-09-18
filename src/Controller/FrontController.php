@@ -44,7 +44,7 @@ class FrontController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-
+            // treatment and persist new advertisement
             $advertisement = $form->getData();
             $manager = $this->getDoctrine()->getManager();
             $user = $this->getUser();
@@ -109,8 +109,9 @@ class FrontController extends Controller
      * @return Response
      */
     public function advertisementShow(string $advertisementSlug, string $categorySlug): response{
-
-        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->findBySlugAdvertisement($advertisementSlug, $categorySlug);
+        $isValid = 1;
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)
+            ->findBySlugAdvertisement($advertisementSlug, $categorySlug, $isValid);
 
         return $this->render('front/advertisement.html.twig', [
             'advertisement' => $advertisement

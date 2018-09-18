@@ -65,12 +65,12 @@ class AdvertisementRepository extends ServiceEntityRepository
     /**
      * @param string $advertisementSlug
      * @param string $categorySlug
+     * @param int $isValid
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findBySlugAdvertisement($advertisementSlug, $categorySlug){
+    public function findBySlugAdvertisement($advertisementSlug, $categorySlug, $isValid){
 //SELECT * FROM `advertisement` WHERE slug = 'machine-a-laver'
-        $isValid = 1;
         $query = $this->createQueryBuilder('a')
             ->select('a')
             ->from('App\Entity\Advertisement', 'r')
@@ -153,7 +153,6 @@ class AdvertisementRepository extends ServiceEntityRepository
      */
     public function findByCountMyAdvertisementValid($user, $isValid)
     {
-
         $query = $this->createQueryBuilder('a')
             ->select('count(a)')
             ->where('a.user = :user')
@@ -177,7 +176,6 @@ class AdvertisementRepository extends ServiceEntityRepository
      */
     public function findByCountMyAdvertisementNotValid($user, $isValid)
     {
-
         $query = $this->createQueryBuilder('a')
             ->select('count(a)')
             ->where('a.user = :user')
