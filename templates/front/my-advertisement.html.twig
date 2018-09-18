@@ -16,7 +16,7 @@
                     Mes alertes
                 </div>
             </a>
-            <a class="my-advertisement" href="">
+            <a class="my-advertisement" href="{{ path('fos_user_profile_show') }}">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 384 512"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"/></svg>
                     Mes infos
@@ -65,8 +65,29 @@
             </div>
         </div>
     <div class="container">
+        <div class="row">
+            <div>{{ count }} annonces en ligne : <span class="annonce">{{ count }} trouvées</span></div>
+        </div>
+        <div class="espace30"></div>
         {% for advertisement in advertisements %}
-            <div>{{ advertisement.title }}</div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3"><img class="col-md-12" width="160" height="130" src="https://picsum.photos/1000/700/" alt="image"></div>
+                    <div class="col-md-4">
+                        <div class="">{{ advertisement.title }}</div>
+                        <div class="">{{ advertisement.price }}</div>
+                        <div class="">{{ advertisement.category.name }}</div>
+                        <button class="btn btn-primary">Vendez plus vite</button>
+                        <button class="btn btn-secondary">Modifier</button>
+                        <button class="btn btn-info">Supprimer</button>
+                    </div>
+                    <div class="col-md-3">ze</div>
+                    <div class="col-md-1">e</div>
+                </div>
+            </div>
+        </div>
         {% endfor %}
+
     </div>
 {% endblock %}
