@@ -106,6 +106,40 @@ p {
     box-shadow: 0 0 0 0.2rem rgba(165, 75, 29, 0.5);
 }
 
+.btn-success {
+    color: #4183d7;
+    background-color: #fff;
+    border-color: #4183d7;
+}
+
+.btn-success:hover {
+    color: #4183d7;
+    background-color: rgba(76, 160, 215, 0.4);
+    border-color: #4183d7;
+}
+
+.btn-success:focus, .btn-success.focus {
+    box-shadow: 0 0 0 0.2rem rgba(65, 131, 215, 0.5);
+}
+
+.btn-success.disabled, .btn-success:disabled {
+    color: #fff;
+    background-color: #4183d7;
+    border-color: #4183d7;
+}
+
+.btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active,
+.show > .btn-success.dropdown-toggle {
+    color: #fff;
+    background-color: #4183d7;
+    border-color: #4183d7;
+}
+
+.btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus,
+.show > .btn-success.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(65, 131, 215, 0.5);
+}
+
 .btn-info {
     color: #f56b2a;
     background-color: #FFFFFF;
@@ -360,6 +394,11 @@ a {
 .my-advertisement path:hover {
     fill: #4183d7;
     transition: 0.3s;
+}
+.my-advertisement-title{
+    color: #369;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 

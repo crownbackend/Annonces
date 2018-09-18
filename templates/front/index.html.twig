@@ -27,7 +27,7 @@
         </div>
             <div class="col-md-4">
             {% for region in regions %}
-                <div class="col-6"><a href="{{ path('region', {regionSlug: region.regionSlug}) }}" class=""> {{ region.name }}</a></div>
+                <div class="col-6 text-lg-right"><a href="{{ path('region', {regionSlug: region.regionSlug}) }}" class=""> {{ region.name }}</a></div>
             {% endfor %}
             </div>
         </div>

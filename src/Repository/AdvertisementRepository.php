@@ -93,16 +93,20 @@ class AdvertisementRepository extends ServiceEntityRepository
 
     /**
      * @param $user
+     * @param $isValid
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findByMyAdvertisement($user)
-    {   //SELECT * FROM `advertisement` WHERE user_id = $user
+    public function findByMyAdvertisementValid($user, $isValid)
+    {
+        //SELECT * FROM `advertisement` WHERE user_id = $user is valid = 1
         $query = $this->createQueryBuilder('a')
         ->select('a')
         ->from('App\Entity\Advertisement', 'r')
         ->where('a.user = :user')
+        ->andWhere('a.isValid = :isValid')
         ->setParameter(':user', $user)
+        ->setParameter(':isValid', $isValid)
         ->getQuery()
         ;
 
@@ -116,15 +120,70 @@ class AdvertisementRepository extends ServiceEntityRepository
 
     /**
      * @param $user
+     * @param $isValid
+     * @return Advertisement|null
+     * @throws \Exception
+     */
+    public function findByMyAdvertisementNotValid($user, $isValid)
+    {
+        //SELECT * FROM `advertisement` WHERE user_id = $user is valid = 1
+        $query = $this->createQueryBuilder('a')
+            ->select('a')
+            ->from('App\Entity\Advertisement', 'r')
+            ->where('a.user = :user')
+            ->andWhere('a.isValid = :isValid')
+            ->setParameter(':user', $user)
+            ->setParameter(':isValid', $isValid)
+            ->getQuery()
+        ;
+
+        try {
+            return $query->getResult();
+        }
+        catch(\Exception $e) {
+            throw new \Exception('problème '. $e->getMessage(). $e->getFile(). $e->getFile());
+        }
+    }
+
+    /**
+     * @param $user
+     * @param $isValid
      * @return integer|null
      * @throws \Exception
      */
-    public function findByCountMyAdvertisement($user)
+    public function findByCountMyAdvertisementValid($user, $isValid)
     {
+
         $query = $this->createQueryBuilder('a')
             ->select('count(a)')
             ->where('a.user = :user')
+            ->andWhere('a.isValid = :isValid')
             ->setParameter(':user', $user)
+            ->setParameter(':isValid', $isValid)
+            ->getQuery();
+        try {
+            return $query->getSingleScalarResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème' . $e->getMessage() . $e->getLine());
+        }
+    }
+
+    /**
+     * @param $user
+     * @param $isValid
+     * @return integer|null
+     * @throws \Exception
+     */
+    public function findByCountMyAdvertisementNotValid($user, $isValid)
+    {
+
+        $query = $this->createQueryBuilder('a')
+            ->select('count(a)')
+            ->where('a.user = :user')
+            ->andWhere('a.isValid = :isValid')
+            ->setParameter(':user', $user)
+            ->setParameter(':isValid', $isValid)
             ->getQuery();
         try {
             return $query->getSingleScalarResult();

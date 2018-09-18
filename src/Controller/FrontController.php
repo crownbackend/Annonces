@@ -118,19 +118,30 @@ class FrontController extends Controller
     }
 
     /**
+     * get advertisement from the connected user
      * @Route("/mon-compte/mes-annonces", name="my-advertisement")
      * @return Response
      */
     public function myAdvertismentShow(): Response {
 
+        $isValid = 1;
+        $notValid = 0;
         $userCurrent = $this->getUser();
-        $advertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findByMyAdvertisement($userCurrent);
-        $count = $this->getDoctrine()->getRepository(Advertisement::class)->findByCountMyAdvertisement($userCurrent);
+
+        $advertisementsValid = $this->getDoctrine()->getRepository(Advertisement::class)->findByMyAdvertisementValid($userCurrent, $isValid);
+        $advertisementsNotValid = $this->getDoctrine()->getRepository(Advertisement::class)->findByMyAdvertisementNotValid($userCurrent, $notValid);
+
+        $countValid = $this->getDoctrine()->getRepository(Advertisement::class)
+            ->findByCountMyAdvertisementValid($userCurrent, $isValid); // count advertisement valid
+        $countNotValid = $this->getDoctrine()->getRepository(Advertisement::class)
+        ->findByCountMyAdvertisementNotValid($userCurrent, $notValid); // count advertisement not Valid
 
 
         return $this->render('front/my-advertisement.html.twig', [
-            'advertisements' => $advertisements,
-            'count' => $count
+            'advertisementsValid' => $advertisementsValid,
+            'advertisementsNotValid' => $advertisementsValid,
+            'countActive' => $countValid,
+            'countNotActive' => $countNotValid
         ]);
     }
 

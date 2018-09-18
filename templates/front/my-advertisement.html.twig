@@ -61,32 +61,90 @@
     </div>
         <div class="card text-center">
             <div class="card-body">
-                This is some text within a card body. {{ count }}
+                This is some text within a card body.
             </div>
         </div>
     <div class="container">
         <div class="row">
-            <div>{{ count }} annonces en ligne : <span class="annonce">{{ count }} trouvées</span></div>
+            <div>
+                {{ countActive }} annonces en ligne :
+                <span class="annonce">
+                    {{ countActive }} trouvées
+                </span>
+            </div>
         </div>
+
         <div class="espace30"></div>
-        {% for advertisement in advertisements %}
+        {% for advertisement in advertisementsValid %}
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3"><img class="col-md-12" width="160" height="130" src="https://picsum.photos/1000/700/" alt="image"></div>
                     <div class="col-md-4">
-                        <div class="">{{ advertisement.title }}</div>
-                        <div class="">{{ advertisement.price }}</div>
-                        <div class="">{{ advertisement.category.name }}</div>
+                        <a href="{{ path('advertisement', {'categorySlug': advertisement.category.categorySlug, 'advertisementSlug': advertisement.advertisementSlug}) }}" class="my-advertisement-title">
+                            <div class="">{{ advertisement.title }}</div>
+                        </a>
+                        <div class="price-r">{{ advertisement.price }}&euro;</div>
+                        <div class="my-advertisement-c-name">{{ advertisement.category.name }}</div>
                         <button class="btn btn-primary">Vendez plus vite</button>
-                        <button class="btn btn-secondary">Modifier</button>
+                        <button class="btn btn-success">Modifier</button>
                         <button class="btn btn-info">Supprimer</button>
                     </div>
-                    <div class="col-md-3">ze</div>
-                    <div class="col-md-1">e</div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <div>Date</div>
+                            <div>
+                                {{ advertisement.createdAt|date('d M y à H:i') }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 text-lg-right">
+                        <div>3</div>
+                        <div>2</div>
+                        <div>1</div>
+                    </div>
                 </div>
             </div>
         </div>
+            <div class="espace20"></div>
+        {% endfor %}
+        <div class="espace30"></div>
+<hr>
+        <div class="row">
+            {{ countNotActive }} annonces en attente de validation
+        </div>
+        {% for advertisement in advertisementsNotValid %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3"><img class="col-md-12" width="160" height="130" src="https://picsum.photos/1000/700/" alt="image"></div>
+                        <div class="col-md-4">
+                            <a href="{{ path('advertisement', {'categorySlug': advertisement.category.categorySlug, 'advertisementSlug': advertisement.advertisementSlug}) }}" class="my-advertisement-title">
+                                <div class="">{{ advertisement.title }}</div>
+                            </a>
+                            <div class="price-r">{{ advertisement.price }}&euro;</div>
+                            <div class="my-advertisement-c-name">{{ advertisement.category.name }}</div>
+                            <button class="btn btn-primary">Vendez plus vite</button>
+                            <button class="btn btn-success">Modifier</button>
+                            <button class="btn btn-info">Supprimer</button>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <div>Date</div>
+                                <div>
+                                    {{ advertisement.createdAt|date('d M y à H:i') }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 text-lg-right">
+                            <div>3</div>
+                            <div>2</div>
+                            <div>1</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="espace20"></div>
         {% endfor %}
 
     </div>
