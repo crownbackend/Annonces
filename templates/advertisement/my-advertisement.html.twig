@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Mes annonces - Le bon point{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row">
@@ -80,8 +80,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3"><img class="col-md-12" width="160" height="130" src="https://picsum.photos/1000/700/" alt="image"></div>
-                    <div class="col-md-4">
-                        <a href="{{ path('advertisement', {'categorySlug': advertisement.category.categorySlug, 'advertisementSlug': advertisement.advertisementSlug}) }}" class="my-advertisement-title">
+                    <div class="col-md-6">
+                        <a href="{{ path('advertisement', {'categorySlug': advertisement.category.categorySlug, 'advertisementSlug': advertisement.advertisementSlug}) }}" class="my-advertisement-title" target="_blank">
                             <div class="">{{ advertisement.title }}</div>
                         </a>
                         <div class="price-r">{{ advertisement.price }}&euro;</div>
@@ -91,17 +91,12 @@
                         <button class="btn btn-info">Supprimer</button>
                     </div>
                     <div class="col-md-3">
-                        <div class="text-center">
+                        <div class="text-center text-lg-right">
                             <div>Date</div>
                             <div>
                                 {{ advertisement.createdAt|date('d M y à H:i') }}
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-1 text-lg-right">
-                        <div>3</div>
-                        <div>2</div>
-                        <div>1</div>
                     </div>
                 </div>
             </div>
@@ -119,7 +114,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3"><img class="col-md-12" width="160" height="130" src="https://picsum.photos/1000/700/" alt="image"></div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <button href="#" title="Annonces en attente de validation" class="my-advertisement-title btn" disabled>
                                 <div>{{ advertisement.title }}</div>
                             </button>
@@ -130,17 +125,12 @@
                             <button class="btn btn-info">Supprimer</button>
                         </div>
                         <div class="col-md-3">
-                            <div class="text-center">
+                            <div class="text-lg-right">
                                 <div>Date</div>
                                 <div>
                                     {{ advertisement.createdAt|date('d M y à H:i') }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-1 text-lg-right">
-                            <div>3</div>
-                            <div>2</div>
-                            <div>1</div>
                         </div>
                     </div>
                 </div>

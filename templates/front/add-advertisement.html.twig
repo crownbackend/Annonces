@@ -41,12 +41,12 @@
         <p><strong>Taille maximale :</strong> 2 Mo.</p>
         <p><strong>Formats supportés :</strong> png, jpeg.</p>
         <div class="form-group">
-        {{ form_label(form.imageFile, 'Photo principale') }}
+        {{ form_label(form.imageFile, 'Photo principale', {"required": false}) }}
         {{ form_widget(form.imageFile) }}
     </div>
 
     <div class="form-group">
-        {{ form_label(form.imageFile2, 'Photo 2') }}
+        {{ form_label(form.imageFile2, 'Photo 2', {"required": false}) }}
         {{ form_widget(form.imageFile2) }}
     </div>
 

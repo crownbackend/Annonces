@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Advertisement;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -146,12 +147,12 @@ class AdvertisementRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $user
-     * @param $isValid
+     * @param User $user
+     * @param int $isValid
      * @return integer|null
      * @throws \Exception
      */
-    public function findByCountMyAdvertisementValid($user, $isValid)
+    public function findByCountMyAdvertisementValid(User $user, int $isValid)
     {
         $query = $this->createQueryBuilder('a')
             ->select('count(a)')
@@ -169,12 +170,12 @@ class AdvertisementRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $user
-     * @param $isValid
+     * @param User $user
+     * @param int $isValid
      * @return integer|null
      * @throws \Exception
      */
-    public function findByCountMyAdvertisementNotValid($user, $isValid)
+    public function findByCountMyAdvertisementNotValid(User $user, int $isValid)
     {
         $query = $this->createQueryBuilder('a')
             ->select('count(a)')
@@ -190,5 +191,30 @@ class AdvertisementRepository extends ServiceEntityRepository
             throw new \Exception('Problème' . $e->getMessage() . $e->getLine());
         }
     }
+
+    /*
+     * @param int $isValid
+     * @param User $user
+     * @return Advertisement|null
+     * @throws \Exception
+
+    public function updateByIsValid(int $isValid, User $user){
+// UPDATE `advertisement` SET `is_valid` = '0' WHERE `advertisement`.`id` = 3;
+        $query = $this->createQueryBuilder('a')
+        ->update('App\Entity\Advertisement', 'a')
+        ->set('a.isValid', ':isValid')
+        ->where('a.user = :user')
+        ->setParameter(':user', $user)
+        ->setParameter(':isValid', $isValid)
+        ->getQuery()
+        ;
+
+        try {
+            return $query->getResult();
+        }
+        catch(\Exception $e) {
+            throw new \Exception('problème '. $e->getMessage(). $e->getFile(). $e->getFile());
+        }
+    }*/
 
 }

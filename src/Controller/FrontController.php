@@ -113,7 +113,7 @@ class FrontController extends Controller
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)
             ->findBySlugAdvertisement($advertisementSlug, $categorySlug, $isValid);
 
-        return $this->render('front/advertisement.html.twig', [
+        return $this->render('advertisement/advertisement.html.twig', [
             'advertisement' => $advertisement
         ]);
     }
@@ -137,13 +137,63 @@ class FrontController extends Controller
         $countNotValid = $this->getDoctrine()->getRepository(Advertisement::class)
         ->findByCountMyAdvertisementNotValid($userCurrent, $notValid); // count advertisement not Valid
 
-
-        return $this->render('front/my-advertisement.html.twig', [
+        return $this->render('advertisement/my-advertisement.html.twig', [
             'advertisementsValid' => $advertisementsValid,
             'advertisementsNotValid' => $advertisementsNotValid,
             'countActive' => $countValid,
             'countNotActive' => $countNotValid
         ]);
+    }
+
+    /**
+     * edit advertisement
+     * @Route("/mon-compte/mes-annonces/editer/{id}", name="my-advertisement-edit")
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function myAdvertisementEdit(Request $request, int $id, \Swift_Mailer $mailer): Response {
+
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
+        $form = $this->createForm(AdvertisementType::class, $advertisement);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $email = $this->getUser()->getEmail();
+            $username = $this->getUser()->getUsername();
+
+            $advertisement = $form->getData();
+            $advertisement->setIsvalid(0);
+            $manager = $this->getDoctrine()->getManager();
+            $manager->flush();
+            $this->addFlash('edit-my-advertisement.html.twig', 'Votre demande de modification à bien été prise 
+            en compte il faut compter environs 24h pour se faire valider une 
+            annonce déja posté(l\'annonce sera pas visible pendant les prochaine 24h !)');
+
+            $message = (new \Swift_Message('Demande de modification le bon point'))
+                ->setFrom('annonces@lebonpoint.com')
+                ->setTo($email)
+                ->setBody(
+                    $this->renderView(
+                        'emails/modification.html.twig',
+                        [
+                            'username' => $username,
+                            'advertisement' => $advertisement
+                        ]
+                    ),
+                    'text/html'
+                )
+            ;
+            $mailer->send($message);
+
+            return $this->redirectToRoute('my-advertisement');
+        }
+
+        return $this->render('advertisement/edit-my-advertisement.html.twig', [
+            'form' => $form->createView()
+        ]);
+
     }
 
 
