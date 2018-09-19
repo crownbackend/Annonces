@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}Confirmation de votre suppression{% endblock %}
+{% block body %}
+
+    <div class="container">
+        <h1 class="h1-add">Supprimer l'annonce</h1>
+        <hr>
+        <p class="p-description">Etes-vous sûr de vouloir supprimer l'annonce ci-dessous ?<br>
+            Nous vous rappelons que lorsque vous supprimez une annonce, vous supprimez également les options qui y sont associées.</p>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <img width="266.5" height="120" src="https://picsum.photos/1000/700/" alt="test" >
+            </div>
+            <div class="col-md-4">
+                <a href="{{ path('advertisement', {'categorySlug': confirmationDelete.category.categorySlug, 'advertisementSlug': confirmationDelete.advertisementSlug}) }}" class="my-advertisement-title" target="_blank">
+                    <div class="">{{ confirmationDelete.title }}</div>
+                </a>
+                <br>
+                <div>{{ confirmationDelete.createdAt|date('d/m/y à H:i') }}</div>
+                <br>
+                <div class="price-r">{{ confirmationDelete.price }}&euro;</div>
+            </div>
+        </div>
+        <div class="espace20"></div>
+        <p class="p-description">Merci de bien vouloir nous indiquer la raison de la suppression de votre annonce :</p>
+    </div>
+
+{% endblock %}

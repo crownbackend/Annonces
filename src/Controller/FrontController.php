@@ -164,13 +164,14 @@ class FrontController extends Controller
             $username = $this->getUser()->getUsername();
 
             $advertisement = $form->getData();
+            // the bool isValid set 0
             $advertisement->setIsvalid(0);
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();
-            $this->addFlash('edit-my-advertisement.html.twig', 'Votre demande de modification à bien été prise 
+            $this->addFlash('edit-my-advertisement', 'Votre demande de modification à bien été prise 
             en compte il faut compter environs 24h pour se faire valider une 
             annonce déja posté(l\'annonce sera pas visible pendant les prochaine 24h !)');
-
+            // send mail in edit advertisement
             $message = (new \Swift_Message('Demande de modification le bon point'))
                 ->setFrom('annonces@lebonpoint.com')
                 ->setTo($email)
@@ -189,11 +190,25 @@ class FrontController extends Controller
 
             return $this->redirectToRoute('my-advertisement');
         }
-
         return $this->render('advertisement/edit-my-advertisement.html.twig', [
             'form' => $form->createView()
         ]);
 
+    }
+
+    /**
+     * confirm in delete advertisement
+     * @Route("/mon-compte/mes-annonces/confirmation-suppression/{id}", name="confirm-delete")
+     * @param int $id
+     * @return Response
+     */
+    public function confirmDelete(int $id): Response {
+
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
+
+        return $this->render('advertisement/confirm-delete.html.twig', [
+            'confirmationDelete' => $advertisement
+        ]);
     }
 
 

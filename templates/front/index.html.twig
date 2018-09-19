@@ -21,7 +21,7 @@
         <div class="map_image col-md-4">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 615 585">
                 {% for region in regions %}
-                <a id="" xlink:href="{{ path('region', {regionSlug: region.regionSlug}) }}" xlink:title="Alsace"><path id="" title="{{ region.title }}" class="{{ region.class }}" d="{{ region.d }}"/></a>
+                <a id="" xlink:href="{{ path('region', {regionSlug: region.regionSlug}) }}" xlink:title="{{ region.title }}"><path id="" title="{{ region.title }}" class="{{ region.class }}" d="{{ region.d }}"/></a>
                 {% endfor %}
             </svg>
         </div>

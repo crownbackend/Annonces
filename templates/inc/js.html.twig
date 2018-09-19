@@ -4,3 +4,25 @@
 <script src="{{ asset('js/bootstrap.js') }}"></script>
 <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 <script src="{{ asset('js/jquery.geocomplete.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+    window.addEventListener("load", function(){
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#f56b2a",
+                    "text": "#ffffff"
+                },
+                "button": {
+                    "background": "#4183d7"
+                }
+            },
+            "showLink": false,
+            "theme": "classic",
+            "content": {
+                "message": "Pour lebonpoint, votre expérience sur notre site est une priorité. C’est pourquoi nous utilisons des cookies, au titre de cet intérêt légitime, à améliorer votre expérience utilisateur",
+                "dismiss": "J'ai compris"
+            }
+        })});
+</script>
