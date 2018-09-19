@@ -87,7 +87,7 @@
                         <div class="price-r">{{ advertisement.price }}&euro;</div>
                         <div class="my-advertisement-c-name">{{ advertisement.category.name }}</div>
                         <button class="btn btn-primary">Vendez plus vite</button>
-                        <button class="btn btn-success">Modifier</button>
+                        <a class="btn btn-success" href="{{ path('my-advertisement-edit', {id: advertisement.id}) }}">Modifier</a>
                         <button class="btn btn-info">Supprimer</button>
                     </div>
                     <div class="col-md-3">

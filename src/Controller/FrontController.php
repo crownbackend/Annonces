@@ -70,7 +70,7 @@ class FrontController extends Controller
             $mailer->send($message);
             return $this->redirectToRoute('index');
         }
-        return $this->render('front/add-advertisement.html.twig', [
+        return $this->render('advertisement/add-advertisement.html.twig', [
             'form' => $form->createView()
         ]);
     }
