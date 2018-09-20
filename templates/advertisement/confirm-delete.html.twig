@@ -30,12 +30,12 @@
 
             {{ form_widget(form.message) }}
 
-        {{ form_end(form) }}
         <br>
         <div class="form-group">
         <a href="{{ path('my-advertisement') }}" class="btn btn-success">Revenir à mes annonces</a>
         <button type="submit" class="btn btn-primary">Valider</button>
         </div>
+        {{ form_end(form) }}
     </div>
 
 {% endblock %}

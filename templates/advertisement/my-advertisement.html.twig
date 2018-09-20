@@ -74,6 +74,25 @@
             </div>
         </div>
 
+        {% for message in app.flashes('add-advertisement') %}
+        <div class="espace20"></div>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('edit-my-advertisement') %}
+            <div class="espace20"></div>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+
         <div class="espace30"></div>
         {% for advertisement in advertisementsValid %}
         <div class="card">

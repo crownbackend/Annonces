@@ -7,6 +7,7 @@ use App\Entity\ReasonOfDealt;
 use App\Entity\Region;
 use App\Form\AdvertisementType;
 use App\Form\ReasonOfDealtType;
+use App\Form\ShareAdvertisementType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,6 +74,7 @@ class FrontController extends Controller
                 )
             ;
             $mailer->send($message);
+            $this->addFlash('add-advertisement', 'Votre annonce à bien été ajouté, vous aller recevoir un mail de confirmation !');
             return $this->redirectToRoute('my-advertisement');
         }
         return $this->render('advertisement/add-advertisement.html.twig', [
@@ -111,15 +113,25 @@ class FrontController extends Controller
      * @Route("/offres/{categorySlug}/{advertisementSlug}", name="advertisement")
      * @param string $advertisementSlug
      * @param string $categorySlug
+     * @param Request $request
      * @return Response
      */
-    public function advertisementShow(string $advertisementSlug, string $categorySlug): response{
+    public function advertisementShow(string $advertisementSlug, string $categorySlug, Request $request): response{
         $isValid = 1;
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)
             ->findBySlugAdvertisement($advertisementSlug, $categorySlug, $isValid);
 
+        $share = $this->createForm(ShareAdvertisementType::class);
+        $share->handleRequest($request);
+
+        if($share->isSubmitted() && $share->isValid()) {
+            $content = $share->getData();
+            $content['from'];
+        }
+
         return $this->render('advertisement/advertisement.html.twig', [
-            'advertisement' => $advertisement
+            'advertisement' => $advertisement,
+            'form' => $share->createView()
         ]);
     }
 
@@ -213,15 +225,15 @@ class FrontController extends Controller
 
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
 
-        $raisonOfDealt = new ReasonOfDealt();
-        $form = $this->createForm(ReasonOfDealtType::class, $raisonOfDealt);
+        $reasonOfDealt = new ReasonOfDealt();
+        $form = $this->createForm(ReasonOfDealtType::class, $reasonOfDealt);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-
-            $raisonOfDealt = $form->getData();
+            // presist a message for the cause of deletion
+            $reasonOfDealt = $form->getData();
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($raisonOfDealt);
+            $manager->persist($reasonOfDealt);
             $manager->flush();
 
             //send a confirmation email to the user
@@ -234,13 +246,16 @@ class FrontController extends Controller
                     $this->renderView(
                         'emails/delete.html.twig',
                         [
-                            'username' => $username
+                            'username' => $username,
+                            'advertisement' => $advertisement
                         ]
                     ),
                     'text/html'
                 )
             ;
             $mailer->send($message);
+
+            return $this->redirectToRoute('delete-advertisement', ['id' => $advertisement->getId()]);
         }
 
         return $this->render('advertisement/confirm-delete.html.twig', [
@@ -266,6 +281,17 @@ class FrontController extends Controller
         return $this->redirectToRoute('my-advertisement');
     }
 
+    /**
+     * Share advertisement
+     * @Route("/annonce/paratage/", name="")
+     * @param Request $request
+     * @param \Swift_Mailer $mailer
+     * @return Response
+     */
+    public function shareAdvertisement(Request $request, \Swift_Mailer $mailer): Response {
+
+
+    }
 
 
 
