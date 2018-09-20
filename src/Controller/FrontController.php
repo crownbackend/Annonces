@@ -113,20 +113,37 @@ class FrontController extends Controller
      * @Route("/offres/{categorySlug}/{advertisementSlug}", name="advertisement")
      * @param string $advertisementSlug
      * @param string $categorySlug
+     * @param \Swift_Mailer $mailer
      * @param Request $request
      * @return Response
      */
-    public function advertisementShow(string $advertisementSlug, string $categorySlug, Request $request): response{
+    public function advertisementShow(string $advertisementSlug, string $categorySlug, Request $request, \Swift_Mailer $mailer): response{
         $isValid = 1;
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)
             ->findBySlugAdvertisement($advertisementSlug, $categorySlug, $isValid);
-
+        $ad = $advertisement->getTitle();
         $share = $this->createForm(ShareAdvertisementType::class);
         $share->handleRequest($request);
 
+
         if($share->isSubmitted() && $share->isValid()) {
-            $content = $share->getData();
-            $content['from'];
+            $data = $share->getData();
+            $message = (new \Swift_Message('Une annonce pour vous sur le bon point : "'.$ad.'"'))
+                ->setFrom($data['from'])
+                ->setTo($data['to'])
+                ->setBody(
+                    $this->renderView(
+                        'emails/shareAdvertisement.html.twig',
+                        [
+                            'advertisement' => $advertisement,
+                            'from' => $data['from']
+                        ]
+                    ),
+                    'text/html'
+                )
+            ;
+            $mailer->send($message);
+
         }
 
         return $this->render('advertisement/advertisement.html.twig', [
