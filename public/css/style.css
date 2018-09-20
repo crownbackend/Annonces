@@ -401,4 +401,10 @@ a {
     font-weight: 500;
 }
 
+.a-share {
+    font-size: 1rem;
+    font-family: OpenSansBold, sans-serif;
+    font-weight: bold;
+}
+
 

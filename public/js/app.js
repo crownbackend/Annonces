@@ -94,16 +94,26 @@ $(document).ready(function() {
     });
 //advertisement_city
 
-    $("#number").hide();
-
+    $("#number, #share").hide();
     $("#message").click(function(){
         $(this).hide();
         $("#number").show();
     });
 
+    $("#mail").on('click', function(){
+        $("#share").show();
+    });
+
+    $(".close").on('click', function(){
+        $("#share").hide();
+    });
+
+
+});
+
+$(document).ready(function(){
     $('#advertisement_address').geocomplete();
     $.fn.geocomplete('#advertisement_address');
-
 });
 
 function countChar(val) {
