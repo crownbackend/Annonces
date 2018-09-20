@@ -232,7 +232,7 @@ class FrontController extends Controller
                 ->setTo($email)
                 ->setBody(
                     $this->renderView(
-                        'emails/confirmation.html.twig',
+                        'emails/delete.html.twig',
                         [
                             'username' => $username
                         ]

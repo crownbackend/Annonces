@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $('#advertisement_title').on('click',function() {
-       $('#res-title').html('<div class="alert alert-primary" role="alert">\n' +
-             '  Si le titre de votre annonce n\'est pas claire votre annonce sera réfuser ! \n' +
-                '</div>');
+        $('#res-title').html('<div class="alert alert-primary" role="alert">\n' +
+            '  Si le titre de votre annonce n\'est pas claire votre annonce sera réfuser ! \n' +
+            '</div>');
     });
     $('#advertisement_description').on('click',function() {
         $('#res-description').html('<div class="alert alert-primary" role="alert">\n' +
@@ -94,6 +94,13 @@ $(document).ready(function() {
     });
 //advertisement_city
 
+    $("#number").hide();
+
+    $("#message").click(function(){
+        $(this).hide();
+        $("#number").show();
+    });
+
     $('#advertisement_address').geocomplete();
     $.fn.geocomplete('#advertisement_address');
 
@@ -107,15 +114,3 @@ function countChar(val) {
         $('#res-limit').text(3500 - len);
     }
 };
-
-$(document).ready(function () {
-        $("#number").hide();
-
-        $('#message').on('click', function(){
-            $(this).replaceWith($('#number'));
-            $("#number").show();
-    });
-
-});
-
-
