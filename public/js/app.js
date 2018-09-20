@@ -92,7 +92,6 @@ $(document).ready(function() {
             }
         }
     });
-//advertisement_city
 
     $("#number, #share").hide();
     $("#message").click(function(){
@@ -106,6 +105,14 @@ $(document).ready(function() {
 
     $(".close").on('click', function(){
         $("#share").hide();
+    });
+
+    $("#a-error-1, #a-error-2").hide();
+    $("#share_advertisement_from").on('click', function () {
+        $("#a-error-1").show();
+    });
+    $("#share_advertisement_to").on('click', function () {
+        $("#a-error-2").show();
     });
 
 

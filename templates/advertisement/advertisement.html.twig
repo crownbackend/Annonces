@@ -111,12 +111,18 @@
                     {{ form_start(form) }}
                         <div class="row">
                             <div class="col-md-6">
-                                {{ form_label(form.from, 'Votre adresse mail') }}
+                                {{ form_label(form.from, 'Votre adresse mail', {'attr': {'class': 'col-md-12 col-xs-12'}}) }}
                                 {{ form_widget(form.from) }}
+                                <div id="a-error-1" class="a-error-email col-md-12">
+                                    Veuillez saisir une adresse email.
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                {{ form_label(form.to, 'L\'adresse mail de votre ami(e)') }}
+                                {{ form_label(form.to, 'L\'adresse mail de votre ami(e)', {'attr': {'class': 'col-md-12 col-xs-12'}}) }}
                                 {{ form_widget(form.to) }}
+                                <div id="a-error-2" class="a-error-email col-md-12">
+                                    Veuillez saisir une adresse email.
+                                </div>
                             </div>
                         </div>
                         <br>
