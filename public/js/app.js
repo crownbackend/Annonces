@@ -102,8 +102,10 @@ $(document).ready(function() {
     $("#mail").on('click', function(){
         $("#share").show();
     });
-    $(".close").on('click', function(){
+    $(".close, #ok2").on('click', function(){
         $("#share, #a-error-1, #a-error-2").hide();
+        $("#ok").hide();
+        console.log(test);
     });
 
     $("#a-error-1, #a-error-2").hide();

@@ -192,29 +192,25 @@ class AdvertisementRepository extends ServiceEntityRepository
         }
     }
 
-    /*
-     * @param int $isValid
+    /**
      * @param User $user
+     * @param int $id
      * @return Advertisement|null
      * @throws \Exception
+     */
+    public function findBySendMessage(User $user, int $id) {
 
-    public function updateByIsValid(int $isValid, User $user){
-// UPDATE `advertisement` SET `is_valid` = '0' WHERE `advertisement`.`id` = 3;
         $query = $this->createQueryBuilder('a')
-        ->update('App\Entity\Advertisement', 'a')
-        ->set('a.isValid', ':isValid')
-        ->where('a.user = :user')
-        ->setParameter(':user', $user)
-        ->setParameter(':isValid', $isValid)
-        ->getQuery()
-        ;
+        ->select('a')
+        ->getQuery();
 
         try {
-            return $query->getResult();
+            return $this->getResult();
         }
-        catch(\Exception $e) {
-            throw new \Exception('problème '. $e->getMessage(). $e->getFile(). $e->getFile());
+        catch (\Exception $e) {
+            throw new \Exception('Problème' . $e->getMessage() . $e->getLine());
         }
-    }*/
+
+    }
 
 }

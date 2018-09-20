@@ -124,11 +124,11 @@ class FrontController extends Controller
         $isValid = 1;
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)
             ->findBySlugAdvertisement($advertisementSlug, $categorySlug, $isValid);
-        $ad = $advertisement->getTitle();
         $share = $this->createForm(ShareAdvertisementType::class);
         $share->handleRequest($request);
 
         if($share->isSubmitted() && $share->isValid()) {
+            $ad = $advertisement->getTitle();
             $data = $share->getData();
             $message = (new \Swift_Message('Une annonce pour vous sur le bon point : "'.$ad.'"'))
                 ->setFrom($data['from'])
@@ -301,6 +301,20 @@ class FrontController extends Controller
         $this->addFlash('delete', 'L\'annonce à bien étais supprimé !');
 
         return $this->redirectToRoute('my-advertisement');
+    }
+
+    /**
+     * @Route("/annonce/id={id}", name="send-a-message")
+     * @param int $id
+     * @return Response
+     */
+    public function sendMessage(int $id): Response {
+
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
+
+        return $this->render('advertisement/send-a-message.html.twig', [
+            'advertisement' => $advertisement
+        ]);
     }
 
 

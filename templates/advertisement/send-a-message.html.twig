@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="espace20"></div>
+    <div class="container">
+        <div class="row">
+            <div class="card col-md-6">
+                <h1 class="s-send m">Envoyer un message à {{ advertisement.user.username }}</h1>
+                <div class="alert alert-warning s-warning" role="alert">
+                    <p class="p-description">
+                        <strong>Attention</strong> : Méfiez-vous des propositions trop alléchantes et des prix trop bas. Assurez-vous de ne pas être victime d'une tentative d'escroquerie.
+                        notre équipe fait au mieux pour vérifier et validé l'annonce au mieux !
+                    </p>
+                </div>
+            </div>
+            <div class="card col-md-6">
+                <div class="m">
+                    <h1 class="s-send">Résumé de l'annonce</h1>
+                    <h2 class="s-send">{{ advertisement.title }}</h2>
+                    <span class="price-r">{{ advertisement.price }}€</span>
+                    <div class="text-muted">{{ advertisement.createdAt|date('d/m/y à H:i') }}</div>
+                    <div class="text-muted">par <strong class="muted">{{ advertisement.user.username }}</strong>(Je refuse tout démarchage commercial)</div>
+                    <hr>
+                    <div class="a-description">Description</div>
+                    <p class="p-description">
+                        {{ advertisement.description }}
+                    </p>
+                    <hr>
+                    <div class="a-localisation">Localisation</div>
+                    <div class="p-description">
+                        {{ advertisement.address }}
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

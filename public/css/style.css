@@ -419,5 +419,17 @@ a {
     text-align: center;
     font-size: 15px;
 }
+.s-send {
+    font-size: 1.5rem;
+}
+.s-warning {
+    margin: 10px;
+}
 
+.muted {
+    color: black;
+}
+.m {
+    margin: 10px;
+}
 
