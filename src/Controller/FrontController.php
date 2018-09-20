@@ -21,6 +21,7 @@ class FrontController extends Controller
      * Home page
      * @Route("/", name="index", methods="GET")
      * @return Response
+     * @throws \Exception
      */
     public function index(): Response
     {
@@ -87,6 +88,7 @@ class FrontController extends Controller
      * @param string $regionSlug
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function regionShow(string $regionSlug, Request $request): Response {
 
@@ -116,6 +118,7 @@ class FrontController extends Controller
      * @param \Swift_Mailer $mailer
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function advertisementShow(string $advertisementSlug, string $categorySlug, Request $request, \Swift_Mailer $mailer): response{
         $isValid = 1;
@@ -156,6 +159,7 @@ class FrontController extends Controller
      * get advertisement from the connected user
      * @Route("/mon-compte/mes-annonces", name="my-advertisement")
      * @return Response
+     * @throws \Exception
      */
     public function myAdvertismentShow(): Response {
 
