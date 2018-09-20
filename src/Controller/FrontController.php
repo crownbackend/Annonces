@@ -128,7 +128,6 @@ class FrontController extends Controller
         $share = $this->createForm(ShareAdvertisementType::class);
         $share->handleRequest($request);
 
-
         if($share->isSubmitted() && $share->isValid()) {
             $data = $share->getData();
             $message = (new \Swift_Message('Une annonce pour vous sur le bon point : "'.$ad.'"'))
@@ -146,6 +145,8 @@ class FrontController extends Controller
                 )
             ;
             $mailer->send($message);
+
+            return $this->render('inc/share-ok.html.twig');
 
         }
 
@@ -302,17 +303,6 @@ class FrontController extends Controller
         return $this->redirectToRoute('my-advertisement');
     }
 
-    /**
-     * Share advertisement
-     * @Route("/annonce/paratage/", name="")
-     * @param Request $request
-     * @param \Swift_Mailer $mailer
-     * @return Response
-     */
-    public function shareAdvertisement(Request $request, \Swift_Mailer $mailer): Response {
-
-
-    }
 
 
 

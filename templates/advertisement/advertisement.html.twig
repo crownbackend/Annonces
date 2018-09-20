@@ -103,22 +103,22 @@
         <br>
         <div id="share">
             <div class="card">
-                <div class="card-body">
+                <div id="test" class="card-body">
                     <button type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h3 class="a-share">Partager l'annonce par email</h3>
-                    {{ form_start(form) }}
+                    {{ form_start(form, {'attr': {"id": "form-email"}}) }}
                         <div class="row">
                             <div class="col-md-6">
-                                {{ form_label(form.from, 'Votre adresse mail', {'attr': {'class': 'col-md-12 col-xs-12'}}) }}
+                                {{ form_label(form.from, 'Votre adresse mail', {'attr': {'class': 'col-lg-12 col-xs-12'}}) }}
                                 {{ form_widget(form.from) }}
                                 <div id="a-error-1" class="a-error-email col-md-12">
                                     Veuillez saisir une adresse email.
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                {{ form_label(form.to, 'L\'adresse mail de votre ami(e)', {'attr': {'class': 'col-md-12 col-xs-12'}}) }}
+                                {{ form_label(form.to, 'L\'adresse mail de votre ami(e)', {'attr': {'class': 'col-lg-12 col-xs-12'}}) }}
                                 {{ form_widget(form.to) }}
                                 <div id="a-error-2" class="a-error-email col-md-12">
                                     Veuillez saisir une adresse email.
@@ -138,6 +138,24 @@
     {% block javascripts %}
         {% include('inc/js.html.twig') %}
         <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+            $("#form-email").submit(function (e) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var test = $("#test");
+                $.ajax({
+                    url : $(this).attr( 'action' ),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        test.html(data);
+                    },
+                    error: function(){
+                        test.html('erreur');
+                    }
+                });
+            });
+        </script>
     {% endblock %}
 
 {% endblock %}

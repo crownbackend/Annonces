@@ -102,19 +102,18 @@ $(document).ready(function() {
     $("#mail").on('click', function(){
         $("#share").show();
     });
-
     $(".close").on('click', function(){
-        $("#share").hide();
+        $("#share, #a-error-1, #a-error-2").hide();
     });
 
     $("#a-error-1, #a-error-2").hide();
     $("#share_advertisement_from").on('click', function () {
         $("#a-error-1").show();
     });
+
     $("#share_advertisement_to").on('click', function () {
         $("#a-error-2").show();
     });
-
 
 });
 
