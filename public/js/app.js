@@ -117,6 +117,12 @@ $(document).ready(function() {
         $("#a-error-2").show();
     });
 
+    $("#message_content").on('click', function(){
+        $("#s-send").html('<div class="s-error-message">\n' +
+            '  Veuillez rédiger un message.\n' +
+            '</div>');
+    });
+
 });
 
 $(document).ready(function(){

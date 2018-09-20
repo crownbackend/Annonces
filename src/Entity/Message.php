@@ -37,6 +37,11 @@ class Message
      */
     private $advertisement;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+    }
+
     public function getId(): ?int
     {
         return $this->id;

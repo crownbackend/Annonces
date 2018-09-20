@@ -432,4 +432,14 @@ a {
 .m {
     margin: 10px;
 }
-
+.s-error-message {
+    padding: 5px;
+    margin-top: 5px;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    display: block;
+    background-color: #db4437;
+    color: #FFFFFF;
+    font-size: 15px;
+}
