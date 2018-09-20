@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Advertisement;
+use App\Entity\ReasonOfDealt;
 use App\Entity\Region;
 use App\Form\AdvertisementType;
+use App\Form\ReasonOfDealtType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +37,8 @@ class FrontController extends Controller
     /**
      * add new advertisement
      * @Route("/annonces/ajouter-une-annonce", name="add-advertisement")
+     * @param Request $request
+     * @param \Swift_Mailer $mailer
      * @return Response
      */
     public function addAdvertisement(Request $request, \Swift_Mailer $mailer): Response
@@ -51,9 +55,10 @@ class FrontController extends Controller
             $advertisement->setUser($user);
             $manager->persist($advertisement);
             $manager->flush();
+
+            //send a confirmation email to the user
             $email = $this->getUser()->getEmail();
             $username = $this->getUser()->getUsername();
-            //send a confirmation email to the user
             $message = (new \Swift_Message('Mail de confirmation le bon point'))
                 ->setFrom('annonces@lebonpoint.com')
                 ->setTo($email)
@@ -68,7 +73,7 @@ class FrontController extends Controller
                 )
             ;
             $mailer->send($message);
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('my-advertisement');
         }
         return $this->render('advertisement/add-advertisement.html.twig', [
             'form' => $form->createView()
@@ -200,15 +205,65 @@ class FrontController extends Controller
      * confirm in delete advertisement
      * @Route("/mon-compte/mes-annonces/confirmation-suppression/{id}", name="confirm-delete")
      * @param int $id
+     * @param \Swift_Mailer $mailer
+     * @param Request $request
      * @return Response
      */
-    public function confirmDelete(int $id): Response {
+    public function confirmDelete(int $id, Request $request, \Swift_Mailer $mailer): Response {
 
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
 
+        $raisonOfDealt = new ReasonOfDealt();
+        $form = $this->createForm(ReasonOfDealtType::class, $raisonOfDealt);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $raisonOfDealt = $form->getData();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($raisonOfDealt);
+            $manager->flush();
+
+            //send a confirmation email to the user
+            $email = $this->getUser()->getEmail();
+            $username = $this->getUser()->getUsername();
+            $message = (new \Swift_Message('Mail de confirmation le bon point'))
+                ->setFrom('annonces@lebonpoint.com')
+                ->setTo($email)
+                ->setBody(
+                    $this->renderView(
+                        'emails/confirmation.html.twig',
+                        [
+                            'username' => $username
+                        ]
+                    ),
+                    'text/html'
+                )
+            ;
+            $mailer->send($message);
+        }
+
         return $this->render('advertisement/confirm-delete.html.twig', [
-            'confirmationDelete' => $advertisement
+            'confirmationDelete' => $advertisement,
+            'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/mon-compte/mes-annonces/suppression/{id}", name="delete-advertisement")
+     * @param int $id
+     * @return Response
+     */
+    public function deleteAdvertisement(int $id): Response {
+
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
+
+        $delete = $this->getDoctrine()->getManager();
+        $delete->remove($advertisement);
+        $delete->flush();
+        $this->addFlash('delete', 'L\'annonce à bien étais supprimé !');
+
+        return $this->redirectToRoute('my-advertisement');
     }
 
 

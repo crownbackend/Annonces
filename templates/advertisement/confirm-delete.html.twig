@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Confirmation de votre suppression{% endblock %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
 
     <div class="container">
@@ -24,6 +25,17 @@
         </div>
         <div class="espace20"></div>
         <p class="p-description">Merci de bien vouloir nous indiquer la raison de la suppression de votre annonce :</p>
+
+        {{ form_start(form) }}
+
+            {{ form_widget(form.message) }}
+
+        {{ form_end(form) }}
+        <br>
+        <div class="form-group">
+        <a href="{{ path('my-advertisement') }}" class="btn btn-success">Revenir à mes annonces</a>
+        <button type="submit" class="btn btn-primary">Valider</button>
+        </div>
     </div>
 
 {% endblock %}
