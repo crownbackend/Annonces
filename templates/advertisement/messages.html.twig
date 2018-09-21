@@ -9,9 +9,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
+                            {% for m in test %}
+                            {{ m.advertisement.title }}
+                            {% endfor %}
                         {% for message in test %}
-                            {{ message.advertisement.title }}
-                            {{ message.content }}
+                            <div>{{ message.content }}</div>
                         {% endfor %}
 
                             <!--

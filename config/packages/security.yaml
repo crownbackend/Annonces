@@ -30,4 +30,3 @@ security:
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/admin/, role: ROLE_ADMIN }
     - { path: ^/mon-compte/mes-annonces, role: ROLE_USER }
-    - { path: ^/mon-compte/mes-annonces/editer/id, role: ROLE_USER }
