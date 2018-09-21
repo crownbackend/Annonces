@@ -193,24 +193,27 @@ class AdvertisementRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param User $user
      * @param int $id
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findBySendMessage(User $user, int $id) {
+    public function findByMessages(int $id): ?Advertisement {
 
         $query = $this->createQueryBuilder('a')
         ->select('a')
-        ->getQuery();
+        ->from('App:Advertisement', 'r')
+        ->where('a.id = :id')
+        ->leftJoin('a.message', 'm')
+        ->setParameter(':id', $id)
+        ->getQuery()
+        ;
 
         try {
-            return $this->getResult();
+            return $query->getOneOrNullResult();
         }
         catch (\Exception $e) {
             throw new \Exception('Problème' . $e->getMessage() . $e->getLine());
         }
-
     }
 
 }

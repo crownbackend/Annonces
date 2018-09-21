@@ -294,9 +294,9 @@ class FrontController extends Controller
      * @return Response
      */
     public function deleteAdvertisement(int $id): Response {
-
+        // get current advertisement
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
-
+        // and delete this !
         $delete = $this->getDoctrine()->getManager();
         $delete->remove($advertisement);
         $delete->flush();
@@ -306,22 +306,52 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/annonce/id={id}", name="send-a-message")
+     * @Route("/annonce/envoyer-message/id={id}", name="send-a-message")
      * @param int $id
      * @param Request $request
      * @return Response
      */
     public function sendMessage(int $id, Request $request): Response {
-
+        //get current advertisement
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
-
         $message = new Message();
         $form = $this->createForm(MessageType::class);
         $form->handleRequest($request);
 
+        if($form->isSubmitted() && $form->isValid()) {
+            // send a new message
+            $message = $form->getData();
+            $manager = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
+            $message->setUser($user);
+            $message->setAdvertisement($advertisement);
+            $manager->persist($message);
+            $manager->flush();
+            return $this->redirectToRoute('my-advertisement');
+        }
+
         return $this->render('advertisement/send-a-message.html.twig', [
             'advertisement' => $advertisement,
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/messages/{id}", name="messages")
+     * @param int $id
+     * @return Response
+     * @throws \Exception
+     */
+    public function messagesShow(int $id): Response {
+
+        $user = $this->getUser();
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->findByMessages($id);
+
+        $messages = $this->getDoctrine()->getRepository(Message::class)->findByMessages($user, $advertisement);
+
+        return $this->render('advertisement/messages.html.twig', [
+            'test' => $messages,
+            'advertisement' => $advertisement
         ]);
     }
 
