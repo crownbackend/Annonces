@@ -1,3 +1,6 @@
+
+require('../css/app.css');
+
 $(document).ready(function() {
     $('#advertisement_title').on('click',function() {
         $('#res-title').html('<div class="alert alert-primary" role="alert">\n' +
@@ -31,21 +34,6 @@ $(document).ready(function() {
                 required: true,
                 minlength: 50,
             },
-            "advertisement[price]": {
-                required: true
-            },
-            "advertisement[imageFile]": {
-                required: true
-            },
-            "advertisement[imageFile2]": {
-                required: true
-            },
-            "advertisement[imageFile3]": {
-                required: true
-            },
-            "advertisement[imageFile4]": {
-                required: true
-            },
             "advertisement[address]": {
                 required: true
             }
@@ -61,18 +49,6 @@ $(document).ready(function() {
             },
             "advertisement[price]": {
                 required: "Veuillez mettre un prix minimum de 1€."
-            },
-            "advertisement[imageFile]": {
-                required: "Il faut une photo"
-            },
-            "advertisement[imageFile2]": {
-                required: "Il faut une photo"
-            },
-            "advertisement[imageFile3]": {
-                required: "Il faut une photo"
-            },
-            "advertisement[imageFile4]": {
-                required: "Il faut une photo"
             },
             "advertisement[address]": {
                 required: "Il faut une adresse valide"
@@ -92,42 +68,11 @@ $(document).ready(function() {
             }
         }
     });
+//advertisement_city
 
-    $("#number, #share").hide();
-    $("#message").click(function(){
-        $(this).hide();
-        $("#number").show();
-    });
-
-    $("#mail").on('click', function(){
-        $("#share").show();
-    });
-    $(".close, #ok2").on('click', function(){
-        $("#share, #a-error-1, #a-error-2").hide();
-        $("#ok").hide();
-        console.log(test);
-    });
-
-    $("#a-error-1, #a-error-2").hide();
-    $("#share_advertisement_from").on('click', function () {
-        $("#a-error-1").show();
-    });
-
-    $("#share_advertisement_to").on('click', function () {
-        $("#a-error-2").show();
-    });
-
-    $("#message_content").on('click', function(){
-        $("#s-send").html('<div class="s-error-message">\n' +
-            '  Veuillez rédiger un message.\n' +
-            '</div>');
-    });
-
-});
-
-$(document).ready(function(){
     $('#advertisement_address').geocomplete();
     $.fn.geocomplete('#advertisement_address');
+
 });
 
 function countChar(val) {
@@ -138,3 +83,5 @@ function countChar(val) {
         $('#res-limit').text(3500 - len);
     }
 };
+
+
