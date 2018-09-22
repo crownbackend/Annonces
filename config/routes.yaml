@@ -2,7 +2,11 @@ fos_user_security:
   resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
 fos_user_security_login:
-  path: /mon-compte/connexion
+  path:
+    prefix:
+    fr: /{_locale}/mon-compte/connexion
+    en: /{_locale}/my-account/login
+    es: /{_locale}/mi-cuenta/entrar
   controller: fos_user.security.controller:loginAction
   methods: [GET, POST]
 
@@ -12,7 +16,7 @@ fos_user_security_check:
   methods: [POST]
 
 fos_user_security_logout:
-  path: /mon-compte/deconnexion
+  path: /logout
   controller: fos_user.security.controller:logoutAction
   methods: [GET, POST]
 
@@ -32,8 +36,14 @@ fos_user_register:
 
 fos_user_resetting:
   resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-  prefix: /mon-compte/reinitialiser
+  prefix:
+    fr: /{_locale}/mon-compte/reinitialiser
+    en: /{_locale}/my-account/reset
+    es: /{_locale}/mi-cuenta/reinicializar
 
 fos_user_change_password:
   resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-  prefix: /mon-compte/profil
+  prefix:
+    fr: /{_locale}/mon-compte/changer-mot-de-passe
+    en: /{_locale}/my-account/change-password
+    es: /{_locale}/mi-cuenta/cambiar-contrasena

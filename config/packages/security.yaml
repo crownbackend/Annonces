@@ -21,7 +21,7 @@ security:
                 default_target_path: /fr
 
             logout:
-                path: /mon-compte/deconnexion
+                path: /logout
                 target: /fr
             anonymous:    true
 

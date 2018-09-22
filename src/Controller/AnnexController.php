@@ -20,4 +20,14 @@ class AnnexController extends Controller
         return $this->render('front/obligations.html.twig');
     }
 
+    /**
+     * @Route("/", name="redirect")
+     * @return RedirectResponse
+     */
+    public function redirectIndex()
+    {
+
+        $local = "fr";
+        return $this->redirect($this->generateUrl('index', ['_locale' => $local], 302));
+    }
 }
