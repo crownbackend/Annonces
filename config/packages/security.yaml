@@ -18,10 +18,11 @@ security:
                 csrf_token_generator: security.csrf.token_manager
                 login_path: /mon-compte/connexion
                 check_path: /login_check
+                default_target_path: /fr
 
             logout:
                 path: /mon-compte/deconnexion
-                target: /
+                target: /fr
             anonymous:    true
 
     access_control:

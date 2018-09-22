@@ -34,9 +34,6 @@ class FrontController extends Controller
      */
     public function index(): Response
     {
-
-
-
         // Count advertisement total
         $count = $this->getDoctrine()->getRepository(Advertisement::class)->findByCount();
         // get all regions
@@ -50,7 +47,7 @@ class FrontController extends Controller
 
     /**
      * add new advertisement
-     * @Route("/annonces/ajouter-une-annonce", name="add-advertisement")
+     * @Route("/annonces/ajouter-une-annonce", name="add-advertisement", methods="POST|GET")
      * @param Request $request
      * @param \Swift_Mailer $mailer
      * @return Response
@@ -96,7 +93,7 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/annonces/{regionSlug}", name="region")
+     * @Route("/annonces/{regionSlug}", name="region", methods="GET")
      * @param string $regionSlug
      * @param Request $request
      * @return Response
