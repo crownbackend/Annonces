@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+<html lang="{{ app.request.get('_locale') }}">
     <head>
         <meta charset="UTF-8">
         <title> {% block title %}Le bon point{% endblock %} </title>
@@ -7,6 +7,10 @@
         {% include('inc/css.html.twig') %}
         {% endblock %}
         <link rel="icon" type="image/png" href="{{ asset('images/icon.png') }}" sizes="32x32">
+        {% for langue in langs %}
+            <link rel="alternate" href="http://127.0.0.1:8000/{{ langue }}/" hreflang="{{ langue }}" />
+        {% endfor %}
+
     </head>
     <body>
 
@@ -36,12 +40,26 @@
                                     <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}"> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Lang
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                               {% for langue in langs %}
+                                    <a class="dropdown-item" href="http://127.0.0.1:8000/{{ langue }}/">{{ langue }}</a>
+                               {% endfor %}
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
+
+
+
+
                             {% else %}
                                 <header>
                                     <nav class="navbar navbar-expand-lg navbar-light bg-light">

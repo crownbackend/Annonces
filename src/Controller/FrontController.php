@@ -17,16 +17,26 @@ use Symfony\Component\Routing\Annotation\Route;
 
 // Front controller this controller manages all the party front of the website
 
+/**
+ * @Route("/{_locale}")
+ */
+
 class FrontController extends Controller
 {
     /**
      * Home page
-     * @Route("/", name="index", methods="GET")
+     * @Route({"fr": "/", "en": "/", "es": "/"},
+     *     name="index", methods="GET",
+     *     requirements={"_locale" = "fr|en|es"},
+     *     defaults = {"_locale" = "fr"})
      * @return Response
      * @throws \Exception
      */
     public function index(): Response
     {
+
+
+
         // Count advertisement total
         $count = $this->getDoctrine()->getRepository(Advertisement::class)->findByCount();
         // get all regions
