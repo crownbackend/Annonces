@@ -1,6 +1,3 @@
-
-require('../css/app.css');
-
 $(document).ready(function() {
     $('#advertisement_title').on('click',function() {
         $('#res-title').html('<div class="alert alert-primary" role="alert">\n' +

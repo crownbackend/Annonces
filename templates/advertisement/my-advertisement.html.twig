@@ -159,3 +159,8 @@
 
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {% include('inc/js.html.twig') %}
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}
