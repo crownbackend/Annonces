@@ -3,11 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Advertisement;
-use App\Entity\Message;
 use App\Entity\ReasonOfDealt;
 use App\Entity\Region;
 use App\Form\AdvertisementType;
-use App\Form\MessageType;
 use App\Form\ReasonOfDealtType;
 use App\Form\ShareAdvertisementType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -195,9 +193,10 @@ class FrontController extends Controller
 
     /**
      * edit advertisement
-     * @Route("/mon-compte/mes-annonces/editer/{id}", name="my-advertisement-edit")
+     * @Route("/mon-compte/mes-annonces/editer/{id}", name="my-advertisement-edit", requirements={"id"="\d+"})
      * @param int $id
      * @param Request $request
+     * @param \Swift_Mailer $mailer
      * @return Response
      */
     public function myAdvertisementEdit(Request $request, int $id, \Swift_Mailer $mailer): Response {
@@ -246,7 +245,7 @@ class FrontController extends Controller
 
     /**
      * confirm in delete advertisement
-     * @Route("/mon-compte/mes-annonces/confirmation-suppression/{id}", name="confirm-delete")
+     * @Route("/mon-compte/mes-annonces/confirmation-suppression/{id}", name="confirm-delete", requirements={"id"="\d+"})
      * @param int $id
      * @param \Swift_Mailer $mailer
      * @param Request $request
@@ -296,7 +295,7 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/mon-compte/mes-annonces/suppression/{id}", name="delete-advertisement")
+     * @Route("/mon-compte/mes-annonces/suppression/{id}", name="delete-advertisement", requirements={"id"="\d+"})
      * @param int $id
      * @return Response
      */
@@ -313,54 +312,19 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/annonce/envoyer-message/id={id}", name="send-a-message")
+     * @Route("/annonce/envoyer-message/id={id}", name="send-a-message", requirements={"id"="\d+"})
      * @param int $id
-     * @param Request $request
      * @return Response
      */
-    public function sendMessage(int $id, Request $request): Response {
+    public function sendMessage(int $id): Response {
         //get current advertisement
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
-        $message = new Message();
-        $form = $this->createForm(MessageType::class);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()) {
-            // send a new message
-            $message = $form->getData();
-            $manager = $this->getDoctrine()->getManager();
-            $user = $this->getUser();
-            $message->setUser($user);
-            $message->setAdvertisement($advertisement);
-            $manager->persist($message);
-            $manager->flush();
-            return $this->redirectToRoute('my-advertisement');
-        }
 
         return $this->render('advertisement/send-a-message.html.twig', [
             'advertisement' => $advertisement,
-            'form' => $form->createView()
         ]);
     }
 
-    /**
-     * @Route("/messages/{id}", name="messages")
-     * @param int $id
-     * @return Response
-     * @throws \Exception
-     */
-    public function messagesShow(int $id): Response {
-
-        $user = $this->getUser();
-        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->findByMessages($id);
-
-        $messages = $this->getDoctrine()->getRepository(Message::class)->findByMessages($user, $advertisement);
-
-        return $this->render('advertisement/messages.html.twig', [
-            'test' => $messages,
-            'advertisement' => $advertisement
-        ]);
-    }
 
 
 

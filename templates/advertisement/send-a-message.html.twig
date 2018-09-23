@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
 {% block body %}
     <div class="espace20"></div>
     <div class="container">
@@ -13,13 +13,10 @@
                     </p>
                 </div>
 
-                {{ form_start(form) }}
-                    {{ form_label(form.content, 'Votre message') }}
-                    {{ form_widget(form.content) }}
                 <div id="s-send"></div>
                 <br>
                 <button type="submit" class="btn btn-primary">Envoyer votre message</button>
-                {{ form_end(form) }}
+
             </div>
             <div class="card col-md-6">
                 <div class="m">

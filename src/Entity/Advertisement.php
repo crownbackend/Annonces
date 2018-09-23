@@ -104,7 +104,6 @@ class Advertisement
     {
         $this->createdAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
         $this->isValid = 0;
-        $this->message = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -479,11 +478,6 @@ class Advertisement
     private $updatedAt4;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="advertisement")
-     */
-    private $message;
-
-    /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image4
      * @throws \Exception
      */
@@ -521,37 +515,6 @@ class Advertisement
     public function getImageSize4(): ?int
     {
         return $this->imageSize4;
-    }
-
-    /**
-     * @return Collection|Message[]
-     */
-    public function getMessage(): Collection
-    {
-        return $this->message;
-    }
-
-    public function addMessage(Message $message): self
-    {
-        if (!$this->message->contains($message)) {
-            $this->message[] = $message;
-            $message->setAdvertisement($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessage(Message $message): self
-    {
-        if ($this->message->contains($message)) {
-            $this->message->removeElement($message);
-            // set the owning side to null (unless already changed)
-            if ($message->getAdvertisement() === $this) {
-                $message->setAdvertisement(null);
-            }
-        }
-
-        return $this;
     }
 
 }

@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnnexController extends Controller
 {
     /**
-     * @Route("/dc/vos_droits_et_obligations", name="obligations")
+     * @Route("{_locale}/dc/vos_droits_et_obligations", name="obligations")
      * @return Response
      */
     public function obligations(): Response {
