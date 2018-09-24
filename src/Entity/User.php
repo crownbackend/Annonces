@@ -40,10 +40,16 @@ class User extends BaseUser
      */
     private $advertisement;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ConversationUsers", mappedBy="user")
+     */
+    private $conversationUsers;
+
     public function __construct()
     {
         parent::__construct();
         $this->advertisement = new ArrayCollection();
+        $this->conversationUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -112,6 +118,37 @@ class User extends BaseUser
             // set the owning side to null (unless already changed)
             if ($advertisement->getUser() === $this) {
                 $advertisement->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ConversationUsers[]
+     */
+    public function getConversationUsers(): Collection
+    {
+        return $this->conversationUsers;
+    }
+
+    public function addConversationUser(ConversationUsers $conversationUser): self
+    {
+        if (!$this->conversationUsers->contains($conversationUser)) {
+            $this->conversationUsers[] = $conversationUser;
+            $conversationUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConversationUser(ConversationUsers $conversationUser): self
+    {
+        if ($this->conversationUsers->contains($conversationUser)) {
+            $this->conversationUsers->removeElement($conversationUser);
+            // set the owning side to null (unless already changed)
+            if ($conversationUser->getUser() === $this) {
+                $conversationUser->setUser(null);
             }
         }
 
