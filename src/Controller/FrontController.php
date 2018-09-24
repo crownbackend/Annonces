@@ -45,7 +45,9 @@ class FrontController extends Controller
 
     /**
      * add new advertisement
-     * @Route("/annonces/ajouter-une-annonce", name="add-advertisement", methods="POST|GET")
+     * @Route({"fr": "/annonces/ajouter-une-annonce",
+     *         "en": "/advertisement/add-an-advertisement",
+     *         "es": "/anuncio/anadir-una-anuncio"}, name="add-advertisement", methods="POST|GET")
      * @param Request $request
      * @param \Swift_Mailer $mailer
      * @return Response
@@ -91,7 +93,9 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/annonces/{regionSlug}", name="region", methods="GET")
+     * @Route({"fr": "/annonces/{regionSlug}",
+     *         "en": "/advertisement/{regionSlug}",
+     *         "es": "/anuncio/{regionSlug}"}, name="region", methods="GET")
      * @param string $regionSlug
      * @param Request $request
      * @return Response
@@ -119,7 +123,9 @@ class FrontController extends Controller
 
     /**
      * get category and advertisement
-     * @Route("/offres/{categorySlug}/{advertisementSlug}", name="advertisement")
+     * @Route({"fr": "/offres/{categorySlug}/{advertisementSlug}",
+     *         "en": "/offers/{categorySlug}/{advertisementSlug}",
+     *         "es": "/ofertas/{categorySlug}/{advertisementSlug}"}, name="advertisement", methods="GET|POST")
      * @param string $advertisementSlug
      * @param string $categorySlug
      * @param \Swift_Mailer $mailer
@@ -163,21 +169,24 @@ class FrontController extends Controller
         ]);
     }
 
-    /**
+    /** mon compte mes annonces
      * get advertisement from the connected user
-     * @Route("/mon-compte/mes-annonces", name="my-advertisement")
+     * @Route({"fr": "/mon-compte/mes-annonces",
+     *         "en": "/my-account/my-advertisement",
+     *         "es": "/mi-cuenta/mis-anuncios"}, name="my-advertisement", methods="GET")
      * @return Response
      * @throws \Exception
      */
-    public function myAdvertismentShow(): Response {
-
+    public function myAdvertisementShow(): Response {
+        // valid or not
         $isValid = 1;
         $notValid = 0;
+        //get current users
         $userCurrent = $this->getUser();
-
+        // get advertisement in current users, valid and not valid
         $advertisementsValid = $this->getDoctrine()->getRepository(Advertisement::class)->findByMyAdvertisementValid($userCurrent, $isValid);
         $advertisementsNotValid = $this->getDoctrine()->getRepository(Advertisement::class)->findByMyAdvertisementNotValid($userCurrent, $notValid);
-
+        // count advertisement, valid, not valid
         $countValid = $this->getDoctrine()->getRepository(Advertisement::class)
             ->findByCountMyAdvertisementValid($userCurrent, $isValid); // count advertisement valid
         $countNotValid = $this->getDoctrine()->getRepository(Advertisement::class)
@@ -193,7 +202,10 @@ class FrontController extends Controller
 
     /**
      * edit advertisement
-     * @Route("/mon-compte/mes-annonces/editer/{id}", name="my-advertisement-edit", requirements={"id"="\d+"})
+     * @Route({"fr": "/mon-compte/mes-annonces/editer/{id}",
+     *         "en": "/my-account/my-advertisement/edit/{id}",
+     *         "es": "/mi-cuenta/mis-anuncios/editar/{id}"},
+     *         name="my-advertisement-edit", methods="GET|POST", requirements={"id"="\d+"})
      * @param int $id
      * @param Request $request
      * @param \Swift_Mailer $mailer
@@ -217,7 +229,7 @@ class FrontController extends Controller
             $manager->flush();
             $this->addFlash('edit-my-advertisement', 'Votre demande de modification à bien été prise 
             en compte il faut compter environs 24h pour se faire valider une 
-            annonce déja posté(l\'annonce sera pas visible pendant les prochaine 24h !)');
+            annonce déja posté(l\'annonce ne sera pas visible pendant les prochaine 24h !)');
             // send mail in edit advertisement
             $message = (new \Swift_Message('Demande de modification le bon point'))
                 ->setFrom('annonces@lebonpoint.com')
@@ -245,7 +257,10 @@ class FrontController extends Controller
 
     /**
      * confirm in delete advertisement
-     * @Route("/mon-compte/mes-annonces/confirmation-suppression/{id}", name="confirm-delete", requirements={"id"="\d+"})
+     * @Route({"fr": "/mon-compte/mes-annonces/confirmation-suppression/{id}",
+     *         "en": "/my-account/my-advertisement/confirmation-delete/{id}",
+     *         "es": "/mi-cuenta/mis-anuncios/confirmacion-supresion/{id}"},
+     *         name="confirm-delete", methods="GET|POST", requirements={"id"="\d+"})
      * @param int $id
      * @param \Swift_Mailer $mailer
      * @param Request $request
@@ -295,7 +310,9 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/mon-compte/mes-annonces/suppression/{id}", name="delete-advertisement", requirements={"id"="\d+"})
+     * @Route({"fr": "/mon-compte/mes-annonces/suppression/{id}",
+     *         "en": "/my-account/my-advertisement/delete/{id}",
+     *         "es": "/mi-cuenta/mis-anuncios/supresion/{id}"}, name="delete-advertisement", requirements={"id"="\d+"})
      * @param int $id
      * @return Response
      */

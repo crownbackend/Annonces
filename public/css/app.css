@@ -1,5 +1,5 @@
 body {
-    background-color: #ededed; /* #e6e6e6 */
+    background-color: #fff; /* #e6e6e6 #ededed */
     font-weight: 400;
     margin-bottom: 60px;
 }
@@ -442,4 +442,16 @@ a {
     background-color: #db4437;
     color: #FFFFFF;
     font-size: 15px;
+}
+
+.i-h1 {
+    font-family: OpenSansBold, sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding-bottom: 20px;
+}
+.i-my-information {
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: OpenSansBold, sans-serif;
 }

@@ -7,4 +7,7 @@ fos_user:
     sender_name: Admin
   registration:
     form:
-      type: App\Form\UserType
+      type: App\Form\RegistrationType
+  profile:
+    form:
+      type: App\Form\ProfileType

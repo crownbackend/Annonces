@@ -16,7 +16,7 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-                login_path: /mon-compte/connexion
+                login_path: /fr/mon-compte/connexion
                 check_path: /login_check
                 default_target_path: /fr
 
