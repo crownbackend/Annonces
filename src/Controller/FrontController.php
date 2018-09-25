@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Advertisement;
-use App\Entity\ReasonOfDealt;
 use App\Entity\Region;
+use App\Entity\Advertisement;
 use App\Form\AdvertisementType;
+use App\Entity\ReasonOfDealt;
 use App\Form\ReasonOfDealtType;
 use App\Form\ShareAdvertisementType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -331,14 +331,15 @@ class FrontController extends Controller
     /**
      * @Route("/annonce/envoyer-message/id={id}", name="send-a-message", requirements={"id"="\d+"})
      * @param int $id
+     * @param Request $request
      * @return Response
      */
-    public function sendMessage(int $id): Response {
+    public function sendMessage(int $id, Request $request): Response {
         //get current advertisement
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
 
         return $this->render('advertisement/send-a-message.html.twig', [
-            'advertisement' => $advertisement,
+            'advertisement' => $advertisement
         ]);
     }
 
