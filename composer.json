@@ -27,6 +27,7 @@
         "symfony/validator": "*",
         "symfony/web-link": "*",
         "symfony/web-profiler-bundle": "*",
+        "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "*",
         "twig/extensions": "^1.5",
         "vich/uploader-bundle": "^1.8"

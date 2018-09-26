@@ -2,13 +2,18 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BackController extends AbstractController
+/**
+ * @Route("/admin")
+ * @package App\Controller
+ */
+
+class BackController extends Controller
 {
     /**
-     * @Route("/back", name="back")
+     * @Route("/index", name="back-index")
      */
     public function index()
     {
