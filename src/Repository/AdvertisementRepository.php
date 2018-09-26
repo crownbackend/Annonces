@@ -209,11 +209,53 @@ class AdvertisementRepository extends ServiceEntityRepository
         ;
 
         try {
-            return $query->getOneOrNullResult();
+            return $query->getResult();
         }
         catch (\Exception $e) {
             throw new \Exception('Problème' . $e->getMessage() . $e->getLine());
         }
     }
 
+
+    /**
+     * @return Advertisement|null
+     * @throws \Exception
+     */
+    public function findByCountValid() {
+
+        $query = $this->createQueryBuilder('a')
+        ->select('count(a)')
+        ->where('a.isValid = :isValid')
+        ->setParameter(':isValid', 1)
+        ->getQuery();
+
+        try {
+            return $query->getSingleScalarResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème : ' . $e->getMessage() . $e->getLine());
+        }
+
+    }
+
+    /**
+     * @return Advertisement|null
+     * @throws \Exception
+     */
+    public function findByCountNotValid() {
+
+        $query = $this->createQueryBuilder('a')
+            ->select('count(a)')
+            ->where('a.isValid = :isValid')
+            ->setParameter(':isValid', 0)
+            ->getQuery();
+
+        try {
+            return $query->getSingleScalarResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème : ' . $e->getMessage() . $e->getLine());
+        }
+
+    }
 }

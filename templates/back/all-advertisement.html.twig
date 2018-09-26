@@ -7,9 +7,9 @@
     <div class="container">
     <h1 class="h1 blue-text lighten-1 text">Listes de tous les annonces publier récemment sur le bon point.</h1>
         <div class="row">
-            <div class="col s12 m12 l4 xl4">Nombres total d'annonces : 5 </div>
-            <div class="col s12 m12 l4 xl4">Nombres d'annonces validé : 15 </div>
-            <div class="col s12 m12 l4 xl4">Nombres d'annonces en attente de validation validé : 15</div>
+            <div class="col s12 m12 l4 xl4">Nombres total d'annonces : {{ count }} </div>
+            <div class="col s12 m12 l4 xl4">Nombres d'annonces validé : {{ isValid }} </div>
+            <div class="col s12 m12 l4 xl4">Nombres d'annonces en attente de validation validé : {{ notValid }}</div>
         </div>
     </div>
     <div class="container">

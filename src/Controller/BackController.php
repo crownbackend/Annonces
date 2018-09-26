@@ -29,9 +29,13 @@ class BackController extends Controller
      * @Route("/annonces", name="back-advertisement", methods="GET")
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function advertisementAll(Request $request): Response {
 
+        $count = $this->getDoctrine()->getRepository(Advertisement::class)->findByCount();
+        $isValid = $this->getDoctrine()->getRepository(Advertisement::class)->findByCountValid();
+        $notValid = $this->getDoctrine()->getRepository(Advertisement::class)->findByCountNotValid();
 
         $em    = $this->getDoctrine()->getManager();
         $query = $em->getRepository(Advertisement::class)->findAll();
@@ -47,7 +51,10 @@ class BackController extends Controller
 
         return $this->render('back/all-advertisement.html.twig', [
             'advertisements' => $advertisements,
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'count' => $count,
+            'isValid' => $isValid,
+            'notValid' => $notValid
         ]);
 
     }
