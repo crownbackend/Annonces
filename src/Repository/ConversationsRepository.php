@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Conversation;
+use App\Entity\Conversations;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Conversation|null find($id, $lockMode = null, $lockVersion = null)
- * @method Conversation|null findOneBy(array $criteria, array $orderBy = null)
- * @method Conversation[]    findAll()
- * @method Conversation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Conversations|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Conversations|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Conversations[]    findAll()
+ * @method Conversations[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ConversationRepository extends ServiceEntityRepository
+class ConversationsRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Conversation::class);
+        parent::__construct($registry, Conversations::class);
     }
 
 //    /**
-//     * @return Conversation[] Returns an array of Conversation objects
+//     * @return Conversations[] Returns an array of Conversations objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ConversationRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Conversation
+    public function findOneBySomeField($value): ?Conversations
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

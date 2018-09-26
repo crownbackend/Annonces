@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Conversations;
+use App\Entity\Messages;
 use App\Entity\Region;
 use App\Entity\Advertisement;
 use App\Form\AdvertisementType;
 use App\Entity\ReasonOfDealt;
+use App\Form\MessagesType;
 use App\Form\ReasonOfDealtType;
 use App\Form\ShareAdvertisementType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -329,7 +332,9 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/annonce/envoyer-message/id={id}", name="send-a-message", requirements={"id"="\d+"})
+     * @Route({"fr": "/annonce/envoyer-message/id={id}",
+     *         "en": "/my-account/send-message/id={id}",
+     *         "es": "/mi-cuenta/enviar-mensaje/id={id}"}, name="send-a-message", methods="GET|POST", requirements={"id"="\d+"})
      * @param int $id
      * @param Request $request
      * @return Response
@@ -337,9 +342,48 @@ class FrontController extends Controller
     public function sendMessage(int $id, Request $request): Response {
         //get current advertisement
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
+        $title = $advertisement->getTitle();
+
+        $conversation = new Conversations();
+        $message = new Messages();
+        $form = $this->createForm(MessagesType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $message = $form->getData();
+
+            $manager = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
+            $message->setUser($user);
+            $manager->persist($message);
+            $conversation->setTitle($title);
+            $conversation->getId();
+            $conversation->addUser($user);
+            $conversation->addMessage($message);
+            $manager->persist($conversation);
+            $manager->flush();
+
+        }
 
         return $this->render('advertisement/send-a-message.html.twig', [
-            'advertisement' => $advertisement
+            'advertisement' => $advertisement,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route({"fr": "/messages/mes-discussions",
+     *         "en": "/messages/my-discussions",
+     *         "es": "/mensajes/mis-discusiones"}, name="message")
+     */
+
+    public  function myDiscussions(): Response {
+
+        $messages = $this->getDoctrine()->getRepository(Messages::class)->findByMessages();
+
+        return $this->render('advertisement/discussions.html.twig', [
+            'messages' => $messages
         ]);
     }
 

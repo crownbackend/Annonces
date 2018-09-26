@@ -13,8 +13,10 @@
                     </p>
                 </div>
 
-
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
                 <button type="submit" class="btn btn-primary">Envoyer votre message</button>
+                {{ form_end(form) }}
                 <br>
 
             </div>

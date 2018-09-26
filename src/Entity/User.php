@@ -40,10 +40,22 @@ class User extends BaseUser
      */
     private $advertisement;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Messages", mappedBy="user", orphanRemoval=true)
+     */
+    private $message;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Conversations", inversedBy="users")
+     */
+    private $conversation;
+
     public function __construct()
     {
         parent::__construct();
         $this->advertisement = new ArrayCollection();
+        $this->message = new ArrayCollection();
+        $this->conversation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -113,6 +125,63 @@ class User extends BaseUser
             if ($advertisement->getUser() === $this) {
                 $advertisement->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getMessage(): Collection
+    {
+        return $this->message;
+    }
+
+    public function addMessage(Messages $message): self
+    {
+        if (!$this->message->contains($message)) {
+            $this->message[] = $message;
+            $message->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $message): self
+    {
+        if ($this->message->contains($message)) {
+            $this->message->removeElement($message);
+            // set the owning side to null (unless already changed)
+            if ($message->getUser() === $this) {
+                $message->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Conversations[]
+     */
+    public function getConversation(): Collection
+    {
+        return $this->conversation;
+    }
+
+    public function addConversation(Conversations $conversation): self
+    {
+        if (!$this->conversation->contains($conversation)) {
+            $this->conversation[] = $conversation;
+        }
+
+        return $this;
+    }
+
+    public function removeConversation(Conversations $conversation): self
+    {
+        if ($this->conversation->contains($conversation)) {
+            $this->conversation->removeElement($conversation);
         }
 
         return $this;

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Messages;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,32 +20,24 @@ class MessagesRepository extends ServiceEntityRepository
         parent::__construct($registry, Messages::class);
     }
 
-//    /**
-//     * @return Messages[] Returns an array of Messages objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    /**
+     * @return Messages|null
+     * @throws \Exception
+     */
+    public function findByMessages() {
 
-    /*
-    public function findOneBySomeField($value): ?Messages
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
+        $query = $this->createQueryBuilder('m')
+        ->select('m')
+        ->getQuery()
         ;
+
+
+        try {
+            return $query->getResult();
+        }
+        catch(\Exception $e) {
+            throw new \Exception('problème '. $e->getMessage(). $e->getFile(). $e->getFile());
+        }
     }
-    */
+
 }
