@@ -7,3 +7,24 @@ body {
 main {
     flex: 1 0 auto;
 }
+.espace20 {
+    padding: 20px;
+}
+.espace30 {
+    padding: 30px;
+}
+.espace40 {
+    padding: 40px;
+}
+.espace50 {
+    padding: 50px;
+}
+
+blockquote {
+    border-left: 5px solid #42A5F5;
+}
+
+.h1 {
+    font-size: 2rem;
+    text-align: center;
+}
