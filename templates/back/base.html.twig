@@ -15,7 +15,7 @@
 <body>
 <nav>
     <div class="nav-wrapper blue lighten-1">
-        <div class="container">
+
             <a href="{{ path('back-index') }}" class="brand-logo">Le bon point</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
@@ -26,10 +26,11 @@
                 <li><a href="">Demande clients<span class="new badge">1</span></a></li>
             </ul>
         </div>
-    </div>
+
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
+    <li><a href="{{ path('back-index') }}">Accueil</a></li>
     <li><a href="{{ path('back-advertisement') }}">Annonces</a></li>
     <li><a href="">Annonces non validé<span class="new badge">1</span></a></a></li>
     <li><a href="">Utilisateurs</a></li>
