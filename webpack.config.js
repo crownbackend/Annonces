@@ -19,7 +19,6 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('materialize', './assets/js/materialize.js')
-    //.addEntry('page2', './assets/js/page2.js')
 
     /*
      * FEATURE CONFIG
@@ -41,7 +40,7 @@ Encore
     //.enableTypeScriptLoader()
 
     // uncomment if you're having problems with a jQuery plugin
-    .autoProvidejQuery()
+    //.autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();
