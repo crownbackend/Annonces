@@ -48,10 +48,12 @@ class FrontController extends Controller {
      */
     public function regionShow(string $regionSlug, Request $request): Response {
 
+        $isValid = 1;
+
         $regions = $this->getDoctrine()->getRepository(Region::class)->findBySlugRegion($regionSlug);
         // get region and all advertisement in region
         $em    = $this->getDoctrine()->getManager();
-        $query = $em->getRepository(Advertisement::class)->findByRegions($regionSlug);
+        $query = $em->getRepository(Advertisement::class)->findByRegions($regionSlug, $isValid);
         // pagination 3 by page
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

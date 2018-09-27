@@ -39,12 +39,13 @@ class AdvertisementRepository extends ServiceEntityRepository
 
     /**
      * @param string $regionSlug
+     * @param int $isValid
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findByRegions(string $regionSlug) {
+    public function findByRegions(string $regionSlug, int $isValid) {
 //SELECT * FROM `advertisement` WHERE region_id = 1
-        $isValid = 1;
+
         $query = $this->createQueryBuilder('a')
             ->select('a')
             ->from('App\Entity\Advertisement', 'r')
@@ -257,6 +258,28 @@ class AdvertisementRepository extends ServiceEntityRepository
         catch (\Exception $e) {
             throw new \Exception('Problème : ' . $e->getMessage() . $e->getLine());
         }
+    }
 
+    /**
+     * @return Advertisement|null
+     * @param int $isValid
+     * @throws \Exception
+     */
+
+    public function findAllNotValid(int $isValid) {
+
+        $query = $this->createQueryBuilder('a')
+        ->addSelect('a')
+        ->where('a.isValid = :isValid')
+        ->setParameter(':isValid', $isValid)
+        ->getQuery()
+        ;
+
+        try  {
+            return $query->getResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème dans : ' . $e->getMessage(). $e->getLine());
+        }
     }
 }
