@@ -25,7 +25,7 @@ blockquote {
     font-size: 1.2rem;
 }
 .v-notValid {
-    background-color: red;
+    background-color: #F44336;
     color: #FFFFFF;
     font-size: 1.2rem;
 }
