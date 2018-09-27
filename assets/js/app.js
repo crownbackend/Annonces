@@ -14,7 +14,7 @@ require('../css/space.css');
 
 $(document).ready(function(){
     $('.sidenav').sidenav();
+    $('.materialboxed').materialbox();
 });
-
 
 

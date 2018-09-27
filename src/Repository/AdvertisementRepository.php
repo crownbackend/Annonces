@@ -272,6 +272,7 @@ class AdvertisementRepository extends ServiceEntityRepository
         ->addSelect('a')
         ->where('a.isValid = :isValid')
         ->setParameter(':isValid', $isValid)
+        ->orderBy('a.createdAt', 'desc')
         ->getQuery()
         ;
 

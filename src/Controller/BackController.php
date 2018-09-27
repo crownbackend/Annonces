@@ -124,6 +124,21 @@ class BackController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/annonces/detail-annonces/id={id}", name="back-detail-advertisement", methods="GET")
+     * @param int $id
+     * @return Response
+     * @throws \Exception
+     */
+    public function advertisementDetailShow(int $id): Response {
+
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
+
+        return $this->render('back/advertisement-detail.html.twig', [
+            'advertisement' => $advertisement
+        ]);
+    }
+
 
 
 

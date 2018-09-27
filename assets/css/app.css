@@ -15,3 +15,17 @@ blockquote {
 .h1 {
     font-size: 2rem;
 }
+
+.h2 {
+    font-size: 1.5rem;
+}
+.v-valid {
+    background-color: #26a69a;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+}
+.v-notValid {
+    background-color: red;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+}
