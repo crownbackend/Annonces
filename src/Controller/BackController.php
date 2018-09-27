@@ -26,6 +26,19 @@ class BackController extends Controller
     }
 
     /**
+     * @Route("/not-valid", methods="GET")
+     * @return Response
+     * @throws \Exception
+     */
+    public function notValidShow(): Response {
+
+        $notValid = $this->getDoctrine()->getRepository(Advertisement::class)->findByCountNotValid();
+        return $this->render('back/notvalid.html.twig', [
+            'notValid' => $notValid
+        ]);
+    }
+
+    /**
      * @Route("/annonces", name="back-advertisement", methods="GET")
      * @param Request $request
      * @return Response
@@ -38,7 +51,7 @@ class BackController extends Controller
         $notValid = $this->getDoctrine()->getRepository(Advertisement::class)->findByCountNotValid();
 
         $em    = $this->getDoctrine()->getManager();
-        $query = $em->getRepository(Advertisement::class)->findAll();
+        $query = $em->getRepository(Advertisement::class)->findBy([], ['createdAt' => 'desc']);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -47,10 +60,7 @@ class BackController extends Controller
             12
         );
 
-        $advertisements = $this->getDoctrine()->getRepository(Advertisement::class)->findAll();
-
         return $this->render('back/all-advertisement.html.twig', [
-            'advertisements' => $advertisements,
             'pagination' => $pagination,
             'count' => $count,
             'isValid' => $isValid,

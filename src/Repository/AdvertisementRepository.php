@@ -51,6 +51,7 @@ class AdvertisementRepository extends ServiceEntityRepository
             ->join('a.region', 'i')
             ->where('i.regionSlug = :regionSlug')
             ->andWhere('a.isValid = :isValid')
+            ->orderBy("a.createdAt", "desc")
             ->setParameter(':regionSlug', $regionSlug)
             ->setParameter(':isValid', $isValid)
             ->getQuery()

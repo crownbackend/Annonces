@@ -21,7 +21,16 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{ path('back-index') }}">Accueil</a></li>
                 <li><a href="{{ path('back-advertisement') }}">Annonces</a></li>
-                <li><a href="">Annonces non validé<span class="new badge"></span></a></a></li>
+                <li>
+                    <a href="">
+                        Annonces non validé
+                        <span class="new badge red" data-badge-caption="annonces">
+                            {{ render(controller(
+                                'App\\Controller\\BackController::notValidShow'
+                            )) }}
+                        </span>
+                    </a>
+                </li>
                 <li><a href="">Utilisateurs</a></li>
                 <li><a href="">Demande clients<span class="new badge">1</span></a></li>
             </ul>
@@ -41,6 +50,7 @@
 {% block body %}{% endblock %}
 </main>
 
+<div class="espace30"></div>
 <footer class="page-footer blue lighten-1">
     <div class="footer-copyright blue lighten-1">
         <div class="container">

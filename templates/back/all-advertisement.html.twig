@@ -26,7 +26,7 @@
                         <p>{{ ad.description|slice(1, 100) }}</p>
                     </div>
                     <div class="card-action">
-                        <a href="#">This is a link</a>
+                        <a href="#">Voir l'annonce</a>
                         {% if ad.isValid == 1 %}
                             <span class="new badge" data-badge-caption="Validé"></span>
                         {% elseif ad.isValid == 0 %}
@@ -38,7 +38,8 @@
         {% endfor %}
         </div>
         {% endfor %}
-        <div class="navigation">
+        <div class="espace20"></div>
+        <div class="navigation center">
             {{ knp_pagination_render(pagination, 'pagination/pagination-back.html.twig') }}
         </div>
     </div>
