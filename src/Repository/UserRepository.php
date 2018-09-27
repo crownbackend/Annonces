@@ -19,5 +19,22 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    /**
+     * @return integer|null
+     * @throws \Exception
+     */
+    public function findByCount()
+    {
+        $query = $this->createQueryBuilder('u')
+            ->select('count(u)')
+            ->getQuery();
+        try {
+            return $query->getSingleScalarResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème dans : ' . $e->getMessage() . $e->getLine());
+        }
+    }
+
 
 }

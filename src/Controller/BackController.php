@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Advertisement;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -97,7 +98,31 @@ class BackController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/utilisateurs/tout-lestilisateurs", name="back-all-users")
+     * @param Request $request
+     * @return Response
+     * @throws \Exception
+     */
+    public function allUserShow(Request $request): Response {
 
+        $count = $this->getDoctrine()->getRepository(User::class)->findByCount();
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository(User::class)->findAll();
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            9
+        );
+
+        return $this->render('back/all-user.html.twig', [
+            'count' => $count,
+            'pagination' => $pagination
+        ]);
+    }
 
 
 
