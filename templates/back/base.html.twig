@@ -34,24 +34,23 @@
                 <li><a href="{{ path('back-all-users') }}">Utilisateurs</a></li>
                 <li><a href="">Demande clients<span class="new badge">1</span></a></li>
             </ul>
-        </div>
-
+   </div>
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
     <li><a href="{{ path('back-index') }}">Accueil</a></li>
     <li><a href="{{ path('back-advertisement') }}">Annonces</a></li>
     <li>
-        <a href="">
+        <a href="{{ path('back-advertisement-notValid') }}">
             Annonces non validé
             <span class="new badge red" data-badge-caption="annonces">
                             {{ render(controller(
                                 'App\\Controller\\BackController::notValidShow'
                             )) }}
-                        </span>
+            </span>
         </a>
     </li>
-    <li><a href="">Utilisateurs</a></li>
+    <li><a href="{{ path('back-all-users') }}">Utilisateurs</a></li>
     <li><a href="">Demande clients<span class="new badge">1</span></a></li>
 
 </ul>

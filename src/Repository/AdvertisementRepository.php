@@ -283,4 +283,55 @@ class AdvertisementRepository extends ServiceEntityRepository
             throw new \Exception('Problème dans : ' . $e->getMessage(). $e->getLine());
         }
     }
+
+    /**
+     * @return Advertisement|null
+     * @param int $isValid
+     * @throws \Exception
+     */
+    public function findByLastAdvertisement(int $isValid) {
+
+        $query = $this->createQueryBuilder('a')
+        ->addSelect('a')
+        ->where('a.isValid = :isValid')
+        ->setParameter(':isValid', $isValid)
+        ->setMaxResults(3)
+        ->orderBy('a.createdAt', 'DESC')
+        ->getQuery()
+        ;
+
+        try {
+            return $query->getResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème dans : '. $e->getMessage(). $e->getLine());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

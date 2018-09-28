@@ -19,12 +19,17 @@ class BackController extends Controller
     /**
      * @Route("/index", name="back-index")
      * @return Response
+     * @throws \Exception
      */
     public function index(): Response
     {
-        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->findAll();
+        $isValid = 0;
 
-        return $this->render('back/index.html.twig');
+        $lastAdvertisement = $this->getDoctrine()->getRepository(Advertisement::class)->findByLastAdvertisement($isValid);
+
+        return $this->render('back/index.html.twig', [
+            'advertisements' => $lastAdvertisement
+        ]);
     }
 
     /**
