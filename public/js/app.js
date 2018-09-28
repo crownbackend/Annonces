@@ -79,7 +79,6 @@ $(document).ready(function() {
             }
         }
     });
-
     $.validator.setDefaults({
         debug: true,
         success: "valid"

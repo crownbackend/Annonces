@@ -17,8 +17,8 @@
                         <div class="col s12 m12 l12 xl4">
                             <div class="card">
                                 <div class="card-image">
-                                    <img class="responsive-img" src="https://picsum.photos/1000/700">
-                                    <span class="card-title">{{ ad.title }}</span>
+                                    <img class="responsive-img" src="https://picsum.photos/900/600">
+                                    <span class="card-title with-text ">{{ ad.title|slice(1, 20) }}</span>
                                 </div>
                                 <div class="card-content">
                                     <p>{{ ad.description|slice(1, 100) }}</p>
