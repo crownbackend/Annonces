@@ -23,8 +23,8 @@ class BackController extends Controller
      */
     public function index(): Response
     {
+        // get last 3 advertisement not valid !
         $isValid = 0;
-
         $lastAdvertisement = $this->getDoctrine()->getRepository(Advertisement::class)->findByLastAdvertisement($isValid);
 
         return $this->render('back/index.html.twig', [
@@ -110,12 +110,12 @@ class BackController extends Controller
      * @throws \Exception
      */
     public function allUserShow(Request $request): Response {
-
+        // count a users
         $count = $this->getDoctrine()->getRepository(User::class)->findByCount();
-
+        // get all users
         $em = $this->getDoctrine()->getManager();
         $query = $em->getRepository(User::class)->findAll();
-
+        // pagination 9 users in 1 page
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query,
@@ -136,7 +136,7 @@ class BackController extends Controller
      * @throws \Exception
      */
     public function advertisementDetailShow(int $id): Response {
-
+        //advertisement detail
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
 
         return $this->render('back/advertisement-detail.html.twig', [

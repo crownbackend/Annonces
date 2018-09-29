@@ -19,8 +19,8 @@
             <div class="col s12 m12 l12 xl4">
                 <div class="card">
                     <div class="card-image">
-                        <img class="responsive-img" src="https://picsum.photos/1000/700">
-                        <span class="card-title">{{ ad.title }}</span>
+                        <a href="{{ path('back-detail-advertisement', {'id': ad.id}) }}"><img class="responsive-img" src="https://picsum.photos/1000/700">
+                            <span class="card-title">{{ ad.title }}</span></a>
                     </div>
                     <div class="card-content">
                         <p>{{ ad.description|slice(1, 100) }}</p>
