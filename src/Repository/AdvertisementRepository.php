@@ -108,6 +108,7 @@ class AdvertisementRepository extends ServiceEntityRepository
         ->from('App\Entity\Advertisement', 'r')
         ->where('a.user = :user')
         ->andWhere('a.isValid = :isValid')
+        ->orderBy('a.createdAt', 'DESC')
         ->setParameter(':user', $user)
         ->setParameter(':isValid', $isValid)
         ->getQuery()

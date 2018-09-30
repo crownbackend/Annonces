@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Advertisement;
 use App\Entity\User;
+use App\Form\AdvertisementType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -147,10 +148,11 @@ class BackController extends Controller
             $manager->flush();
             // send mail confirmation in the users !
             $user = $advertisement->getUser()->getUsername();
+            $email = $advertisement->getUser()->getEmail();
 
             $message = (new \Swift_Message('Mail de confirmation Le bon point'))
             ->setFrom('annonces@lebonpoint.fr')
-            ->setTo($user)
+            ->setTo($email)
             ->setBody($this->renderView(
                     'emails/advertisement-valid.html.twig', [
                         'advertisement' => $advertisement,
@@ -168,6 +170,30 @@ class BackController extends Controller
         }
 
         return $this->render('back/advertisement-detail.html.twig', [
+            'advertisement' => $advertisement
+        ]);
+    }
+
+    /**
+     * @Route("/annonces/detail-annonce/editer/id={id}", name="back-advertisement-edit")
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function advertisementEditShow(int $id, Request $request): Response {
+
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
+        $form = $this->createForm(AdvertisementType::class, $advertisement);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $advertisement = $form->getData();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->flush();
+        }
+
+        return $this->render('back/advertisement-edit.html.twig', [
+            'form' => $form->createView(),
             'advertisement' => $advertisement
         ]);
     }

@@ -43,7 +43,7 @@
                     <br>
                     <br>
                     {% endif %}
-                    <a href="#" class="waves-effect waves-light btn orange lighten-1"><i class="material-icons left">cloud</i>Modifier</a>
+                    <a href="{{ path('back-advertisement-edit', {'id': advertisement.id}) }}" class="waves-effect waves-light btn orange lighten-1"><i class="material-icons left">cloud</i>Modifier</a>
                     <br>
                     <br>
                     {% if advertisement.isValid == 1 %}

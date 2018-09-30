@@ -16,6 +16,7 @@ $(document).ready(function(){
     // style of materialize
     $('.sidenav').sidenav();
     $('.materialboxed').materialbox();
+    $('select').formSelect();
     // ajax of advertisement valid
     $("#valid").click(function (e) {
         e.preventDefault();

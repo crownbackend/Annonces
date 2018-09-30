@@ -1,0 +1,86 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Editer {{ advertisement.title }}{% endblock %}
+
+{% block body %}
+<div class="espace30"></div>
+<div class="container">
+{{ form_start(form) }}
+    <div class="row">
+        <div class="input-field">
+            {{ form_widget(form.title, {"attr": {"class": ""}}) }}
+            {{ form_label(form.title, 'Titre de l\'annonce') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            {{ form_widget(form.description, {"attr": {"class": "materialize-textarea"}}) }}
+            {{ form_label(form.description, 'Description de l\'annonce') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            {{ form_widget(form.price, {"attr": {"class": "materialize-textarea"}}) }}
+            {{ form_label(form.price, 'Prix') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">
+            {{ form_widget(form.address, {"attr": {"class": ""}}) }}
+            {{ form_label(form.address, 'Adresse') }}
+        </div>
+    </div>
+    <div class="file-field input-field">
+         <div class="btn">
+         <span>Image 1</span>
+            {{ form_widget(form.imageFile, {"attr": {"class": ""}}) }}
+         </div>
+         <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+         </div>
+    </div>
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>Image 2</span>
+            {{ form_widget(form.imageFile2, {"attr": {"class": ""}}) }}
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+    </div>
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>Image 3</span>
+            {{ form_widget(form.imageFile3, {"attr": {"class": ""}}) }}
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+    </div>
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>Image 4</span>
+            {{ form_widget(form.imageFile4, {"attr": {"class": ""}}) }}
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+    </div>
+    <div class="input-filed">
+        {{ form_widget(form.category, {"attr": {"class": ""}}) }}
+        {{ form_label(form.category, 'Categorie') }}
+    </div>
+    <div class="input-filed">
+        {{ form_widget(form.region, {"attr": {"class": ""}}) }}
+        {{ form_label(form.region, 'Région') }}
+    </div>
+    <button class="waves-effect waves-light btn orange lighten-1" type="submit">
+        <i class="material-icons left">
+            cloud
+        </i>Modifier
+    </button>
+{{ form_end(form) }}
+</div>
+
+{% endblock %}
+
