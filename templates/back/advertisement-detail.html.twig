@@ -36,13 +36,21 @@
                 </div>
                 <br>
                 <div>
-                    <a href="#" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Validé</a>
+                    {% if advertisement.isValid == 1 %}
+
+                    {% elseif advertisement.isValid == 0 %}
+                    <a href="#" id="valid" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Validé</a>
                     <br>
                     <br>
+                    {% endif %}
                     <a href="#" class="waves-effect waves-light btn orange lighten-1"><i class="material-icons left">cloud</i>Modifier</a>
                     <br>
                     <br>
-                    <a href="#" class="waves-effect waves-light btn red"><i class="material-icons left">cloud</i>Déclinner l'annonce</a>
+                    {% if advertisement.isValid == 1 %}
+                    <a href="#" class="waves-effect waves-light btn red"><i class="material-icons left">cloud</i>Supprimer l'annonce</a>
+                    {% elseif advertisement.isValid == 0 %}
+                    <a href="#" class="waves-effect waves-light btn red"><i class="material-icons left">cloud</i>Décliner l'annonce</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

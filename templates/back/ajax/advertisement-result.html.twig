@@ -1,0 +1,53 @@
+<div class="espace30"></div>
+<div class="container">
+    <h1 class="h1 blue-text lighten-1 text">Détaille de l'annonce : </h1>
+    <h2 class="h2">Nom de l'annonce : {{ advertisement.title }}</h2>
+    <div><strong>Description de l'annonce : </strong></div>
+    <p>{{ advertisement.description }}</p>
+    <div><strong>Images :</strong> </div>
+    <div class="row">
+        <figure class="col s12 m12 l4 xl4">
+            <img class="materialboxed responsive-img" width="650" src="https://picsum.photos/1000/700">
+        </figure>
+        <figure class="col s12 m12 l4 xl4">
+            <img class="materialboxed responsive-img" width="650" src="https://picsum.photos/1000/700">
+        </figure>
+        <figure class="col s12 m12 l4 xl4">
+            <img class="materialboxed responsive-img" width="650" src="https://picsum.photos/1000/700">
+        </figure>
+        <figure class="col s12 m12 l4 xl4">
+            <img class="materialboxed responsive-img" width="650" src="https://picsum.photos/1000/700">
+        </figure>
+        <div class="row">
+            <div><strong>Régions :</strong> {{ advertisement.region.name }}</div>
+            <div><strong>Publié par :</strong> {{ advertisement.user.username }}</div>
+            <div><strong>Publié dans la catégorie :</strong> {{ advertisement.category.name }}</div>
+            <div>
+                <strong>Etat de l'annonce :</strong>
+                {% if advertisement.isValid == 1 %}
+                    <span class="v-valid">Validé</span>
+                {% elseif advertisement.isValid == 0 %}
+                    <span class="v-notValid">En attente de validation</span>
+                {% endif %}
+            </div>
+            <br>
+            <div>
+                {% if advertisement.isValid == 1 %}
+
+                {% elseif advertisement.isValid == 0 %}
+                    <a href="#" id="valid" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Validé</a>
+                    <br>
+                    <br>
+                {% endif %}
+                <a href="#" class="waves-effect waves-light btn orange lighten-1"><i class="material-icons left">cloud</i>Modifier</a>
+                <br>
+                <br>
+                {% if advertisement.isValid == 1 %}
+                    <a href="#" class="waves-effect waves-light btn red"><i class="material-icons left">cloud</i>Supprimer l'annonce</a>
+                {% elseif advertisement.isValid == 0 %}
+                    <a href="#" class="waves-effect waves-light btn red"><i class="material-icons left">cloud</i>Décliner l'annonce</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

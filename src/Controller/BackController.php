@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BackController extends Controller
 {
     /**
-     * @Route("/index", name="back-index")
+     * @Route("/", name="back-index")
      * @return Response
      * @throws \Exception
      */
@@ -130,14 +130,42 @@ class BackController extends Controller
     }
 
     /**
-     * @Route("/annonces/detail-annonces/id={id}", name="back-detail-advertisement", methods="GET")
+     * @Route("/annonces/detail-annonces/id={id}", name="back-detail-advertisement", methods="GET|POST")
      * @param int $id
+     * @param  Request $request
+     * @param \Swift_Mailer $mailer
      * @return Response
      * @throws \Exception
      */
-    public function advertisementDetailShow(int $id): Response {
+    public function advertisementDetailShow(int $id, Request $request, \Swift_Mailer $mailer): Response {
         //advertisement detail
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
+        if($request->isXmlHttpRequest()) {
+            // valid advertisement
+            $advertisement->setIsvalid(1);
+            $manager = $this->getDoctrine()->getManager();
+            $manager->flush();
+            // send mail confirmation in the users !
+            $user = $advertisement->getUser()->getUsername();
+
+            $message = (new \Swift_Message('Mail de confirmation Le bon point'))
+            ->setFrom('annonces@lebonpoint.fr')
+            ->setTo($user)
+            ->setBody($this->renderView(
+                    'emails/advertisement-valid.html.twig', [
+                        'advertisement' => $advertisement,
+                        'username' => $user
+                    ]
+                ),
+                'text/html'
+            )
+            ;
+            $mailer->send($message);
+
+            return $this->render('back/ajax/advertisement-result.html.twig', [
+                'advertisement' => $advertisement
+            ]);
+        }
 
         return $this->render('back/advertisement-detail.html.twig', [
             'advertisement' => $advertisement

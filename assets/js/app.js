@@ -13,8 +13,26 @@ require('../css/space.css');
 // var $ = require('jquery');
 
 $(document).ready(function(){
+    // style of materialize
     $('.sidenav').sidenav();
     $('.materialboxed').materialbox();
+    // ajax of advertisement valid
+    $("#valid").click(function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var ad = $("#ad");
+        $.ajax({
+            url : $(this).attr( 'action' ),
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function (data) {
+                ad.html(data);
+            },
+            error: function(){
+                ad.html('erreur');
+            }
+        });
+    });
 });
 
 
