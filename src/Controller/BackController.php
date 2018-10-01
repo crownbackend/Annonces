@@ -206,13 +206,15 @@ class BackController extends Controller
      * @Route("/Utilisateurs/id={id}", name="back-user-detail", methods="GET")
      * @param int $id
      * @return Response
+     * @throws \Exception
      */
     public  function usersDetailShow(int $id): Response {
 
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
-
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->findByMyAdvertisement($user);
         return $this->render('back/users-detail.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'advertisements' => $advertisement
         ]);
     }
 

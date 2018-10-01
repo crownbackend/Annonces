@@ -309,6 +309,30 @@ class AdvertisementRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @param $user
+     * @return Advertisement|null
+     * @throws \Exception
+     */
+    public function findByMyAdvertisement($user)
+    {
+        //SELECT * FROM `advertisement` WHERE user_id = $user is valid = 1
+        $query = $this->createQueryBuilder('a')
+            ->select('a')
+            ->from('App\Entity\Advertisement', 'r')
+            ->where('a.user = :user')
+            ->orderBy('a.createdAt', 'DESC')
+            ->setParameter(':user', $user)
+            ->getQuery()
+        ;
+
+        try {
+            return $query->getResult();
+        }
+        catch(\Exception $e) {
+            throw new \Exception('problème '. $e->getMessage(). $e->getFile(). $e->getFile());
+        }
+    }
 
 
 
