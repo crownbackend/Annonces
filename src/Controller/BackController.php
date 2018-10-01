@@ -175,7 +175,7 @@ class BackController extends Controller
     }
 
     /**
-     * @Route("/annonces/detail-annonce/editer/id={id}", name="back-advertisement-edit")
+     * @Route("/annonces/detail-annonce/editer/id={id}", name="back-advertisement-edit", methods="GET|POST")
      * @param int $id
      * @param Request $request
      * @return Response
@@ -190,11 +190,29 @@ class BackController extends Controller
             $advertisement = $form->getData();
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();
+
+            return $this->redirectToRoute('back-detail-advertisement', [
+                'id' => $advertisement->getId()
+            ]);
         }
 
         return $this->render('back/advertisement-edit.html.twig', [
             'form' => $form->createView(),
             'advertisement' => $advertisement
+        ]);
+    }
+
+    /**
+     * @Route("/Utilisateurs/id={id}", name="back-user-detail", methods="GET")
+     * @param int $id
+     * @return Response
+     */
+    public  function usersDetailShow(int $id): Response {
+
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+
+        return $this->render('back/users-detail.html.twig', [
+            'user' => $user
         ]);
     }
 
