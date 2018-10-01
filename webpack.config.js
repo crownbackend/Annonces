@@ -19,6 +19,7 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('materialize', './assets/js/materialize.js')
+    .addEntry('bootstrap', './assets/js/bootstrap.js')
 
     /*
      * FEATURE CONFIG
