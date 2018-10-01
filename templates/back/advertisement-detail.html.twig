@@ -24,7 +24,7 @@
             </figure>
             <div class="row">
                 <div><strong>Régions :</strong> {{ advertisement.region.name }}</div>
-                <div><strong>Publié par :</strong> {{ advertisement.user.username }}</div>
+                <div><strong>Publié par :</strong> <a href="{{ path('back-user-detail', {'id': advertisement.user.id}) }}">{{ advertisement.user.username }}</a></div>
                 <div><strong>Publié dans la catégorie :</strong> {{ advertisement.category.name }}</div>
                 <div>
                     <strong>Etat de l'annonce :</strong>
