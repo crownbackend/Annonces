@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Conversations;
 use App\Entity\Messages;
 use App\Entity\Advertisement;
 use App\Form\AdvertisementType;
@@ -292,25 +291,23 @@ class AdvertisementController extends Controller
         //get current advertisement
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
         $title = $advertisement->getTitle();
+        $to = $advertisement->getUser();
+        $from = $this->getUser();
 
-        $conversation = new Conversations();
         $message = new Messages();
         $form = $this->createForm(MessagesType::class);
         $form->handleRequest($request);
 
+
         if($form->isSubmitted() && $form->isValid()) {
 
             $message = $form->getData();
-
             $manager = $this->getDoctrine()->getManager();
-            $user = $this->getUser();
-            $message->setUser($user);
+
+            $message->setTitle($title);
+            $message->setFromId($from);
+            $message->setToId($to);
             $manager->persist($message);
-            $conversation->setTitle($title);
-            $conversation->getId();
-            $conversation->addUser($user);
-            $conversation->addMessage($message);
-            $manager->persist($conversation);
             $manager->flush();
 
         }
@@ -329,11 +326,7 @@ class AdvertisementController extends Controller
 
     public  function myDiscussions(): Response {
 
-        $messages = $this->getDoctrine()->getRepository(Messages::class)->findByMessages();
-
-        return $this->render('advertisement/discussions.html.twig', [
-            'messages' => $messages
-        ]);
+        return $this->render('advertisement/discussions.html.twig');
     }
 
 

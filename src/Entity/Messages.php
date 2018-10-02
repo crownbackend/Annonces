@@ -22,16 +22,36 @@ class Messages
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="message")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="datetime")
      */
-    private $user;
+    private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Conversations", inversedBy="message")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $readAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $conversations;
+    private $fromId;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $toId;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+    }
 
     public function getId(): ?int
     {
@@ -50,26 +70,62 @@ class Messages
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->user;
+        return $this->createdAt;
     }
 
-    public function setUser(?User $user): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->user = $user;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getConversations(): ?Conversations
+    public function getReadAt(): ?\DateTimeInterface
     {
-        return $this->conversations;
+        return $this->readAt;
     }
 
-    public function setConversations(?Conversations $conversations): self
+    public function setReadAt(?\DateTimeInterface $readAt): self
     {
-        $this->conversations = $conversations;
+        $this->readAt = $readAt;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getFromId(): ?User
+    {
+        return $this->fromId;
+    }
+
+    public function setFromId(?User $fromId): self
+    {
+        $this->fromId = $fromId;
+
+        return $this;
+    }
+
+    public function getToId(): ?User
+    {
+        return $this->toId;
+    }
+
+    public function setToId(?User $toId): self
+    {
+        $this->toId = $toId;
 
         return $this;
     }
