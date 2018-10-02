@@ -479,10 +479,9 @@ class Advertisement
     private $updatedAt4;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Messages", mappedBy="advertisement")
+     * @ORM\OneToMany(targetEntity="App\Entity\Messages", mappedBy="advertisement", orphanRemoval=true)
      */
     private $messages;
-
 
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image4
@@ -554,6 +553,5 @@ class Advertisement
 
         return $this;
     }
-
 
 }

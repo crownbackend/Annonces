@@ -50,6 +50,7 @@ class Messages
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Advertisement", inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $advertisement;
 
@@ -147,6 +148,5 @@ class Messages
 
         return $this;
     }
-
 
 }
