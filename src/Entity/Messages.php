@@ -48,6 +48,12 @@ class Messages
      */
     private $toId;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Advertisement", inversedBy="messages")
+     */
+    private $advertisement;
+
+
     public function __construct()
     {
         $this->createdAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
@@ -129,4 +135,18 @@ class Messages
 
         return $this;
     }
+
+    public function getAdvertisement(): ?Advertisement
+    {
+        return $this->advertisement;
+    }
+
+    public function setAdvertisement(?Advertisement $advertisement): self
+    {
+        $this->advertisement = $advertisement;
+
+        return $this;
+    }
+
+
 }

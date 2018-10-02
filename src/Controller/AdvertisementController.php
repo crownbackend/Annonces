@@ -307,8 +307,11 @@ class AdvertisementController extends Controller
             $message->setTitle($title);
             $message->setFromId($from);
             $message->setToId($to);
+            $message->setAdvertisement($advertisement);
             $manager->persist($message);
             $manager->flush();
+
+            return $this->redirectToRoute('my-advertisement');
 
         }
 
@@ -319,14 +322,48 @@ class AdvertisementController extends Controller
     }
 
     /**
-     * @Route({"fr": "/messages/mes-discussions",
-     *         "en": "/messages/my-discussions",
-     *         "es": "/mensajes/mis-discusiones"}, name="message")
+     * @Route({"fr": "/messages/mes-discussions/id={id}",
+     *         "en": "/messages/my-discussions/id={id}",
+     *         "es": "/mensajes/mis-discusiones/id={id}"}, name="message")
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     * @throws \Exception
      */
 
-    public  function myDiscussions(): Response {
+    public  function myDiscussions(int $id, Request $request): Response {
 
-        return $this->render('advertisement/discussions.html.twig');
+        $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
+        $title = $advertisement->getTitle();
+        $to = $advertisement->getUser();
+        $from = $this->getUser();
+
+        $messages = $this->getDoctrine()->getRepository(Messages::class)->findByMyMessages($advertisement);
+
+        $message = new Messages();
+        $form = $this->createForm(MessagesType::class);
+        $form->handleRequest($request);
+
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $message = $form->getData();
+            $manager = $this->getDoctrine()->getManager();
+
+            $message->setTitle($title);
+            $message->setFromId($from);
+            $message->setToId($to);
+            $message->setAdvertisement($advertisement);
+            $manager->persist($message);
+            $manager->flush();
+
+        }
+
+        return $this->render('advertisement/discussions.html.twig', [
+            'messages' => $messages,
+            'advertisement' => $advertisement,
+            'form' => $form->createView()
+        ]);
     }
 
 

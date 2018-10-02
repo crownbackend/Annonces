@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Advertisement;
 use App\Entity\Messages;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,32 +21,28 @@ class MessagesRepository extends ServiceEntityRepository
         parent::__construct($registry, Messages::class);
     }
 
-//    /**
-//     * @return Messages[] Returns an array of Messages objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Messages
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
+    /**
+     * @return Messages|null
+     * @param Advertisement $advertisement
+     * @throws \Exception
+     */
+    public function findByMyMessages(Advertisement $advertisement) {
+//SELECT * FROM `messages` WHERE advertisement_id = 208 ORDER BY created_at
+        $query = $this->createQueryBuilder('m')
+        ->addSelect('m')
+        ->where('m.advertisement = :advertisement')
+        ->setParameter(':advertisement', $advertisement)
+        ->getQuery()
         ;
+
+        try {
+            return $query->getResult();
+        }
+        catch (\Exception $e)
+        {
+            throw new \Exception('Prolbème : '. $e->getMessage(). $e->getLine(). $e->getFile());
+        }
     }
-    */
+
 }
