@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Advertisement;
 use App\Entity\Messages;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -24,17 +25,28 @@ class MessagesRepository extends ServiceEntityRepository
     /**
      * @return Messages|null
      * @param User $from
+     * @param User $from2
      * @param User $to
+     * @param User $to2
+     * @param Advertisement $advertisement
      * @throws \Exception
      */
-    public function findByMyMessages(User $from, User $to) {
-//SELECT * FROM `messages` WHERE advertisement_id = 208 ORDER BY created_at
+    public function findByMyMessages(User $from, User $to, Advertisement $advertisement, User $from2, User $to2) {
+
         $query = $this->createQueryBuilder('m')
         ->addSelect('m')
         ->where('m.fromId = :from')
         ->andWhere('m.toId = :to')
+        ->andWhere('m.advertisement = :advertisement')
+        ->orWhere('m.fromId = :from2')
+        ->andWhere('m.toId = :to2')
+        ->andWhere('m.advertisement = :advertisement')
         ->setParameter(':from', $from)
         ->setParameter(':to', $to)
+        ->setParameter(':from2', $from2)
+        ->setParameter(':to2', $to2)
+        ->setParameter(':advertisement', $advertisement)
+        ->orderBy('m.createdAt', 'DESC')
         ->getQuery()
         ;
 

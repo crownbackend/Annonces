@@ -334,6 +334,38 @@ class AdvertisementRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Advertisement|null
+     * @param Advertisement $advertisement
+     * @param User $from
+     * @param User $to
+     * @throws \Exception
+     */
+    public function findByMyMessages(Advertisement $advertisement, User $from, User $to)
+    {
+
+        $query = $this->createQueryBuilder('a')
+            ->select('a')
+            ->from('App\Entity\Advertisement', 'r')
+            ->where('a = :advertisement')
+            ->leftJoin('a.messages', 'm')
+            ->andWhere('m.toId = :to')
+            ->andWhere('m.fromId = :from')
+            ->orderBy('m.createdAt', 'ASC')
+            ->setParameter(':advertisement', $advertisement)
+            ->setParameter(':from', $from)
+            ->setParameter(':to', $to)
+            ->getQuery()
+        ;
+
+        try {
+            return $query->getResult();
+        }
+        catch(\Exception $e) {
+            throw new \Exception('problème '. $e->getMessage(). $e->getFile());
+        }
+    }
+
 
 
 

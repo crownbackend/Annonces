@@ -298,7 +298,6 @@ class AdvertisementController extends Controller
         $form = $this->createForm(MessagesType::class);
         $form->handleRequest($request);
 
-
         if($form->isSubmitted() && $form->isValid()) {
 
             $message = $form->getData();
@@ -326,22 +325,47 @@ class AdvertisementController extends Controller
      *         "en": "/messages/my-discussions/id={id}",
      *         "es": "/mensajes/mis-discusiones/id={id}"}, name="message")
      * @param int $id
+
+     * @param Request $request
      * @return Response
      * @throws \Exception
      */
 
-    public  function myDiscussions(int $id): Response {
+    public  function myDiscussions(int $id, Request $request): Response {
+
 
         $advertisement = $this->getDoctrine()->getRepository(Advertisement::class)->find($id);
+        $title = $advertisement->getTitle();
 
         $from = $this->getUser();
         $to = $advertisement->getUser();
 
-        $messages = $this->getDoctrine()->getRepository(Messages::class)->findByMyMessages($from, $to);
+        $messages = $this->getDoctrine()->getRepository(Advertisement::class)->findByMyMessages($advertisement, $from, $to);
+
+        $message = new Messages();
+        $form = $this->createForm(MessagesType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $message = $form->getData();
+            $manager = $this->getDoctrine()->getManager();
+
+            $message->setTitle($title);
+            $message->setFromId($from);
+            $message->setToId($to);
+            $message->setAdvertisement($advertisement);
+            $manager->persist($message);
+            $manager->flush();
+
+            //return $this->redirectToRoute('my-advertisement');
+
+        }
 
         return $this->render('advertisement/discussions.html.twig', [
-            'messages' => $messages,
-            'advertisement' => $advertisement
+            'advertisement' => $advertisement,
+            'form' => $form->createView(),
+            'messages' => $messages
         ]);
     }
 

@@ -5,15 +5,25 @@
 
 <div class="container">
 
-    {% for message in messages %}
-        <div>{{ message.content }}</div>
-        <div>{{ message.fromId}}</div>
+
+{% for message in advertisement.messages %}
+    <div>{{ message.content }}</div>
+    <div>{{ message.fromId }}</div>
     {% endfor %}
-<br>
+
+    {% for message in messages %}
+        <div>{{ message.title }}</div>
+
+    {% endfor %}
 
 <br>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    <button type="submit">envoyer</button>
+    {{ form_end(form) }}
 <br>
-    {{ advertisement.title }}
+<br>
+
 
 </div>
 
