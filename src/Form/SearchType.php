@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,9 +13,19 @@ class SearchType extends AbstractType
     {
         $builder
             ->add('name1')
-            ->add('name2')
+            ->add('name2', ChoiceType::class, [
+                'choices' => [
+                    'test' => 'lorem eugze',
+                    'test1' => 'lorem eugze',
+                ]
+            ])
             ->add('name3')
-            ->add('name4')
+            ->add('name4', ChoiceType::class, [
+                'choices' => [
+                    'test' => 'lorem eugze',
+                    'test1' => 'lorem eugze',
+                ]
+            ])
         ;
     }
 

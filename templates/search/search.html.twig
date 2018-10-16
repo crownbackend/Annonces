@@ -2,19 +2,26 @@
 <div class="card text-center">
     <div class="card-header">
         <div class="card-body">
-            <h5 class="card-title">{{ 'Effectuer une recherche'|trans }}</h5>
             <div class="container">
                     {{ form_start(form) }}
                 <div class="row">
-                    <div class="col-md-5">
-                    {{ form_widget(form.name1) }}
+                    <div class="col-md-6 px-1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ form_widget(form.name1) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">{{ form_widget(form.name2) }}</div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 px-1">
+                    {{ form_widget(form.name4) }}
                     {{ form_widget(form.name3) }}
                     </div>
-                    <div class="col-md-3">
-                    {{ form_widget(form.name2) }}
-                    {{ form_widget(form.name4) }}
+                    <div class="col-md-3 px-1">
+                     <button class="btn btn-primary col-md-12">Rechercher</button>
                     </div>
                 </div>
                     {{ form_end(form) }}
