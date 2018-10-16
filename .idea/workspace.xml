@@ -80,8 +80,8 @@
           <entry key="dummy" value="30" />
           <entry key="env" value="7" />
           <entry key="js" value="1152" />
-          <entry key="php" value="14178" />
-          <entry key="twig" value="10674" />
+          <entry key="php" value="14312" />
+          <entry key="twig" value="10690" />
           <entry key="yaml" value="704" />
         </counts>
       </usages-collector>
@@ -91,9 +91,9 @@
           <entry key="CSS" value="751" />
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="1153" />
-          <entry key="PHP" value="14178" />
+          <entry key="PHP" value="14312" />
           <entry key="PLAIN_TEXT" value="30" />
-          <entry key="Twig" value="10672" />
+          <entry key="Twig" value="10688" />
           <entry key="YAML" value="704" />
         </counts>
       </usages-collector>
@@ -118,8 +118,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/search/search.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="15" column="76" selection-start-line="15" selection-start-column="76" selection-end-line="15" selection-end-column="76" />
+            <state relative-caret-position="560">
+              <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -127,8 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Form/SearchType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+            <state relative-caret-position="477">
+              <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
               <folding>
                 <element signature="e#28#57#0#PHP" expanded="true" />
               </folding>
@@ -481,12 +481,12 @@
       <workItem from="1538517110503" duration="440000" />
       <workItem from="1539692412414" duration="41000" />
       <workItem from="1539692507371" duration="7767000" />
-      <workItem from="1539702191037" duration="1839000" />
+      <workItem from="1539702191037" duration="2216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178682000" />
+    <option name="totallyTimeSpent" value="179059000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -824,8 +824,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Form/SearchType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+        <state relative-caret-position="477">
+          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
           <folding>
             <element signature="e#28#57#0#PHP" expanded="true" />
           </folding>
@@ -834,8 +834,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/search/search.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="15" column="76" selection-start-line="15" selection-start-column="76" selection-end-line="15" selection-end-column="76" />
+        <state relative-caret-position="560">
+          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
         </state>
       </provider>
     </entry>
