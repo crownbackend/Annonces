@@ -366,6 +366,7 @@ class AdvertisementRepository extends ServiceEntityRepository
         }
     }
 
+    //SELECT * FROM `advertisement` WHERE category_id = 7 AND region_id = 1 AND title LIKE '%iph%' OR description LIKE 'test'
 
 
 
