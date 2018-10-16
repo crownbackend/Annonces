@@ -11,7 +11,10 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('field_name')
+            ->add('name1')
+            ->add('name2')
+            ->add('name3')
+            ->add('name4')
         ;
     }
 
