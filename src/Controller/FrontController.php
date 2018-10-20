@@ -40,7 +40,7 @@ class FrontController extends Controller {
     /**
      * @Route({"fr": "/annonces/{regionSlug}",
      *         "en": "/advertisement/{regionSlug}",
-     *         "es": "/anuncio/{regionSlug}"}, name="region", methods="GET")
+     *         "es": "/anuncio/{regionSlug}"}, name="region", methods="GET|POST")
      * @param string $regionSlug
      * @param Request $request
      * @return Response

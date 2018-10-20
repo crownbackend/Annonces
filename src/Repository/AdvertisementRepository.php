@@ -43,7 +43,8 @@ class AdvertisementRepository extends ServiceEntityRepository
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findByRegions(string $regionSlug, int $isValid) {
+    public function findByRegions(string $regionSlug, int $isValid)
+    {
 //SELECT * FROM `advertisement` WHERE region_id = 1
 
         $query = $this->createQueryBuilder('a')
@@ -72,7 +73,8 @@ class AdvertisementRepository extends ServiceEntityRepository
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findBySlugAdvertisement($advertisementSlug, $categorySlug, $isValid){
+    public function findBySlugAdvertisement($advertisementSlug, $categorySlug, $isValid)
+    {
 //SELECT * FROM `advertisement` WHERE slug = 'machine-a-laver'
         $query = $this->createQueryBuilder('a')
             ->select('a')
@@ -200,7 +202,8 @@ class AdvertisementRepository extends ServiceEntityRepository
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findByMessages(int $id): ?Advertisement {
+    public function findByMessages(int $id): ?Advertisement
+    {
 
         $query = $this->createQueryBuilder('a')
         ->select('a')
@@ -224,7 +227,8 @@ class AdvertisementRepository extends ServiceEntityRepository
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findByCountValid() {
+    public function findByCountValid()
+    {
 
         $query = $this->createQueryBuilder('a')
         ->select('count(a)')
@@ -245,7 +249,8 @@ class AdvertisementRepository extends ServiceEntityRepository
      * @return Advertisement|null
      * @throws \Exception
      */
-    public function findByCountNotValid() {
+    public function findByCountNotValid()
+    {
 
         $query = $this->createQueryBuilder('a')
             ->select('count(a)')
@@ -267,7 +272,8 @@ class AdvertisementRepository extends ServiceEntityRepository
      * @throws \Exception
      */
 
-    public function findAllNotValid(int $isValid) {
+    public function findAllNotValid(int $isValid)
+    {
 
         $query = $this->createQueryBuilder('a')
         ->addSelect('a')
@@ -290,7 +296,8 @@ class AdvertisementRepository extends ServiceEntityRepository
      * @param int $isValid
      * @throws \Exception
      */
-    public function findByLastAdvertisement(int $isValid) {
+    public function findByLastAdvertisement(int $isValid)
+    {
 
         $query = $this->createQueryBuilder('a')
         ->addSelect('a')
@@ -366,7 +373,28 @@ class AdvertisementRepository extends ServiceEntityRepository
         }
     }
 
+
+    /**
+     * @return Advertisement|null
+     * @param string $value
+     * @throws \Exception
+     */
+    public function findBySearch(string $value)
     //SELECT * FROM `advertisement` WHERE category_id = 7 AND region_id = 1 AND title LIKE '%iph%' OR description LIKE 'test'
+    {
+        $query = $this->createQueryBuilder('a')
+        ->addSelect('a')
+        ->where('a.title LIKE :chaine')
+        ->setParameter(':chaine', $value)
+        ->getQuery();
+
+        try {
+            return $query->getResult();
+        }
+        catch(\Exception $e) {
+            throw new \Exception('problème '. $e->getMessage(). $e->getFile());
+        }
+    }
 
 
 

@@ -1,9 +1,31 @@
-<div class="card text-center">
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+<div class="card text-center bg-gray">
     <div class="card-header">
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="container">
+                    {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-6 px-1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ form_widget(form.name) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6 py-2">{{ form_widget(form.region) }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                    {{ form_widget(form.category) }}
+                        <div class="py-2">{{ form_widget(form.address) }}</div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                     <button class="btn btn-primary col-md-12">Rechercher</button>
+                    </div>
+                </div>
+                    {{ form_end(form) }}
+            </div>
         </div>
     </div>
 </div>

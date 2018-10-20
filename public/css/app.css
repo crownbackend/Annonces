@@ -19,6 +19,22 @@ html {
     line-height: 60px; /* Vertically center the text there */
     background-color: #f5f5f5;
 }
+.espace10{
+    padding: 10px;
+}
+.espace20{
+    padding: 20px;
+}
+.espace30{
+    padding: 30px;
+}
+.espace40{
+    padding: 40px;
+}
+.espace50{
+    padding: 50px;
+}
+
 .navbar-light .navbar-brand {
     color: #ffffff;
     font-size: 30px;
@@ -191,17 +207,6 @@ p {
 
 .map_image {
     width: 70%;
-}
-
-.espace50{
-    padding: 50px;
-}
-
-.espace30{
-    padding: 30px;
-}
-.espace20{
-    padding: 20px;
 }
 
 h1 {
@@ -454,4 +459,7 @@ a {
     font-size: 1.2rem;
     font-weight: 700;
     font-family: OpenSansBold, sans-serif;
+}
+.bg-gray {
+    background-color: #e6e6e6;
 }

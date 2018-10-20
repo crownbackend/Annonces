@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% for region in regions %}{{ region.name }}{% endfor %} - nos annonces le bon point{% endblock %}
+{% block title %}
+    {% for region in regions %}
+        {{ region.name }}
+    {% endfor %} - nos annonces le bon point
+{% endblock %}
 
 {% block body %}
 {{ render(controller(
@@ -34,4 +38,8 @@
         </div>
     </div>
 
+{% endblock %}
+{% block javascripts %}
+    {% include('inc/js.html.twig') %}
+    <script src="{{ asset('js/app.js') }}"></script>
 {% endblock %}
