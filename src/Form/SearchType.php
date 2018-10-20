@@ -13,16 +13,18 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, [
+            ->add('title', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Que recherchez vous ?'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('category')
             ->add('address', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Adresse ou code postal'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('region')
         ;

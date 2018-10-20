@@ -30,9 +30,11 @@ class SearchController extends Controller
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $content = $form->getData();
-            $value = $content['name'];
-            $search = $this->getDoctrine()->getRepository(Advertisement::class)->findBySearch($value);
+            $region = 1;
+            $category = 7;
+            $value = $form->getData()->getTitle();
+
+            $search = $this->getDoctrine()->getRepository(Advertisement::class)->findBySearch($value, $region, $category);
 
             return $this->render('search/result.html.twig', [
                 'results' => $search
