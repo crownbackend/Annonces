@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}  {% endblock %}
+
+{% block body %}
+
+    {% for result in results %}
+
+        <div class="card">
+            <h5 class="card-header">{{ result.title }}</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{ result.category.name }}</h5>
+                <img class="img-fluid" src="https://picsum.photos/1000/700" width="192" href="108" alt="test">
+                <p class="card-text">{{ result.address }}</p>
+                <p class="card-text">{{ result.region.name }}</p>
+                <span class="price-r">{{ result.price }} €</span>
+                <span class="date-a">{{ result.createdAt|date('d/m/y à H:i') }}</span>
+                <br>
+                <a href="{{ path('advertisement', {'categorySlug': result.category.categorySlug, 'advertisementSlug': result.advertisementSlug}) }}" class="btn btn-primary">Voir l'annonce</a>
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}

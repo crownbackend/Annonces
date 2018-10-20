@@ -376,16 +376,16 @@ class AdvertisementRepository extends ServiceEntityRepository
 
     /**
      * @return Advertisement|null
-     * @param string $args
+     * @param string $value
      * @throws \Exception
      */
-    public function findBySearch(string $args)
+    public function findBySearch(string $value)
     //SELECT * FROM `advertisement` WHERE category_id = 7 AND region_id = 1 AND title LIKE '%iph%' OR description LIKE 'test'
     {
         $query = $this->createQueryBuilder('a')
         ->addSelect('a')
         ->where('a.title LIKE :chaine')
-        ->setParameter(':chaine', $args)
+        ->setParameter(':chaine', $value)
         ->getQuery();
 
         try {
