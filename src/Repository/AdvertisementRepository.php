@@ -388,9 +388,9 @@ class AdvertisementRepository extends ServiceEntityRepository
         ->addSelect('a')
         ->where('a.category = :category')
         ->andWhere('a.region = :region')
-        ->andWhere('a.title LIKE :chaine')
-        ->orWhere('a.description LIKE :chaine')
-        ->setParameter(':chaine', $value)
+        ->andWhere('a.title LIKE :value')
+        ->orWhere('a.description LIKE :value')
+        ->setParameter(':value', $value)
         ->setParameter(':region', $region)
         ->setParameter(':category', $category)
         ->getQuery();

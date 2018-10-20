@@ -32,8 +32,8 @@ class SearchController extends Controller
         {
             $region = 1;
             $category = 7;
-            $value = $form->getData()->getTitle();
 
+            $value = $form->getData()->getTitle();
             $search = $this->getDoctrine()->getRepository(Advertisement::class)->findBySearch($value, $region, $category);
 
             return $this->render('search/result.html.twig', [
