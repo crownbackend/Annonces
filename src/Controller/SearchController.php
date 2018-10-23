@@ -16,23 +16,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends Controller
 {
     /**
-     * @Route({"fr": "/recherche/",
+     * @Route({"fr": "/recherche/search/?value={value}&region={region}&category={category}",
      *         "en": "/search/",
-     *         "es": "/buscar/"}, name="search", methods="POST|GET")
+     *         "es": "/buscar/"}, name="search", methods="GET")
      * @param Request $request
+     * @param string $value
+     * @param string $region
+     * @param string $category
      * @return Response
      * @throws \Exception
      */
-    public function searchAction(Request $request): Response
+    public function searchAction(Request $request, string $value, string $region, string $category): Response
     {
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $region = 1;
-            $category = 7;
-
             $value = $form->getData()->getTitle();
             $search = $this->getDoctrine()->getRepository(Advertisement::class)->findBySearch($value, $region, $category);
 
@@ -40,7 +40,6 @@ class SearchController extends Controller
                 'results' => $search
             ]);
         }
-
         return $this->render('search/search.html.twig', [
             'form' => $form->createView()
         ]);

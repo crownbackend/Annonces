@@ -36,3 +36,8 @@ services:
         class: App\Form\ProfileType
         tags:
         - { name: form.type, alias: app_user_profile }
+    app.form.search:
+        class: App\Form\SearchType
+        arguments: [router]
+        tags:
+        - { name: form.type, alias: app_search }

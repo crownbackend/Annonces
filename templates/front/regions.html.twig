@@ -7,9 +7,11 @@
 {% endblock %}
 
 {% block body %}
+
 {{ render(controller(
     'App\\Controller\\SearchController::searchAction'
 )) }}
+
 <div class="espace30"></div>
     <div class="container">
         <h1 class="a-region">Annonces : {% for region in regions %}{{ region.name }}{% endfor %}</h1>
