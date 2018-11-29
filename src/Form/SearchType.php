@@ -7,24 +7,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Routing\Router;
+
 
 class SearchType extends AbstractType
 {
-    /**
-     * @var $router
-     */
-    private $router;
-
-    /**
-     * SearchType constructor.
-     * @param Router $router
-     */
-    public function __construct(Router $router)
-    {
-        $this->router = $router;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -46,8 +32,6 @@ class SearchType extends AbstractType
                 'required' => false,
             ])
             ->add('region')
-            ->setAction($this->router->generate('search'))
-            ->setMethod('GET')
         ;
     }
 

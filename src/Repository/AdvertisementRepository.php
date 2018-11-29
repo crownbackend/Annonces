@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Advertisement;
+use App\Entity\Category;
+use App\Entity\Region;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -373,15 +375,14 @@ class AdvertisementRepository extends ServiceEntityRepository
         }
     }
 
-
     /**
      * @return Advertisement|null
      * @param string $value
-     * @param $region
-     * @param $category
+     * @param Region $region
+     * @param Category $category
      * @throws \Exception
      */
-    public function findBySearch(string $value, $region, $category)
+    public function findBySearch(string $value, Region $region, Category $category)
     //SELECT * FROM `advertisement` WHERE category_id = 7 AND region_id = 1 AND title LIKE '%iph%' OR description LIKE 'test'
     {
         $query = $this->createQueryBuilder('a')
